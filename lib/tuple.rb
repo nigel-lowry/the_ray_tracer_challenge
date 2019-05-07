@@ -1,5 +1,5 @@
 class Tuple
-  attr_reader :x, :y, :z
+  attr_reader :x, :y, :z, :w
 
   def initialize x, y, z, w
     raise_error_if_components_arent_numeric x, y, z
@@ -14,6 +14,10 @@ class Tuple
 
   def vector?
     @w == 0.0
+  end
+
+  def ==(other)
+    self.x == other.x and self.y == other.y and self.z == other.z and self.w == other.w
   end
 
 private
