@@ -78,4 +78,14 @@ RSpec.describe Vector do
       expect(Vector.dot(v1, v2)).to eq(20)
     end
   end
+
+  describe '#cross' do
+    it 'calculates it' do
+      v1 = Vector.new(1, 2, 3)
+      v2 = Vector.new(2, 3, 4)
+
+      expect(Vector.cross(v1, v2)).to eq(Vector.new(-1, 2, -1))
+      expect(Vector.cross(v2, v1)).to eq(Vector.new(1, -2, 1))
+    end
+  end
 end
