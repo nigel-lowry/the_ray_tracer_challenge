@@ -69,4 +69,13 @@ RSpec.describe Vector do
       end
     end
   end
+
+  describe '#dot_product' do
+    it 'calculates it' do
+      v1 = Vector.new(1, 2, 3)
+      v2 = Vector.new(2, 3, 4)
+
+      expect(Vector.dot(v1, v2)).to eq(20)
+    end
+  end
 end

@@ -17,4 +17,8 @@ class Vector < Tuple
   def unit_vector?
     magnitude == 1.0
   end
+
+  def self.dot a, b
+    a.x * b.x + a.y * b.y + a.z * b.z
+  end
 end
