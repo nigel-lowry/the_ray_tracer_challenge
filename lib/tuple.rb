@@ -5,7 +5,7 @@ class Tuple
     raise_error_if_components_arent_numeric x, y, z
     raise_error_if_w_isnt_zero_or_one w
 
-    @x, @y, @z, @w = x, y, z, w
+    @x, @y, @z, @w = x, y, z, w.to_f
   end
 
   def point?

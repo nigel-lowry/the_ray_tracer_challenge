@@ -33,6 +33,30 @@ RSpec.describe Tuple do
         end
       end
     end
+
+    context '1.0' do
+      it 'stores it as 1.0' do
+        expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0)
+      end
+    end
+
+    context '1' do
+      it 'stores it as 1.0' do
+        expect(Tuple.new(4, -4, 3, 1).w).to be_an_instance_of(Float) and eq(1.0)
+      end
+    end
+
+    context '0.0' do
+      it 'stores it as 0.0' do
+        expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0)
+      end
+    end
+
+    context '0' do
+      it 'stores it as 0.0' do
+        expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0)
+      end
+    end
   end
 
   describe 'x' do
@@ -55,6 +79,20 @@ RSpec.describe Tuple do
     context 'not a number' do
       it 'errors' do
         expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number'
+      end
+    end
+  end
+
+  describe 'equality' do
+    context 'w 1' do
+      it 'is equal' do
+        expect(Tuple.new(4, -4, 3, 1)).to eq(Tuple.new(4, -4, 3, 1.0))
+      end
+    end
+
+    context 'w 0' do
+      it 'is equal' do
+        expect(Tuple.new(4, -4, 3, 0)).to eq(Tuple.new(4, -4, 3, 0.0))
       end
     end
   end
