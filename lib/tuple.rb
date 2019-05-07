@@ -17,6 +17,7 @@ class Tuple
   end
 
   def +(other)
+    raise 'cannot add two points' if self.point? and other.point? 
     Tuple.new(self.x + other.x, self.y + other.y, self.z + other.z, self.w + other.w)
   end
 
