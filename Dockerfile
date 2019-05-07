@@ -9,4 +9,7 @@ RUN bundle install
 
 COPY . /usr/src/app/
 
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]
+
 CMD ["bin/rails", "s", "-b", "0.0.0.0"]
