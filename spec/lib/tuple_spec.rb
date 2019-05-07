@@ -132,4 +132,42 @@ RSpec.describe Tuple do
       end
     end
   end
+
+  describe '-' do
+    context 'subtracting two points' do
+      it 'minuses the components' do
+        p1 = Point.new(3, 2, 1)
+        p2 = Point.new(5, 6, 7)
+
+        expect(p1 - p2).to eq(Vector.new(-2, -4, -6))
+      end
+    end
+
+    context 'subtracting a vector from a point' do
+      it 'minuses' do
+        p = Point.new(3, 2, 1)
+        v = Vector.new(5, 6, 7)
+
+        expect(p - v).to eq(Point.new(-2, -4, -6))
+      end
+    end
+
+    context 'subtracting two vectors' do
+      it 'gives another vector' do
+        v1 = Vector.new(3, 2, 1)
+        v2 = Vector.new(5, 6, 7)
+
+        expect(v1 - v2).to eq(Vector.new(-2, -4, -6))
+      end
+    end
+
+    context 'subtract a point from a vector' do
+      it 'errors' do
+        v = Vector.new(5, 6, 7)
+        p = Point.new(3, 2, 1)
+        
+        expect { v - p }.to raise_error 'cannot subtract a point from a vector' 
+      end
+    end
+  end
 end

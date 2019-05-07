@@ -1,9 +1,7 @@
-class Point
-  def initialize x, y, z
-    @tuple = Tuple.new(x, y, z, 1.0)
-  end
+require 'tuple'
 
-  def to_tuple
-    @tuple
+class Point < Tuple
+  def initialize x, y, z
+    super(x, y, z, 1.0)
   end
 end

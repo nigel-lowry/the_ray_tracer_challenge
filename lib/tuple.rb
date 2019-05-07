@@ -21,8 +21,17 @@ class Tuple
     Tuple.new(self.x + other.x, self.y + other.y, self.z + other.z, self.w + other.w)
   end
 
+  def -(other)
+    raise 'cannot subtract a point from a vector' if self.vector? and other.point?
+    Tuple.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w)
+  end
+
   def ==(other)
     self.x == other.x and self.y == other.y and self.z == other.z and self.w == other.w
+  end
+
+  def to_tuple
+    Tuple.new(self.x, self.y, self.z, self.w)
   end
 
 private
