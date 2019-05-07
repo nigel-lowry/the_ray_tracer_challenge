@@ -159,6 +159,13 @@ RSpec.describe Tuple do
 
         expect(v1 - v2).to eq(Vector.new(-2, -4, -6))
       end
+
+      it 'negates a vector when subtracting a vector from the zero vector' do
+        zero = Vector.new(0, 0, 0)
+        v = Vector.new(1, -2, 3)
+
+        expect(zero - v).to eq(Vector.new(-1, 2, -3))
+      end
     end
 
     context 'subtract a point from a vector' do
