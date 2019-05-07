@@ -26,6 +26,11 @@ class Tuple
     Tuple.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w)
   end
 
+  def -@
+    raise 'cannot negate point' if self.point?
+    Tuple.new(-self.x, -self.y, -self.z, -self.w)
+  end
+
   def ==(other)
     self.x == other.x and self.y == other.y and self.z == other.z and self.w == other.w
   end

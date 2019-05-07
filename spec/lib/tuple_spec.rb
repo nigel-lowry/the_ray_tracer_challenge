@@ -177,4 +177,22 @@ RSpec.describe Tuple do
       end
     end
   end
+
+  describe 'negate unary minus' do
+    context 'vector' do
+      it 'negates the components' do
+        t = Tuple.new(1, -2, 3, 0)
+
+        expect(-t).to eq(Tuple.new(-1, 2, -3, 0))
+      end
+    end
+
+    context 'point' do
+      it 'errors' do
+        t = Tuple.new(1, -2, 3, 1)
+
+        expect { -t }.to raise_error 'cannot negate point'
+      end
+    end
+  end
 end
