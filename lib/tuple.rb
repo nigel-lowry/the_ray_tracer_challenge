@@ -4,7 +4,7 @@ class Tuple
   def initialize x, y, z, w
     raise_error_if_components_arent_numeric x, y, z
 
-    @x, @y, @z, @w = x, y, z, w.to_f
+    @x, @y, @z, @w = x.to_f, y.to_f, z.to_f, w.to_f
   end
 
   def point?
@@ -27,6 +27,10 @@ class Tuple
 
   def *(scalar)
     Tuple.new(self.x * scalar, self.y * scalar, self.z * scalar, self.w * scalar)
+  end
+
+  def /(divisor)
+    Tuple.new(self.x / divisor, self.y / divisor, self.z / divisor, self.w / divisor)
   end
 
   def -@

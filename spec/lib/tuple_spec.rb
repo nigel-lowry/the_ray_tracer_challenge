@@ -203,4 +203,12 @@ RSpec.describe Tuple do
       end
     end
   end
+
+  describe '/' do
+    it 'divides the components' do
+      t = Tuple.new(1, -2, 3, -4)
+
+      expect(t / 2).to eq(Tuple.new(0.5, -1, 1.5, -2))
+    end
+  end
 end
