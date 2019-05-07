@@ -8,4 +8,13 @@ class Vector < Tuple
   def magnitude
     Math.sqrt(@x ** 2 + @y ** 2 + @z ** 2)
   end
+
+  def normalize
+    v_magnitude = magnitude
+    Vector.new(@x / magnitude, @y / magnitude, z / magnitude)
+  end
+
+  def unit_vector?
+    magnitude == 1.0
+  end
 end
