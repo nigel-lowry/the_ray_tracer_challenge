@@ -34,4 +34,28 @@ RSpec.describe Tuple do
       end
     end
   end
+
+  describe 'x' do
+    context 'not a number' do
+      it 'errors' do
+        expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number'
+      end
+    end
+  end
+
+  describe 'y' do
+    context 'not a number' do
+      it 'errors' do
+        expect { Tuple.new(4.3, 'nan', 3.1, 1.0) }.to raise_error 'y must be a number'
+      end
+    end
+  end
+
+  describe 'z' do
+    context 'not a number' do
+      it 'errors' do
+        expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number'
+      end
+    end
+  end
 end
