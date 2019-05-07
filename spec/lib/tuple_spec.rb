@@ -24,16 +24,6 @@ RSpec.describe Tuple do
   end
 
   describe 'w' do
-    context 'invalid values' do
-      it 'errors' do
-        invalid_w_values = [-0.1, 0.1, 0.9, 1.1]
-
-        invalid_w_values.each do |value|
-          expect { Tuple.new(4.3, -4.2, 3.1, value) }.to raise_error 'w must be 0.0 or 1.0'
-        end
-      end
-    end
-
     context '1.0' do
       it 'stores it as 1.0' do
         expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0)
@@ -179,11 +169,11 @@ RSpec.describe Tuple do
   end
 
   describe 'negate unary minus' do
-    context 'vector' do
+    context 'tuple' do
       it 'negates the components' do
-        t = Tuple.new(1, -2, 3, 0)
+        t = Tuple.new(1, -2, 3, -4)
 
-        expect(-t).to eq(Tuple.new(-1, 2, -3, 0))
+        expect(-t).to eq(Tuple.new(-1, 2, -3, 4))
       end
     end
 
@@ -192,6 +182,16 @@ RSpec.describe Tuple do
         t = Tuple.new(1, -2, 3, 1)
 
         expect { -t }.to raise_error 'cannot negate point'
+      end
+    end
+  end
+
+  describe '*' do
+    context 'multiply by scalar' do
+      it 'multiplies each component' do
+        t = Tuple.new(1, -2, 3, -4)
+
+        expect(t * 3.5).to eq(Tuple.new(3.5, -7, 10.5, -14))
       end
     end
   end
