@@ -2,50 +2,24 @@ require 'tuple'
 
 RSpec.describe Tuple do
   context 'point' do
-  	let(:tuple) { Tuple.new(4.3, -4.2, 3.1, 1.0) }
+    subject { Tuple.new(4.3, -4.2, 3.1, 1.0) }
 
-    specify 'x is 4.3' do
-      expect(tuple.x).to eq(4.3)
-    end
+    its(:x) { is_expected.to eq(4.3) }
+    its(:y) { is_expected.to eq(-4.2) }
+    its(:z) { is_expected.to eq(3.1) }
 
-    specify 'y is -4.2' do
-      expect(tuple.y).to eq(-4.2)
-    end
-
-    specify 'z is 3.1' do
-      expect(tuple.z).to eq(3.1)
-    end
-
-    it 'is a point' do
-      expect(tuple).to be_point
-    end
-
-    it 'is not a vector' do
-      expect(tuple).not_to be_vector
-    end
+    it { is_expected.to be_a_point }
+    it { is_expected.to_not be_a_vector }
   end
 
   context 'vector' do
-    let(:tuple) { Tuple.new(4.3, -4.2, 3.1, 0.0) }
+    subject { Tuple.new(4.3, -4.2, 3.1, 0.0) }
 
-    specify 'x is 4.3' do
-      expect(tuple.x).to eq(4.3)
-    end
+    its(:x) { is_expected.to eq(4.3) }
+    its(:y) { is_expected.to eq(-4.2) }
+    its(:z) { is_expected.to eq(3.1) }
 
-    specify 'y is -4.2' do
-      expect(tuple.y).to eq(-4.2)
-    end
-
-    specify 'z is 3.1' do
-      expect(tuple.z).to eq(3.1)
-    end
-
-    it 'is a vector' do
-      expect(tuple).to be_vector
-    end
-
-    it 'is not a point' do
-      expect(tuple).not_to be_point
-    end
+    it { is_expected.to be_a_vector }
+    it { is_expected.to_not be_a_point }
   end
 end
