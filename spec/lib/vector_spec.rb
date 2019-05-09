@@ -73,19 +73,15 @@ RSpec.describe Vector do
     end
 
     context 'x = 1, y = 2, z = 3' do
-      let(:v) { Vector.new(1, 2, 3) }
+      subject { Vector.new(1, 2, 3).magnitude }
 
-      it 'is sqrt(14)' do
-        expect(v.magnitude).to eq(Math.sqrt(14))
-      end
+      it { is_expected.to eq(Math.sqrt(14)) }
     end
 
     context 'x = -1, y = -2, z = -3' do
-      let(:v) { Vector.new(-1, -2, -3) }
+      subject { Vector.new(-1, -2, -3).magnitude }
 
-      it 'is sqrt(14)' do
-        expect(v.magnitude).to eq(Math.sqrt(14))
-      end
+      it { is_expected.to eq(Math.sqrt(14)) }
     end
   end
 
