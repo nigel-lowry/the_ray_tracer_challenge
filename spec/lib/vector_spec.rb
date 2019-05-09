@@ -5,6 +5,17 @@ RSpec.describe Vector do
     end
   end
 
+  describe '#+' do
+    context 'vector plus vector' do
+      let(:v1) { Vector.new(3, -2, 5) }
+      let(:v2) { Vector.new(-2, 3, 1) }
+
+      it 'is a vector' do
+        expect(v1 + v2).to be_an_instance_of(Vector)
+      end
+    end
+  end
+
   describe '#magnitude' do
     context 'x is 1' do
       let(:unit_vector) { Vector.new(1, 0, 0) }

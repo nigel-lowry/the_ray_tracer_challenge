@@ -110,33 +110,6 @@ RSpec.describe Tuple do
 
       expect(t1 + t2).to eq(Tuple.new(1, 1, 6, 1))
     end
-
-    context 'point plus vector' do
-      it 'is a point' do
-        t1 = Tuple.new(3, -2, 5, 1)
-        t2 = Tuple.new(-2, 3, 1, 0)
-
-        expect(t1 + t2).to be_a_point
-      end
-    end
-
-    context 'vector plus vector' do
-      it 'is a vector' do
-        t1 = Tuple.new(3, -2, 5, 0)
-        t2 = Tuple.new(-2, 3, 1, 0)
-
-        expect(t1 + t2).to be_a_vector
-      end
-    end
-
-    context 'point plus point' do
-      xit 'errors' do
-        t1 = Tuple.new(3, -2, 5, 1)
-        t2 = Tuple.new(-2, 3, 1, 1)
-
-        expect { t1 + t2 }.to raise_error 'cannot add two points'
-      end
-    end
   end
 
   describe '-' do
