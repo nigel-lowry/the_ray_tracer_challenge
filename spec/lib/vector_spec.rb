@@ -43,6 +43,14 @@ RSpec.describe Vector do
     end
   end
 
+  describe '#-@' do
+    let(:v) { Vector.new(1, -2, 3) }
+
+    it 'negates a vector' do
+      expect(-v).to eq(Vector.new(-1, 2, -3))
+    end
+  end
+
   describe '#magnitude' do
     context 'x is 1' do
       let(:unit_vector) { Vector.new(1, 0, 0) }

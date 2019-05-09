@@ -124,18 +124,9 @@ RSpec.describe Tuple do
   describe 'negate unary minus' do
     context 'tuple' do
       it 'negates the components' do
-        t = Tuple.new(1, -2, 3, -4)
+        t = Tuple.new(1, -2, 3, 0)
 
-        expect(-t).to eq(Tuple.new(-1, 2, -3, 4))
-      end
-    end
-
-    # move
-    context 'point' do
-      xit 'errors' do
-        t = Tuple.new(1, -2, 3, 1)
-
-        expect { -t }.to raise_error 'cannot negate point'
+        expect(-t).to eq(Tuple.new(-1, 2, -3, 0))
       end
     end
   end

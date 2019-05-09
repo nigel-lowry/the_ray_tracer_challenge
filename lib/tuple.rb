@@ -47,8 +47,7 @@ class Tuple
   end
 
   def -@
-    # raise 'cannot negate point' if self.point?
-    Tuple.new(-self.x, -self.y, -self.z, -self.w)
+    Factory.create(Tuple.new(-self.x, -self.y, -self.z, -self.w))
   end
 
   def ==(other)

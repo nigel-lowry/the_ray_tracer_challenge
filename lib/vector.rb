@@ -2,7 +2,7 @@ require 'active_support'
 
 class Vector
   attr_reader :tuple
-  delegate :x, :y, :z, :w, :==, :+, :-, :to => :tuple
+  delegate :x, :y, :z, :w, :==, :+, :-, :-@, :to => :tuple
 
   def initialize x, y, z
     @tuple = Tuple.new_vector(x, y, z)
