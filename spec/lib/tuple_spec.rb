@@ -143,10 +143,12 @@ RSpec.describe Tuple do
   end
 
   describe '#/' do
-    it 'divides the components' do
-      t = Tuple.new(1, -2, 3, -4)
+    let(:t) { Tuple.new(1, -2, 3, -4) }
 
-      expect(t / 2).to eq(Tuple.new(0.5, -1, 1.5, -2))
+    context 'divide by scalar' do
+      subject { t / 2 }
+
+      it { is_expected.to eq(Tuple.new(0.5, -1, 1.5, -2)) }
     end
   end
 end
