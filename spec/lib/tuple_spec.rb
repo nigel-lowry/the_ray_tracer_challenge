@@ -126,7 +126,7 @@ RSpec.describe Tuple do
     it { is_expected.to eq(Tuple.new(-1, 2, -3, 0)) }
   end
 
-  describe '*' do
+  describe '#*' do
     context 'multiply by scalar' do
       it 'multiplies each component' do
         t = Tuple.new(1, -2, 3, -4)
