@@ -1,9 +1,8 @@
 class Factory
   def self.create tuple
-    case tuple.w
-    when 1.0
+    if tuple.point?
       Point.new(tuple.x, tuple.y, tuple.z)
-    when 0.0
+    elsif tuple.vector?
       Vector.new(tuple.x, tuple.y, tuple.z)
     else
       raise 'neither a point nor a vector'

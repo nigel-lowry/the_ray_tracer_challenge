@@ -1,7 +1,9 @@
 require 'tuple'
+require 'point'
+require 'vector'
 
 RSpec.describe Tuple do
-  context 'point' do
+  context 'w = 1' do
     subject { Tuple.new(4.3, -4.2, 3.1, 1.0) }
 
     its(:x) { is_expected.to eq(4.3) }
@@ -12,7 +14,7 @@ RSpec.describe Tuple do
     it { is_expected.to_not be_a_vector }
   end
 
-  context 'vector' do
+  context 'w = 0' do
     subject { Tuple.new(4.3, -4.2, 3.1, 0.0) }
 
     its(:x) { is_expected.to eq(4.3) }
@@ -23,7 +25,21 @@ RSpec.describe Tuple do
     it { is_expected.to_not be_a_point }
   end
 
+  context 'w = 2' do
+    subject { Tuple.new(4.3, -4.2, 3.1, 2.0) }
+
+    it { is_expected.to_not be_a_vector }
+    it { is_expected.to_not be_a_point }
+    it { is_expected.to be_neither_a_point_nor_a_vector }
+  end
+
   describe 'w' do
+    context 'not a number' do
+      it 'errors' do
+        expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number'
+      end
+    end
+
     context '1.0' do
       it 'stores it as 1.0' do
         expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0)
@@ -114,7 +130,7 @@ RSpec.describe Tuple do
     end
 
     context 'point plus point' do
-      it 'errors' do
+      xit 'errors' do
         t1 = Tuple.new(3, -2, 5, 1)
         t2 = Tuple.new(-2, 3, 1, 1)
 
@@ -125,7 +141,7 @@ RSpec.describe Tuple do
 
   describe '-' do
     context 'subtracting two points' do
-      it 'minuses the components' do
+      xit 'minuses the components' do
         p1 = Point.new(3, 2, 1)
         p2 = Point.new(5, 6, 7)
 
@@ -134,7 +150,7 @@ RSpec.describe Tuple do
     end
 
     context 'subtracting a vector from a point' do
-      it 'minuses' do
+      xit 'minuses' do
         p = Point.new(3, 2, 1)
         v = Vector.new(5, 6, 7)
 
@@ -143,14 +159,14 @@ RSpec.describe Tuple do
     end
 
     context 'subtracting two vectors' do
-      it 'gives another vector' do
+      xit 'gives another vector' do
         v1 = Vector.new(3, 2, 1)
         v2 = Vector.new(5, 6, 7)
 
         expect(v1 - v2).to eq(Vector.new(-2, -4, -6))
       end
 
-      it 'negates a vector when subtracting a vector from the zero vector' do
+      xit 'negates a vector when subtracting a vector from the zero vector' do
         zero = Vector.new(0, 0, 0)
         v = Vector.new(1, -2, 3)
 
@@ -159,7 +175,7 @@ RSpec.describe Tuple do
     end
 
     context 'subtract a point from a vector' do
-      it 'errors' do
+      xit 'errors' do
         v = Vector.new(5, 6, 7)
         p = Point.new(3, 2, 1)
         
@@ -177,8 +193,9 @@ RSpec.describe Tuple do
       end
     end
 
+    # move
     context 'point' do
-      it 'errors' do
+      xit 'errors' do
         t = Tuple.new(1, -2, 3, 1)
 
         expect { -t }.to raise_error 'cannot negate point'

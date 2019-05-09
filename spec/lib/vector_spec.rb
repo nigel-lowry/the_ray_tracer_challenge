@@ -1,9 +1,7 @@
-require 'vector'
-
 RSpec.describe Vector do
-  describe '#to_tuple' do
+  describe '#tuple' do
     it 'has w = 0' do
-      expect(Vector.new(4, -4, 3).to_tuple).to eq(Tuple.new(4, -4, 3, 0))
+      expect(Vector.new(4, -4, 3).tuple).to eq(Tuple.new(4, -4, 3, 0))
     end
   end
 

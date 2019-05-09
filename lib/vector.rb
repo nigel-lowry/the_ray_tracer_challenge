@@ -1,17 +1,20 @@
-require 'tuple'
+require 'active_support'
 
-class Vector < Tuple
+class Vector
+  attr_reader :tuple
+  delegate :x, :y, :z, :w, :==, :to => :tuple
+
   def initialize x, y, z
-    super(x, y, z, 0.0)
+    @tuple = Tuple.new_vector(x, y, z)
   end
 
   def magnitude
-    Math.sqrt(@x ** 2 + @y ** 2 + @z ** 2)
+    Math.sqrt(x ** 2 + y ** 2 + z ** 2)
   end
 
   def normalize
-    v_magnitude = magnitude
-    Vector.new(@x / magnitude, @y / magnitude, z / magnitude)
+    abs = magnitude
+    Vector.new(x / abs, y / abs, z / abs)
   end
 
   def unit_vector?
