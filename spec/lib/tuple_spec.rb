@@ -112,12 +112,11 @@ RSpec.describe Tuple do
   end
 
   describe '-' do
-    it 'minuses the individual components' do
-      t1 = Tuple.new(3, -2, 5, 1)
-      t2 = Tuple.new(-2, 3, 1, 0)
+    let(:t1) { Tuple.new(3, -2, 5, 1) }
+    let(:t2) { Tuple.new(-2, 3, 1, 0) }
+    subject { t1 - t2 }
 
-      expect(t1 - t2).to eq(Tuple.new(5, -5, 4, 1))
-    end
+    it { is_expected.to eq(Tuple.new(5, -5, 4, 1)) }
   end
 
   describe 'negate unary minus' do
