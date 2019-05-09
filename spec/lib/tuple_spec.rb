@@ -93,9 +93,12 @@ RSpec.describe Tuple do
       end
     end
 
-    context 'w 0' do
+    context 'w 0 and 0.0' do
+      let(:t1) { Tuple.new(4, -4, 3, 0) }
+      let(:t2) { Tuple.new(4, -4, 3, 0.0) }
+
       it 'is equal' do
-        expect(Tuple.new(4, -4, 3, 0)).to eq(Tuple.new(4, -4, 3, 0.0))
+        expect(t1).to eq(t2)
       end
     end
   end
