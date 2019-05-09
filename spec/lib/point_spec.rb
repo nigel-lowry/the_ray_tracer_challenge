@@ -9,13 +9,13 @@ RSpec.describe Point do
   end
 
   describe '#+' do
-    context 'point plus vector' do
+    context 'plus vector' do
       let(:p) { Point.new(3, -2, 5) } 
       let(:v) { Vector.new(-2, 3, 1) }
+      subject { p + v }
 
-      it 'is a point' do
-        expect(p + v).to be_an_instance_of(Point)
-      end
+      it { is_expected.to be_an_instance_of(Point) }
+      it { is_expected.to eq(Point.new(1, 1, 6)) }
     end
 
     context 'point plus point' do
