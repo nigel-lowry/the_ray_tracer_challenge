@@ -106,14 +106,10 @@ RSpec.describe Vector do
   describe '#dot' do
     let(:v1) { Vector.new(1, 2, 3) }
     let(:v2) { Vector.new(2, 3, 4) }
+    subject { Vector.dot(v1, v2) }
 
-    it 'calculates it' do
-      expect(Vector.dot(v1, v2)).to eq(20)
-    end
-
-    it 'is commutative' do
-      expect(Vector.dot(v1, v2)).to eq(Vector.dot(v2, v1))
-    end
+    it { is_expected.to eq(20) }
+    it { is_expected.to eq(Vector.dot(v2, v1)) }
   end
 
   describe '#cross' do
