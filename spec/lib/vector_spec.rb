@@ -19,19 +19,21 @@ RSpec.describe Vector do
 
   describe '#-' do
     context 'subtracting two vectors' do
-      it 'gives another vector' do
-        v1 = Vector.new(3, 2, 1)
-        v2 = Vector.new(5, 6, 7)
+      let(:v1) { Vector.new(3, 2, 1) }
+      let(:v2) { Vector.new(5, 6, 7) }
+      subject { v1 - v2 }
 
-        expect(v1 - v2).to eq(Vector.new(-2, -4, -6))
-      end
+      it { is_expected.to be_an_instance_of(Vector) }
+      it { is_expected.to eq(Vector.new(-2, -4, -6)) }
+    end
 
-      it 'negates a vector when subtracting a vector from the zero vector' do
-        zero = Vector.new(0, 0, 0)
-        v = Vector.new(1, -2, 3)
+    context 'subtracting a vector from the zero vector' do
+      let(:zero) { Vector.new(0, 0, 0) }
+      let(:v) { Vector.new(1, -2, 3) }
+      subject { zero - v }
 
-        expect(zero - v).to eq(Vector.new(-1, 2, -3))
-      end
+      it { is_expected.to eq(Vector.new(-1, 2, -3)) }
+      it { is_expected.to eq(-v) }
     end
 
     context 'subtract a point from a vector' do
