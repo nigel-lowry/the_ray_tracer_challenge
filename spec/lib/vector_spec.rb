@@ -9,41 +9,41 @@ RSpec.describe Vector do
 
   describe '#magnitude' do
     context 'x is 1' do
-      let(:x_unit_vector) { Vector.new(1, 0, 0) }
+      let(:unit_vector) { Vector.new(1, 0, 0) }
 
       it 'has magnitude 1' do
-        expect(x_unit_vector.magnitude).to eq(1)
+        expect(unit_vector.magnitude).to eq(1)
       end
     end
 
     context 'y is 1' do
-      it 'is 1' do
-        v = Vector.new(0, 1, 0)
+      let(:unit_vector) { Vector.new(0, 1, 0) }
 
-        expect(v.magnitude).to eq(1)
+      it 'has magnitude 1' do
+        expect(unit_vector.magnitude).to eq(1)
       end
     end
 
     context 'z is 1' do
-      it 'is 1' do
-        v = Vector.new(0, 0, 1)
+      let(:unit_vector) { Vector.new(0, 0, 1) }
 
-        expect(v.magnitude).to eq(1)
+      it 'has magnitude 1' do
+        expect(unit_vector.magnitude).to eq(1)
       end
     end
 
     context 'x = 1, y = 2, z = 3' do
-      it 'is sqrt(14)' do
-        v = Vector.new(1, 2, 3)
+      let(:v) { Vector.new(1, 2, 3) }
 
+      it 'is sqrt(14)' do
         expect(v.magnitude).to eq(Math.sqrt(14))
       end
     end
 
     context 'x = -1, y = -2, z = -3' do
-      it 'is sqrt(14)' do
-        v = Vector.new(-1, -2, -3)
+      let(:v) { Vector.new(-1, -2, -3) }
 
+      it 'is sqrt(14)' do
         expect(v.magnitude).to eq(Math.sqrt(14))
       end
     end
@@ -51,9 +51,9 @@ RSpec.describe Vector do
 
   describe '#normalize' do
     context 'x = 4' do
-      it 'returns x = 1' do
-        v = Vector.new(4, 0, 0)
+      let(:v) { Vector.new(4, 0, 0) }
 
+      it 'returns x = 1' do
         expect(v.normalize).to eq(Vector.new(1, 0, 0))
       end
     end
@@ -76,6 +76,7 @@ RSpec.describe Vector do
       v2 = Vector.new(2, 3, 4)
 
       expect(Vector.dot(v1, v2)).to eq(20)
+      expect(Vector.dot(v2, v1)).to eq(20)
     end
   end
 
