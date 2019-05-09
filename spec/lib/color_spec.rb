@@ -44,5 +44,14 @@ RSpec.describe Color do
         expect(c1 * c2).to closely_eq(Color.new(0.9, 0.2, 0.04))
       end
     end
+
+    context 'color by string' do
+      let(:c) { Color.new(1, 0.2, 0.4) }
+      let(:v) { Vector.new(1, 2, 3) }
+
+      it 'errors' do
+        expect { c * v }.to raise_error 'unsupported operand'
+      end
+    end
   end
 end
