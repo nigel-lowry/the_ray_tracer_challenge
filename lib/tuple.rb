@@ -1,3 +1,5 @@
+require 'factory'
+
 class Tuple
   attr_reader :x, :y, :z, :w
 
