@@ -127,19 +127,18 @@ RSpec.describe Tuple do
   end
 
   describe '#*' do
+    let(:t) { Tuple.new(1, -2, 3, -4) }
+
     context 'multiply by scalar' do
-      let(:t) { Tuple.new(1, -2, 3, -4) }
       subject { t * 3.5 }
 
       it { is_expected.to eq(Tuple.new(3.5, -7, 10.5, -14)) }
     end
 
     context 'multiply by a fraction' do
-      it 'multiplies each component' do
-        t = Tuple.new(1, -2, 3, -4)
+      subject { t * 0.5 }
 
-        expect(t * 0.5).to eq(Tuple.new(0.5, -1, 1.5, -2))
-      end
+      it { is_expected.to eq(Tuple.new(0.5, -1, 1.5, -2)) }
     end
   end
 
