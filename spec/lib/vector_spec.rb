@@ -90,18 +90,16 @@ RSpec.describe Vector do
       subject { Vector.new(4, 0, 0).normalize }
 
       its(:magnitude) { is_expected.to eq(1) }
+      it { is_expected.to be_a_unit_vector }
       it { is_expected.to eq(Vector.new(1, 0, 0)) }
     end
 
     context 'x = 1, y = 2, z = 3' do
-      subject { Vector.new(1, 2, 3) }
+      subject { Vector.new(1, 2, 3).normalize }
 
-      its(:normalize) { is_expected.to eq(Vector.new(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))) }
-      its('normalize.magnitude') { is_expected.to eq(1.0) }
-
-      it 'is a unit vector' do
-        expect(subject.normalize).to be_a_unit_vector
-      end
+      its(:magnitude) { is_expected.to eq(1) }
+      it { is_expected.to be_a_unit_vector }
+      it { is_expected.to eq(Vector.new(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))) }
     end
   end
 
