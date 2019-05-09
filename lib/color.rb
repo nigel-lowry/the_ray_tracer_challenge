@@ -17,7 +17,6 @@ class Color
     if other.is_a? Color
       Color.new(red * other.red, green * other.green, blue * other.blue)
     elsif other.is_a? Numeric
-      # scalar
       Color.new(red * other, green * other, blue * other)
     else
       raise 'unsupported operand'
