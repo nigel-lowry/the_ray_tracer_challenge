@@ -61,19 +61,15 @@ RSpec.describe Vector do
     end
 
     context 'y is 1' do
-      let(:unit_vector) { Vector.new(0, 1, 0) }
+      subject { Vector.new(0, 1, 0).magnitude }
 
-      it 'has magnitude 1' do
-        expect(unit_vector.magnitude).to eq(1)
-      end
+      it { is_expected.to eq(1) }
     end
 
     context 'z is 1' do
-      let(:unit_vector) { Vector.new(0, 0, 1) }
+      subject { Vector.new(0, 0, 1).magnitude }
 
-      it 'has magnitude 1' do
-        expect(unit_vector.magnitude).to eq(1)
-      end
+      it { is_expected.to eq(1) }
     end
 
     context 'x = 1, y = 2, z = 3' do
