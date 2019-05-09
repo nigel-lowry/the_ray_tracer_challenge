@@ -71,12 +71,15 @@ RSpec.describe Vector do
   end
 
   describe '#dot' do
-    it 'calculates it' do
-      v1 = Vector.new(1, 2, 3)
-      v2 = Vector.new(2, 3, 4)
+    let(:v1) { Vector.new(1, 2, 3) }
+    let(:v2) { Vector.new(2, 3, 4) }
 
+    it 'calculates it' do
       expect(Vector.dot(v1, v2)).to eq(20)
-      expect(Vector.dot(v2, v1)).to eq(20)
+    end
+
+    it 'is commutative' do
+      expect(Vector.dot(v1, v2)).to eq(Vector.dot(v2, v1))
     end
   end
 
