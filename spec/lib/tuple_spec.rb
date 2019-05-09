@@ -113,6 +113,13 @@ RSpec.describe Tuple do
   end
 
   describe '-' do
+    it 'minuses the individual components' do
+      t1 = Tuple.new(3, -2, 5, 1)
+      t2 = Tuple.new(-2, 3, 1, 0)
+
+      expect(t1 - t2).to eq(Tuple.new(5, -5, 4, 1))
+    end
+
     context 'subtracting two points' do
       xit 'minuses the components' do
         p1 = Point.new(3, 2, 1)
