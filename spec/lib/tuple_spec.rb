@@ -144,7 +144,7 @@ RSpec.describe Tuple do
     end
   end
 
-  describe '/' do
+  describe '#/' do
     it 'divides the components' do
       t = Tuple.new(1, -2, 3, -4)
 
