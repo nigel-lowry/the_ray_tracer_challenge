@@ -55,11 +55,9 @@ RSpec.describe Vector do
 
   describe '#magnitude' do
     context 'x is 1' do
-      let(:unit_vector) { Vector.new(1, 0, 0) }
+      subject { Vector.new(1, 0, 0).magnitude }
 
-      it 'has magnitude 1' do
-        expect(unit_vector.magnitude).to eq(1)
-      end
+      it { is_expected.to eq(1) }
     end
 
     context 'y is 1' do
