@@ -14,7 +14,7 @@ RSpec.describe Color do
     let(:c2) { Color.new(0.7, 0.1, 0.25) }
 
     it 'adds the components' do
-      expect(c1 + c2).to closely_eq(Color.new(1.6, 0.7, 1.0))
+      expect(c1 + c2).to eq(Color.new(1.6, 0.7, 1.0))
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Color do
       let(:c) { Color.new(0.2, 0.3, 0.4) }
 
       it 'multiplies the components' do
-        expect(c * 2).to closely_eq(Color.new(0.4, 0.6, 0.8))
+        expect(c * 2).to eq(Color.new(0.4, 0.6, 0.8))
       end
     end
 
