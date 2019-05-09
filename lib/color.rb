@@ -6,19 +6,19 @@ class Color
   end
 
   def +(other)
-    Color.new(@red + other.red, @green + other.green, @blue + other.blue)
+    Color.new(red + other.red, green + other.green, blue + other.blue)
   end
 
   def -(other)
-    Color.new(@red - other.red, @green - other.green, @blue - other.blue)
+    Color.new(red - other.red, green - other.green, blue - other.blue)
   end
 
   def *(other)
     if other.is_a? Color
-      Color.new(@red * other.red, @green * other.green, @blue * other.blue)
+      Color.new(red * other.red, green * other.green, blue * other.blue)
     else
       # scalar
-      Color.new(@red * other, @green * other, @blue * other)
+      Color.new(red * other, green * other, blue * other)
     end
   end
 
