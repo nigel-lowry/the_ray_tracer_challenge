@@ -21,11 +21,11 @@ class Tuple
   end
 
   def point?
-    w == 1.0
+    w == POINT
   end
 
   def vector?
-    w == 0.0
+    w == VECTOR
   end
 
   def neither_a_point_nor_a_vector?
