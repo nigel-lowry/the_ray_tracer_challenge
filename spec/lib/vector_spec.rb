@@ -87,11 +87,10 @@ RSpec.describe Vector do
 
   describe '#normalize' do
     context 'x = 4' do
-      let(:v) { Vector.new(4, 0, 0) }
+      subject { Vector.new(4, 0, 0).normalize }
 
-      it 'returns x = 1' do
-        expect(v.normalize).to eq(Vector.new(1, 0, 0))
-      end
+      its(:magnitude) { is_expected.to eq(1) }
+      it { is_expected.to eq(Vector.new(1, 0, 0)) }
     end
 
     context 'x = 1, y = 2, z = 3' do
