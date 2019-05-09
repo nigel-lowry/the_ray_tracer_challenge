@@ -19,11 +19,11 @@ class Tuple
   end
 
   def point?
-    @w == 1.0
+    w == 1.0
   end
 
   def vector?
-    @w == 0.0
+    w == 0.0
   end
 
   def neither_a_point_nor_a_vector?
@@ -31,27 +31,27 @@ class Tuple
   end
 
   def +(other)
-    Factory.create(Tuple.new(self.x + other.x, self.y + other.y, self.z + other.z, self.w + other.w))
+    Factory.create(Tuple.new(x + other.x, y + other.y, z + other.z, w + other.w))
   end
 
   def -(other)
-    Factory.create(Tuple.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w))
+    Factory.create(Tuple.new(x - other.x, y - other.y, z - other.z, w - other.w))
   end
 
   def *(scalar)
-    Tuple.new(self.x * scalar, self.y * scalar, self.z * scalar, self.w * scalar)
+    Tuple.new(x * scalar, y * scalar, z * scalar, w * scalar)
   end
 
   def /(divisor)
-    Tuple.new(self.x / divisor, self.y / divisor, self.z / divisor, self.w / divisor)
+    Tuple.new(x / divisor, y / divisor, z / divisor, w / divisor)
   end
 
   def -@
-    Factory.create(Tuple.new(-self.x, -self.y, -self.z, -self.w))
+    Factory.create(Tuple.new(-x, -y, -z, -w))
   end
 
   def ==(other)
-    self.x == other.x and self.y == other.y and self.z == other.z and self.w == other.w
+    x == other.x and y == other.y and z == other.z and w == other.w
   end
 
 private
