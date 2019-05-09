@@ -26,4 +26,24 @@ RSpec.describe Point do
       end
     end
   end
+
+  describe '#-' do
+    context 'point minus point' do
+      it 'minuses the components' do
+        p1 = Point.new(3, 2, 1)
+        p2 = Point.new(5, 6, 7)
+
+        expect(p1 - p2).to eq(Vector.new(-2, -4, -6))
+      end
+    end
+
+    context 'subtracting a vector from a point' do
+      it 'minuses' do
+        p = Point.new(3, 2, 1)
+        v = Vector.new(5, 6, 7)
+
+        expect(p - v).to eq(Point.new(-2, -4, -6))
+      end
+    end
+  end
 end

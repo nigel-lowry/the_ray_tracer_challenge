@@ -120,24 +120,6 @@ RSpec.describe Tuple do
       expect(t1 - t2).to eq(Tuple.new(5, -5, 4, 1))
     end
 
-    context 'subtracting two points' do
-      xit 'minuses the components' do
-        p1 = Point.new(3, 2, 1)
-        p2 = Point.new(5, 6, 7)
-
-        expect(p1 - p2).to eq(Vector.new(-2, -4, -6))
-      end
-    end
-
-    context 'subtracting a vector from a point' do
-      xit 'minuses' do
-        p = Point.new(3, 2, 1)
-        v = Vector.new(5, 6, 7)
-
-        expect(p - v).to eq(Point.new(-2, -4, -6))
-      end
-    end
-
     context 'subtracting two vectors' do
       xit 'gives another vector' do
         v1 = Vector.new(3, 2, 1)
