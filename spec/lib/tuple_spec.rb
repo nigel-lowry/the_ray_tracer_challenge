@@ -120,13 +120,10 @@ RSpec.describe Tuple do
   end
 
   describe 'negate unary minus' do
-    context 'tuple' do
-      it 'negates the components' do
-        t = Tuple.new(1, -2, 3, 0)
+    let(:t) { Tuple.new(1, -2, 3, 0) }
+    subject { -t }
 
-        expect(-t).to eq(Tuple.new(-1, 2, -3, 0))
-      end
-    end
+    it { is_expected.to eq(Tuple.new(-1, 2, -3, 0)) }
   end
 
   describe '*' do
