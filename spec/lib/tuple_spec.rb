@@ -83,7 +83,7 @@ RSpec.describe Tuple do
     end
   end
 
-  describe 'equality' do
+  describe '#eq' do
     context 'w 1 and 1.0' do
       let(:t1) { Tuple.new(4, -4, 3, 1) }
       let(:t2) { Tuple.new(4, -4, 3, 1.0) }
