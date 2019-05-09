@@ -119,7 +119,7 @@ RSpec.describe Tuple do
     it { is_expected.to eq(Tuple.new(5, -5, 4, 1)) }
   end
 
-  describe 'negate unary minus' do
+  describe '#-@' do
     let(:t) { Tuple.new(1, -2, 3, 0) }
     subject { -t }
 
