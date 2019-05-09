@@ -2,11 +2,11 @@ require 'color'
 
 RSpec.describe Color do
   describe 'construction' do
-    subject { Color.new(-0.5, 0.4, 1.7) }
+    let(:color) { Color.new(-0.5, 0.4, 1.7) }
 
-    its(:red) { is_expected.to eq(-0.5) }
-    its(:green) { is_expected.to eq(0.4) }
-    its(:blue) { is_expected.to eq(1.7) }
+    it 'stores the red, green, blue values' do
+      expect(color).to have_attributes(red: -0.5, green: 0.4, blue: 1.7)
+    end
   end
 
   describe '+' do
