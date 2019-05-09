@@ -23,7 +23,6 @@ class Color
   end
 
   def ==(other)
-    # need epsilon
-    self.red == other.red and self.green == other.green and self.blue == other.blue
+    red == other.red and green == other.green and blue == other.blue
   end
 end
