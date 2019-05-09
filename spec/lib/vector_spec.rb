@@ -1,8 +1,9 @@
 RSpec.describe Vector do
   describe '#tuple' do
-    it 'has w = 0' do
-      expect(Vector.new(4, -4, 3).tuple).to eq(Tuple.new(4, -4, 3, 0))
-    end
+    subject { Vector.new(4, -4, 3).tuple }
+
+    it { is_expected.to have_attributes(x: 4, y: -4, z: 3) }
+    its(:w) { is_expected.to eq(0) }
   end
 
   describe '#+' do
