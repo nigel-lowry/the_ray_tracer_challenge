@@ -7,13 +7,13 @@ RSpec.describe Vector do
   end
 
   describe '#+' do
-    context 'vector plus vector' do
+    context 'plus vector' do
       let(:v1) { Vector.new(3, -2, 5) }
       let(:v2) { Vector.new(-2, 3, 1) }
+      subject { v1 + v2 }
 
-      it 'is a vector' do
-        expect(v1 + v2).to be_an_instance_of(Vector)
-      end
+      it { is_expected.to be_an_instance_of(Vector) }
+      it { is_expected.to eq(Vector.new(1, 1, 6)) }
     end
   end
 
