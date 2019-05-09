@@ -6,10 +6,7 @@ RSpec.describe Tuple do
   context 'w = 1' do
     subject { Tuple.new(4.3, -4.2, 3.1, 1.0) }
 
-    its(:x) { is_expected.to eq(4.3) }
-    its(:y) { is_expected.to eq(-4.2) }
-    its(:z) { is_expected.to eq(3.1) }
-
+    it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 1.0) }
     it { is_expected.to be_a_point }
     it { is_expected.to_not be_a_vector }
   end
