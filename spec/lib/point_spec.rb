@@ -18,7 +18,7 @@ RSpec.describe Point do
       it { is_expected.to eq(Point.new(1, 1, 6)) }
     end
 
-    context 'point plus point' do
+    context 'plus point' do
       let(:p1) { Point.new(3, -2, 5) }
       let(:p2) { Point.new(-2, 3, 1) }
 
@@ -29,22 +29,22 @@ RSpec.describe Point do
   end
 
   describe '#-' do
-    context 'point minus point' do
-      it 'minuses the components' do
-        p1 = Point.new(3, 2, 1)
-        p2 = Point.new(5, 6, 7)
+    context 'minus point' do
+      let(:p1) { Point.new(3, 2, 1) }
+      let(:p2) { Point.new(5, 6, 7) }
+      subject { p1 - p2 }
 
-        expect(p1 - p2).to eq(Vector.new(-2, -4, -6))
-      end
+      it { is_expected.to be_an_instance_of(Vector) }
+      it { is_expected.to eq(Vector.new(-2, -4, -6)) }
     end
 
-    context 'subtracting a vector from a point' do
-      it 'minuses' do
-        p = Point.new(3, 2, 1)
-        v = Vector.new(5, 6, 7)
+    context 'minus vector' do
+      let(:p) { Point.new(3, 2, 1) }
+      let(:v) { Vector.new(5, 6, 7) }
+      subject { p - v }
 
-        expect(p - v).to eq(Point.new(-2, -4, -6))
-      end
+      it { is_expected.to be_an_instance_of(Point) }
+      it { is_expected.to eq(Point.new(-2, -4, -6)) }
     end
   end
 end
