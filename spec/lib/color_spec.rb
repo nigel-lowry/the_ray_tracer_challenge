@@ -14,7 +14,7 @@ RSpec.describe Color do
       c1 = Color.new(0.9, 0.6, 0.75)
       c2 = Color.new(0.7, 0.1, 0.25)
 
-      expect(c1 + c2).to eq(Color.new(1.6, 0.7, 1.0))
+      expect(c1 + c2).to closely_eq(Color.new(1.6, 0.7, 1.0))
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe Color do
       c1 = Color.new(0.9, 0.6, 0.75)
       c2 = Color.new(0.7, 0.1, 0.25)
 
-      expect(c1 - c2).to eq(Color.new(0.2, 0.5, 0.5))
+      expect(c1 - c2).to closely_eq(Color.new(0.2, 0.5, 0.5))
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Color do
       it 'multiplies the components' do
         c = Color.new(0.2, 0.3, 0.4)
 
-        expect(c * 2).to eq(Color.new(0.4, 0.6, 0.8))
+        expect(c * 2).to closely_eq(Color.new(0.4, 0.6, 0.8))
       end
     end
 
@@ -41,7 +41,7 @@ RSpec.describe Color do
         c1 = Color.new(1, 0.2, 0.4)
         c2 = Color.new(0.9, 1, 0.1)
 
-        expect(c1 * c2).to eq(Color.new(0.9, 0.2, 0.04))
+        expect(c1 * c2).to closely_eq(Color.new(0.9, 0.2, 0.04))
       end
     end
   end
