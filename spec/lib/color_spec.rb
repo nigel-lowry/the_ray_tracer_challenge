@@ -10,37 +10,37 @@ RSpec.describe Color do
   end
 
   describe '+' do
-    it 'adds the components' do
-      c1 = Color.new(0.9, 0.6, 0.75)
-      c2 = Color.new(0.7, 0.1, 0.25)
+    let(:c1) { Color.new(0.9, 0.6, 0.75) }
+    let(:c2) { Color.new(0.7, 0.1, 0.25) }
 
+    it 'adds the components' do
       expect(c1 + c2).to closely_eq(Color.new(1.6, 0.7, 1.0))
     end
   end
 
   describe '-' do
-    it 'subtracts the components' do
-      c1 = Color.new(0.9, 0.6, 0.75)
-      c2 = Color.new(0.7, 0.1, 0.25)
+    let(:c1) { Color.new(0.9, 0.6, 0.75) }
+    let(:c2) { Color.new(0.7, 0.1, 0.25) }
 
+    it 'subtracts the components' do
       expect(c1 - c2).to closely_eq(Color.new(0.2, 0.5, 0.5))
     end
   end
 
   describe '*' do
     context 'color by scalar' do
-      it 'multiplies the components' do
-        c = Color.new(0.2, 0.3, 0.4)
+      let(:c) { Color.new(0.2, 0.3, 0.4) }
 
+      it 'multiplies the components' do
         expect(c * 2).to closely_eq(Color.new(0.4, 0.6, 0.8))
       end
     end
 
     context 'color by color' do
-      it 'multiplies each individual component' do
-        c1 = Color.new(1, 0.2, 0.4)
-        c2 = Color.new(0.9, 1, 0.1)
+      let(:c1) { Color.new(1, 0.2, 0.4) }
+      let(:c2) { Color.new(0.9, 1, 0.1) }
 
+      it 'multiplies each individual component' do
         expect(c1 * c2).to closely_eq(Color.new(0.9, 0.2, 0.04))
       end
     end
