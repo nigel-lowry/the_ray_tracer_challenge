@@ -2,9 +2,10 @@ require 'point'
 
 RSpec.describe Point do
   describe '#tuple' do
-    it 'has w = 1' do
-      expect(Point.new(4, -4, 3).tuple).to eq(Tuple.new(4, -4, 3, 1))
-    end
+    subject { Point.new(4, -4, 3).tuple }
+
+    it { is_expected.to have_attributes(x: 4, y: -4, z: 3) }
+    its(:w) { is_expected.to eq(1) }
   end
 
   describe '#+' do
