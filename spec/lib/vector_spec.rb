@@ -36,11 +36,11 @@ RSpec.describe Vector do
       it { is_expected.to eq(-v) }
     end
 
-    context 'subtract a point from a vector' do
+    context 'subtract a point' do
+      let(:v) { Vector.new(5, 6, 7) }
+      let(:p) { Point.new(3, 2, 1) }
+
       it 'errors' do
-        v = Vector.new(5, 6, 7)
-        p = Point.new(3, 2, 1)
-        
         expect { v - p }.to raise_error 'neither a point nor a vector' 
       end
     end
