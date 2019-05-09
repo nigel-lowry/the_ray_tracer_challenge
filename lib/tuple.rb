@@ -35,8 +35,7 @@ class Tuple
   end
 
   def -(other)
-    # raise 'cannot subtract a point from a vector' if self.vector? and other.point?
-    Tuple.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w)
+    Factory.create(Tuple.new(self.x - other.x, self.y - other.y, self.z - other.z, self.w - other.w))
   end
 
   def *(scalar)
