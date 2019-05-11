@@ -33,6 +33,10 @@ class Color
     end
   end
 
+  def black?
+    x == 0 and y == 0 and z == 0
+  end
+
   def ==(other)
     red == other.red and green == other.green and blue == other.blue
   end
