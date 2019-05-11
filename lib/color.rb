@@ -1,23 +1,22 @@
+require 'active_support'
+
 class Color
-  attr_reader :red, :green, :blue
+  attr_reader :tuple
+  delegate :x, :y, :z, :w, :==, :+, :-, :*, :to => :tuple
+  alias_attribute :red, :x
+  alias_attribute :green, :y
+  alias_attribute :blue, :z
 
   def initialize red, green, blue
-    @red, @green, @blue = red, green, blue
-  end
-
-  def +(other)
-    Color.new(red + other.red, green + other.green, blue + other.blue)
-  end
-
-  def -(other)
-    Color.new(red - other.red, green - other.green, blue - other.blue)
+    @tuple = Tuple.new_vector(red, green, blue)
   end
 
   def *(other)
     if other.is_a? Color
+      # Vector.dot(tuple, other.tuple)
       Color.new(red * other.red, green * other.green, blue * other.blue)
     elsif other.is_a? Numeric
-      Color.new(red * other, green * other, blue * other)
+      tuple * other
     else
       raise 'unsupported operand'
     end

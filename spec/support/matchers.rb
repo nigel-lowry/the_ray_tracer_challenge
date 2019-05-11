@@ -1,5 +1,5 @@
 RSpec::Matchers.define :closely_eq do |expected|
-  match { |actual| numbers_close?(actual.red, expected.red) && numbers_close?(actual.green, expected.green) && numbers_close?(actual.blue, expected.blue)}
+  match { |actual| numbers_close?(actual.x, expected.x) && numbers_close?(actual.y, expected.y) && numbers_close?(actual.z, expected.z) && numbers_close?(actual.w, expected.w)}
 
 private 
 
