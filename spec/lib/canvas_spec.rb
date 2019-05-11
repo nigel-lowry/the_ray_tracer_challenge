@@ -76,40 +76,47 @@ RSpec.describe Canvas do
     end
   end
 
-  describe 'boundaries' do
-    subject { Canvas.new(3, 2) }
+  describe '#pixel_at' do
+    describe 'boundaries' do
+      subject { Canvas.new(3, 2) }
+      let(:red) { Color.new(1, 0, 0) }
 
-    context 'inside' do
-      it 'returns black pixels' do
-        expect([
-          subject.pixel_at(0, 0), subject.pixel_at(1, 0), subject.pixel_at(2, 0),
-          subject.pixel_at(0, 1), subject.pixel_at(1, 1), subject.pixel_at(2, 1)  
-        ]).to all be_black
-      end
-    end
-
-    context 'outside' do
-      context 'negative x' do
-        it 'errors' do
-          expect { subject.pixel_at(-1, 0) }.to raise_error 'outside bounds'
+      context 'inside' do
+        it 'returns black pixels' do
+          expect([
+            subject.pixel_at(0, 0), subject.pixel_at(1, 0), subject.pixel_at(2, 0),
+            subject.pixel_at(0, 1), subject.pixel_at(1, 1), subject.pixel_at(2, 1)  
+          ]).to all be_black
         end
       end
 
-      context 'x > width' do
-        it 'errors' do
-          expect { subject.pixel_at(3, 0) }.to raise_error 'outside bounds'
+      context 'outside' do
+        context 'negative x' do
+          it 'errors' do
+            expect { subject.pixel_at(-1, 0) }.to raise_error 'outside bounds'
+            expect { subject.write_pixel(-1, 0, red) }.to raise_error 'outside bounds'
+          end
         end
-      end
 
-      context 'negative y' do
-        it 'errors' do
-          expect { subject.pixel_at(0, -1) }.to raise_error 'outside bounds'
+        context 'x > width' do
+          it 'errors' do
+            expect { subject.pixel_at(3, 0) }.to raise_error 'outside bounds'
+            expect { subject.write_pixel(3, 0, red) }.to raise_error 'outside bounds'
+          end
         end
-      end
 
-      context 'y > height' do
-        it 'errors' do
-          expect { subject.pixel_at(0, 2) }.to raise_error 'outside bounds'
+        context 'negative y' do
+          it 'errors' do
+            expect { subject.pixel_at(0, -1) }.to raise_error 'outside bounds'
+            expect { subject.write_pixel(0, -1, red) }.to raise_error 'outside bounds'
+          end
+        end
+
+        context 'y > height' do
+          it 'errors' do
+            expect { subject.pixel_at(0, 2) }.to raise_error 'outside bounds'
+            expect { subject.write_pixel(0, 2, red) }.to raise_error 'outside bounds'
+          end
         end
       end
     end
