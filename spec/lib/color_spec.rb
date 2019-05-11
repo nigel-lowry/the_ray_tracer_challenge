@@ -52,4 +52,27 @@ RSpec.describe Color do
       end
     end
   end
+
+  describe '#to_s_ppm' do
+    context 'c1' do
+      let(:c) { Color.new(1.5, 0, 0) } # 1, 0, 0
+      subject { c.to_s_ppm(255) }
+
+      it { is_expected.to eq('255 0 0') }
+    end
+
+    context 'c2' do
+      let(:c) { Color.new(0, 0.5, 0) }
+      subject { c.to_s_ppm(255) }
+
+      it { is_expected.to eq('0 128 0') }
+    end
+
+    context 'c3' do
+      let(:c) { Color.new(-0.5, 0, 1) } # 0, 0, 1
+      subject { c.to_s_ppm(255) }
+
+      it { is_expected.to eq('0 0 255') }
+    end
+  end 
 end

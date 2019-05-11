@@ -33,11 +33,35 @@ class Color
     end
   end
 
+  def to_s_ppm(maximum_color_value)
+    red_clamped = clamp_component red
+    blue_clamped = clamp_component blue
+    green_clamped = clamp_component green
+
+    red_clamped_and_scaled = red_clamped * maximum_color_value
+    blue_clamped_and_scaled = blue_clamped * maximum_color_value
+    green_clamped_and_scaled = green_clamped * maximum_color_value
+
+    "%d %d %d" % [red_clamped_and_scaled.ceil, green_clamped_and_scaled.ceil, blue_clamped_and_scaled.ceil]
+  end
+
   def black?
     x == 0 and y == 0 and z == 0
   end
 
   def ==(other)
     red == other.red and green == other.green and blue == other.blue
+  end
+
+private
+
+  def clamp_component component
+    if component < 0
+      0.0
+    elsif component > 1
+      1.0
+    else
+      component
+    end
   end
 end
