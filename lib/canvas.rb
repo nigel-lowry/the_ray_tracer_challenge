@@ -23,6 +23,7 @@ class Canvas
   end
 
   def pixel_at(x, y)
+    raise 'outside bounds' unless (0...width).include? x and (0...height).include? y
     @array[y][x]
   end
 end
