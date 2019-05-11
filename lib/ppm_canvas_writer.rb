@@ -16,6 +16,8 @@ private
   end
 
   def pixel_data
-    ""
+    lines = []
+    @canvas.to_a.each_slice(@canvas.width) { |row_array| lines << row_array.collect { |color| color.to_s_ppm(MAXIMUM_COLOR_VALUE) }.join(' ') }
+    lines.join "\n"
   end
 end

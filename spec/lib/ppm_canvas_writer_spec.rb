@@ -23,6 +23,11 @@ RSpec.describe CanvasWriter do
 
     describe 'pixel data' do
       it 'has the components laid out as integers' do
+        expect(canvas_writer.to_s).to end_with(
+          "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n" +
+          "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n" +
+          "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255"
+        )
       end
     end
   end
