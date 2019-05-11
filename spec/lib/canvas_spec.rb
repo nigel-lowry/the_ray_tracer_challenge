@@ -119,14 +119,4 @@ RSpec.describe Canvas do
       end
     end
   end
-
-  describe '#to_ppm' do
-    describe 'PPM header' do
-      let(:canvas) { Canvas.new(5, 3) }
-
-      it 'has the identifier, then the width and height, then the maximum color value' do
-        expect(canvas.to_ppm_str).to eq("P3\n5 3\n255")
-      end
-    end
-  end
 end
