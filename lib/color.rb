@@ -34,15 +34,7 @@ class Color
   end
 
   def to_s_ppm(maximum_color_value)
-    red_clamped = clamp_component red
-    blue_clamped = clamp_component blue
-    green_clamped = clamp_component green
-
-    red_clamped_and_scaled = red_clamped * maximum_color_value
-    blue_clamped_and_scaled = blue_clamped * maximum_color_value
-    green_clamped_and_scaled = green_clamped * maximum_color_value
-
-    "%d %d %d" % [red_clamped_and_scaled.ceil, green_clamped_and_scaled.ceil, blue_clamped_and_scaled.ceil]
+    "#{component_to_ppm(red, maximum_color_value)} #{component_to_ppm(green, maximum_color_value)} #{component_to_ppm(blue, maximum_color_value)}"
   end
 
   def black?
@@ -55,6 +47,12 @@ class Color
 
 private
 
+  def component_to_ppm component, maximum_color_value
+    component_clamped = clamp_component component
+    component_clamped_and_scaled = scale_component component_clamped, maximum_color_value
+    component_clamped_and_scaled.ceil
+  end
+
   def clamp_component component
     if component < 0
       0.0
@@ -63,5 +61,9 @@ private
     else
       component
     end
+  end
+
+  def scale_component clamped_component, maximum_color_value
+    clamped_component * maximum_color_value
   end
 end
