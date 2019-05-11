@@ -1,4 +1,6 @@
 class CanvasWriter
+  MAXIMUM_COLOR_VALUE = 255
+
   def initialize canvas
     @canvas = canvas
   end
@@ -10,7 +12,7 @@ class CanvasWriter
 private
 
   def ppm_header
-    "P3\n#{@canvas.width} #{@canvas.height}\n255"
+    "P3\n#{@canvas.width} #{@canvas.height}\n#{MAXIMUM_COLOR_VALUE}"
   end
 
   def pixel_data
