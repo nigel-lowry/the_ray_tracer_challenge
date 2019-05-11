@@ -12,6 +12,7 @@ RSpec.describe Color do
     let(:c2) { Color.new(0.7, 0.1, 0.25) }
     subject { c1 + c2 }
 
+    it { is_expected.to be_an_instance_of(Color) }
     it { is_expected.to eq(Color.new(1.6, 0.7, 1.0)) }
   end
 
@@ -20,6 +21,7 @@ RSpec.describe Color do
     let(:c2) { Color.new(0.7, 0.1, 0.25) }
     subject { c1 - c2 }
 
+    it { is_expected.to be_an_instance_of(Color) }
     it { is_expected.to closely_eq(Color.new(0.2, 0.5, 0.5)) }
   end
 
@@ -28,6 +30,7 @@ RSpec.describe Color do
       let(:c) { Color.new(0.2, 0.3, 0.4) }
       subject { c * 2 }
 
+      it { is_expected.to be_an_instance_of(Color) }
       it { is_expected.to eq(Color.new(0.4, 0.6, 0.8)) }
     end
 
@@ -36,6 +39,7 @@ RSpec.describe Color do
       let(:c2) { Color.new(0.9, 1, 0.1) }
       subject { c1 * c2 }
 
+      it { is_expected.to be_an_instance_of(Color) }
       it { is_expected.to closely_eq(Color.new(0.9, 0.2, 0.04)) }
     end
 
