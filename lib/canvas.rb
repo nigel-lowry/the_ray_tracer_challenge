@@ -1,9 +1,15 @@
 class Canvas
-  attr_reader :width, :height
 
   def initialize width, height
-    @width, @height = width, height
     @array = Array.new(height) { Array.new(width) { Color.new(0, 0, 0) } }
+  end
+
+  def width
+    @array[0].length
+  end
+
+  def height
+    @array.length
   end
 
   def to_a
