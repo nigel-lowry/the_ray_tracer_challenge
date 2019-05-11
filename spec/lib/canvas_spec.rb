@@ -41,6 +41,26 @@ RSpec.describe Canvas do
 
       it { is_expected.to have_attributes(width: 1, height: 10) }
     end
+
+    context 'negative dimensions' do
+      context 'width and height negative' do
+        it 'errors' do
+          expect { Canvas.new(-10, -10) }.to raise_error 'negative array size'
+        end
+      end
+
+      context 'width negative' do
+        it 'errors' do
+          expect { Canvas.new(-10, 10) }.to raise_error 'negative array size'
+        end
+      end
+
+      context 'height negative' do
+        it 'errors' do
+          expect { Canvas.new(10, -10) }.to raise_error 'negative array size'
+        end
+      end
+    end
   end
 
   describe '#write_pixel' do
