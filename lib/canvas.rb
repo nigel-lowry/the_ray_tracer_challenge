@@ -28,7 +28,15 @@ class Canvas
     @array[y][x]
   end
 
+  def to_ppm_str
+    ppm_header
+  end
+
 private
+
+  def ppm_header
+    "P3\n#{width} #{height}\n255"
+  end
 
   def raise_unless_within_bounds(x, y)
     x_in_bounds = (0...width).include? x
