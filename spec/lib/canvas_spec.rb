@@ -11,8 +11,22 @@ RSpec.describe Canvas do
     end
 
     context 'zero pixels' do
-      it 'errors' do
-        expect { Canvas.new(0, 0) }.to raise_error 'canvas has no pixels'
+      context 'width and height zero' do
+        it 'errors' do
+          expect { Canvas.new(0, 0) }.to raise_error 'canvas has no pixels'
+        end
+      end
+
+      context 'width zero' do
+        it 'errors' do
+          expect { Canvas.new(0, 10) }.to raise_error 'canvas has no pixels'
+        end
+      end
+
+      context 'height zero' do
+        it 'errors' do
+          expect { Canvas.new(10, 0) }.to raise_error 'canvas has no pixels'
+        end
       end
     end
 
