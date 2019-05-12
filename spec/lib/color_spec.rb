@@ -47,32 +47,27 @@ RSpec.describe Color do
       let(:c) { Color.new(1, 0.2, 0.4) }
       let(:v) { Vector.new(1, 2, 3) }
 
-      it 'errors' do
-        expect { c * v }.to raise_error 'unsupported operand'
-      end
+      specify { expect { c * v }.to raise_error 'unsupported operand' }
     end
   end
 
   describe '#to_s_ppm' do
     context 'c1' do
-      let(:c) { Color.new(1.5, 0, 0) } # 1, 0, 0
-      subject { c.to_s_ppm(255) }
+      let(:c) { Color.new(1.5, 0, 0) }
 
-      it { is_expected.to eq('255 0 0') }
+      specify { expect(c.to_s_ppm(255)).to eq('255 0 0') }
     end
 
     context 'c2' do
       let(:c) { Color.new(0, 0.5, 0) }
-      subject { c.to_s_ppm(255) }
 
-      it { is_expected.to eq('0 128 0') }
+      specify { expect(c.to_s_ppm(255)).to eq('0 128 0') }
     end
 
     context 'c3' do
-      let(:c) { Color.new(-0.5, 0, 1) } # 0, 0, 1
-      subject { c.to_s_ppm(255) }
+      let(:c) { Color.new(-0.5, 0, 1) }
 
-      it { is_expected.to eq('0 0 255') }
+      specify { expect(c.to_s_ppm(255)).to eq('0 0 255') }
     end
   end 
 end
