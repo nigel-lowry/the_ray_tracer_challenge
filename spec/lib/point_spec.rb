@@ -22,9 +22,7 @@ RSpec.describe Point do
       let(:p1) { Point.new(3, -2, 5) }
       let(:p2) { Point.new(-2, 3, 1) }
 
-      it 'errors' do
-        expect { p1 + p2 }.to raise_error 'neither a point nor a vector'
-      end
+      specify { expect { p1 + p2 }.to raise_error 'neither a point nor a vector' }
     end
   end
 
