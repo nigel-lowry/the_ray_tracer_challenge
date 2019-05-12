@@ -19,21 +19,23 @@ private
   def pixel_data
     rows = []
     @canvas.to_a.each_slice(@canvas.width) { |row_array| rows << row_array.collect { |color| color.to_s_ppm(MAXIMUM_COLOR_VALUE) }.join(' ') }
-    rows.join "\n"
-    rows.collect { |line| split(line) }
-    rows.join "\n"
+
+    rows.collect! do |row|
+      split_row_string_into_array row
+    end
+
+    rows.flatten.join "\n"
   end
 
-  def split line
-    if line.length > MAXIMUM_LINE_LENGTH
-      if line[MAXIMUM_LINE_LENGTH - 1] == ' '
-        line[MAXIMUM_LINE_LENGTH - 1] = "\n" 
-      else
-        partitioned_string = line.rpartition ' '
-        head, tail = partitioned_string.first, partitioned_string.last
-        line[head.length] = "\n"
-        # split(tail) # is this being thrown away?
-      end
+  def split_row_string_into_array row
+    if row.length <= MAXIMUM_LINE_LENGTH
+      [row]
+    else
+      first_chunk = row[0, MAXIMUM_LINE_LENGTH]
+      everything_after_first_chunk = row[MAXIMUM_LINE_LENGTH..-1]
+      partitioned_first_chunk = first_chunk.rpartition ' '
+      head, tail = partitioned_first_chunk.first, partitioned_first_chunk.last
+      [head, "#{tail}#{everything_after_first_chunk}"]
     end
   end
 end

@@ -55,12 +55,12 @@ P3
     let(:canvas) { Canvas.new(10, 2, color) }
     let(:canvas_writer) { CanvasWriter.new(canvas) }
 
-    xit 'keeps long lines no more than 70 characters' do
+    it 'keeps long lines no more than 70 characters' do
       expect(canvas_writer.to_s).to end_with(
         "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n" +
         "153 255 204 153 255 204 153 255 204 153 255 204 153\n" +
         "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n" +
-        "153 255 204 153 255 204 153 255 204 153 255 204 153"
+        "153 255 204 153 255 204 153 255 204 153 255 204 153\n"
       )
     end
   end
