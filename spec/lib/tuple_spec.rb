@@ -27,6 +27,18 @@ RSpec.describe Tuple do
     it { is_expected.to be_neither_a_point_nor_a_vector }
   end
 
+  describe 'x' do
+    specify { expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number' }
+  end
+
+  describe 'y' do
+    specify { expect { Tuple.new(4.3, 'nan', 3.1, 1.0) }.to raise_error 'y must be a number' }
+  end
+
+  describe 'z' do
+    specify { expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number' }
+  end
+
   describe 'w' do
     specify { expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number' }
     
@@ -35,24 +47,6 @@ RSpec.describe Tuple do
 
     specify { expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0) }
     specify { expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0) }
-  end
-
-  describe 'x' do
-    context 'not a number' do
-      specify { expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number' }
-    end
-  end
-
-  describe 'y' do
-    context 'not a number' do
-      specify { expect { Tuple.new(4.3, 'nan', 3.1, 1.0) }.to raise_error 'y must be a number' }
-    end
-  end
-
-  describe 'z' do
-    context 'not a number' do
-      specify { expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number' }
-    end
   end
 
   describe '#eq' do
