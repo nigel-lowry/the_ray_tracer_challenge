@@ -5,30 +5,12 @@ RSpec.describe Canvas do
 
   describe '.new' do
     it { is_expected.to have_attributes(width: 10, height: 20) }
+    
+    specify { expect(subject.to_a).to all be_black }
 
-    specify 'every pixel is black' do
-      expect(subject.to_a).to all be_black
-    end
-
-    context 'zero pixels' do
-      context 'width and height zero' do
-        it 'errors' do
-          expect { Canvas.new(0, 0) }.to raise_error 'canvas has no pixels'
-        end
-      end
-
-      context 'width zero' do
-        it 'errors' do
-          expect { Canvas.new(0, 10) }.to raise_error 'canvas has no pixels'
-        end
-      end
-
-      context 'height zero' do
-        it 'errors' do
-          expect { Canvas.new(10, 0) }.to raise_error 'canvas has no pixels'
-        end
-      end
-    end
+    specify { expect { Canvas.new(0, 0) }.to raise_error 'canvas has no pixels' }
+    specify { expect { Canvas.new(0, 10) }.to raise_error 'canvas has no pixels' }
+    specify { expect { Canvas.new(10, 0) }.to raise_error 'canvas has no pixels' }
 
     context 'row of pixels' do
       subject { Canvas.new(10, 1) }
