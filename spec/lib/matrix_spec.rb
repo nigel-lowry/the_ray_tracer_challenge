@@ -104,4 +104,27 @@ RSpec.describe Matrix do
       specify { expect(b).to_not eq(a) }
     end
   end
+
+  describe '#*' do
+    let(:a) do 
+      Matrix.new  [1, 2, 3, 4], 
+                  [5, 6, 7, 8],
+                  [9, 8, 7, 6],
+                  [5, 4, 3, 2]
+    end
+
+    let(:b) do 
+      Matrix.new  [-2, 1, 2,  3], 
+                  [ 3, 2, 1, -1],
+                  [ 4, 3, 6,  5],
+                  [ 1, 2, 7,  8]
+    end
+
+    specify { expect(a * b).to eq(
+      Matrix.new  [20, 22,  50,  48], 
+                  [44, 54, 114, 108],
+                  [40, 58, 110, 102],
+                  [16, 26,  46,  42]
+    ) }
+  end
 end
