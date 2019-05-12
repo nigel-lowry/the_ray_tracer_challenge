@@ -56,17 +56,8 @@ RSpec.describe Vector do
     specify { expect(Vector.new(0, 1, 0).magnitude).to eq(1) }
     specify { expect(Vector.new(0, 0, 1).magnitude).to eq(1) }
 
-    context 'x = 1, y = 2, z = 3' do
-      subject { Vector.new(1, 2, 3).magnitude }
-
-      it { is_expected.to eq(Math.sqrt(14)) }
-    end
-
-    context 'x = -1, y = -2, z = -3' do
-      subject { Vector.new(-1, -2, -3).magnitude }
-
-      it { is_expected.to eq(Math.sqrt(14)) }
-    end
+    specify { expect(Vector.new(1, 2, 3).magnitude).to eq(Math.sqrt(14)) }
+    specify { expect(Vector.new(-1, -2, -3).magnitude).to eq(Math.sqrt(14)) }
   end
 
   describe '#normalize' do
