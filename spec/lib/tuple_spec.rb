@@ -3,29 +3,6 @@ require 'point'
 require 'vector'
 
 RSpec.describe Tuple do
-  context 'w = 1' do
-    subject { Tuple.new(4.3, -4.2, 3.1, 1.0) }
-
-    it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 1.0) }
-    it { is_expected.to be_a_point }
-    it { is_expected.to_not be_a_vector }
-  end
-
-  context 'w = 0' do
-    subject { Tuple.new(4.3, -4.2, 3.1, 0.0) }
-
-    it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 0.0) }
-    it { is_expected.to be_a_vector }
-    it { is_expected.to_not be_a_point }
-  end
-
-  context 'w = 2' do
-    subject { Tuple.new(4.3, -4.2, 3.1, 2.0) }
-
-    it { is_expected.to_not be_a_vector }
-    it { is_expected.to_not be_a_point }
-    it { is_expected.to be_neither_a_point_nor_a_vector }
-  end
 
   describe 'x' do
     specify { expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number' }
@@ -47,6 +24,30 @@ RSpec.describe Tuple do
 
     specify { expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0) }
     specify { expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0) }
+
+    context 'w = 1' do
+      subject { Tuple.new(4.3, -4.2, 3.1, 1.0) }
+
+      it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 1.0) }
+      it { is_expected.to be_a_point }
+      it { is_expected.to_not be_a_vector }
+    end
+
+    context 'w = 0' do
+      subject { Tuple.new(4.3, -4.2, 3.1, 0.0) }
+
+      it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 0.0) }
+      it { is_expected.to be_a_vector }
+      it { is_expected.to_not be_a_point }
+    end
+
+    context 'w = 2' do
+      subject { Tuple.new(4.3, -4.2, 3.1, 2.0) }
+
+      it { is_expected.to_not be_a_vector }
+      it { is_expected.to_not be_a_point }
+      it { is_expected.to be_neither_a_point_nor_a_vector }
+    end
   end
 
   describe '#eq' do
