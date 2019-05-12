@@ -40,9 +40,7 @@ RSpec.describe Vector do
       let(:v) { Vector.new(5, 6, 7) }
       let(:p) { Point.new(3, 2, 1) }
 
-      it 'errors' do
-        expect { v - p }.to raise_error 'neither a point nor a vector' 
-      end
+      specify { expect { v - p }.to raise_error 'neither a point nor a vector' }
     end
   end
 
