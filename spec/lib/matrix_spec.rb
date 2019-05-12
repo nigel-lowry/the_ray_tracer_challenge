@@ -64,4 +64,44 @@ RSpec.describe Matrix do
       specify { expect(m.get(3, 3)).to eq(16.5) }
     end
   end
+
+  describe '#eq' do
+    context 'identical' do
+      let(:a) do 
+        Matrix.new  [1, 2, 3, 4], 
+                    [5, 6, 7, 8],
+                    [9, 8, 7, 6],
+                    [5, 4, 3, 2]
+      end
+
+      let(:b) do 
+        Matrix.new  [1, 2, 3, 4], 
+                    [5, 6, 7, 8],
+                    [9, 8, 7, 6],
+                    [5, 4, 3, 2]
+      end
+
+      specify { expect(a).to eq(b) }
+      specify { expect(b).to eq(a) }
+    end
+
+    context 'different' do
+      let(:a) do 
+        Matrix.new  [1, 2, 3, 4], 
+                    [5, 6, 7, 8],
+                    [9, 8, 7, 6],
+                    [5, 4, 3, 2]
+      end
+
+      let(:b) do 
+        Matrix.new  [2, 3, 4, 5], 
+                    [6, 7, 8, 9],
+                    [8, 7, 6, 5],
+                    [4, 3, 2, 1]
+      end
+
+      specify { expect(a).to_not eq(b) }
+      specify { expect(b).to_not eq(a) }
+    end
+  end
 end
