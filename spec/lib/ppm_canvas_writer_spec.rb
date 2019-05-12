@@ -1,10 +1,10 @@
 require 'ppm_canvas_writer'
 
-RSpec.describe CanvasWriter do
+RSpec.describe PpmCanvasWriter do
 
   describe '#to_s' do
     let(:canvas) { Canvas.new(5, 3) }
-    let(:canvas_writer) { CanvasWriter.new(canvas) }
+    let(:canvas_writer) { PpmCanvasWriter.new(canvas) }
     let(:c1) { Color.new(1.5, 0, 0) }
     let(:c2) { Color.new(0, 0.5, 0) }
     let(:c3) { Color.new(-0.5, 0, 1) }
@@ -53,7 +53,7 @@ P3
   describe 'splitting long lines' do
     let(:color) { Color.new(1, 0.8, 0.6) }
     let(:canvas) { Canvas.new(10, 2, color) }
-    let(:canvas_writer) { CanvasWriter.new(canvas) }
+    let(:canvas_writer) { PpmCanvasWriter.new(canvas) }
 
     it 'keeps long lines no more than 70 characters' do
       expect(canvas_writer.to_s).to end_with(

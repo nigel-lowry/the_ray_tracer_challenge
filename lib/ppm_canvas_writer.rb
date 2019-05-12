@@ -1,4 +1,4 @@
-class CanvasWriter
+class PpmCanvasWriter
   MAXIMUM_COLOR_VALUE = 255
   MAXIMUM_LINE_LENGTH = 70
 
