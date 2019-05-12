@@ -1,5 +1,3 @@
-require 'active_support'
-
 class CanvasWriter
   MAXIMUM_COLOR_VALUE = 255
   MAXIMUM_LINE_LENGTH = 70
@@ -9,7 +7,7 @@ class CanvasWriter
   end
 
   def to_s
-    ppm_header + pixel_data + "\n"
+    "#{ppm_header}#{pixel_data}\n"
   end
 
 private
