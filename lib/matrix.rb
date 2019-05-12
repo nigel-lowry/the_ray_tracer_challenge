@@ -26,6 +26,17 @@ class Matrix
     Matrix.new data.transpose
   end
 
+  def determinant
+    if row_count == 2 and column_count == 2
+      a = get 0, 0
+      b = get 0, 1
+      c = get 1, 0
+      d = get 1, 1
+
+      a * d - b * c
+    end
+  end
+
   def ==(other)
     @data.flatten == other.data.flatten
   end
@@ -60,5 +71,13 @@ private
     end
 
     Tuple.new(a[0], a[1], a[2], a[3])
+  end
+
+  def row_count
+    data.length
+  end
+
+  def column_count
+    data[0].length
   end
 end

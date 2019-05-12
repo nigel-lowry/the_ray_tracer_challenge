@@ -181,4 +181,13 @@ RSpec.describe Matrix do
       specify { expect(Matrix::IDENTITY_4X4.transpose).to eq(Matrix::IDENTITY_4X4) }
     end
   end
+
+  describe '#determinant' do
+    let(:a) do
+      Matrix.new  [1, 5],
+                  [-3, 2]
+    end
+
+    specify { expect(a.determinant).to eq(17) }
+  end
 end
