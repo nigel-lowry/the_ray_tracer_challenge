@@ -88,49 +88,33 @@ RSpec.describe Tuple do
   describe '#+' do
     let(:t1) { Tuple.new(3, -2, 5, 1) }
     let(:t2) { Tuple.new(-2, 3, 1, 0) }
-    subject { t1 + t2 }
 
-    it { is_expected.to eq(Tuple.new(1, 1, 6, 1)) }
+    specify { expect(t1 + t2).to eq(Tuple.new(1, 1, 6, 1)) }
   end
 
   describe '-' do
     let(:t1) { Tuple.new(3, -2, 5, 1) }
     let(:t2) { Tuple.new(-2, 3, 1, 0) }
-    subject { t1 - t2 }
 
-    it { is_expected.to eq(Tuple.new(5, -5, 4, 1)) }
+    specify { expect(t1 - t2).to eq(Tuple.new(5, -5, 4, 1)) }
   end
 
   describe '#-@' do
     let(:t) { Tuple.new(1, -2, 3, 0) }
-    subject { -t }
 
-    it { is_expected.to eq(Tuple.new(-1, 2, -3, 0)) }
+    specify { expect(-t).to eq(Tuple.new(-1, 2, -3, 0)) }
   end
 
   describe '#*' do
     let(:t) { Tuple.new(1, -2, 3, -4) }
 
-    context 'multiply by scalar' do
-      subject { t * 3.5 }
-
-      it { is_expected.to eq(Tuple.new(3.5, -7, 10.5, -14)) }
-    end
-
-    context 'multiply by a fraction' do
-      subject { t * 0.5 }
-
-      it { is_expected.to eq(Tuple.new(0.5, -1, 1.5, -2)) }
-    end
+    specify { expect(t * 3.5).to eq(Tuple.new(3.5, -7, 10.5, -14)) }
+    specify { expect(t * 0.5).to eq(Tuple.new(0.5, -1, 1.5, -2)) }
   end
 
   describe '#/' do
     let(:t) { Tuple.new(1, -2, 3, -4) }
 
-    context 'divide by scalar' do
-      subject { t / 2 }
-
-      it { is_expected.to eq(Tuple.new(0.5, -1, 1.5, -2)) }
-    end
+    specify { expect(t / 2).to eq(Tuple.new(0.5, -1, 1.5, -2)) }
   end
 end
