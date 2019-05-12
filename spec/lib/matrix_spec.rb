@@ -176,5 +176,9 @@ RSpec.describe Matrix do
                     [0, 8, 3, 8]
       ) }
     end
+
+    context 'transpose the identity matrix' do
+      specify { expect(Matrix::IDENTITY_4X4.transpose).to eq(Matrix::IDENTITY_4X4) }
+    end
   end
 end
