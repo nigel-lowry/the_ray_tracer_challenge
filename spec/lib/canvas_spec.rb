@@ -12,6 +12,10 @@ RSpec.describe Canvas do
     specify { expect { Canvas.new(0, 10) }.to raise_error 'canvas has no pixels' }
     specify { expect { Canvas.new(10, 0) }.to raise_error 'canvas has no pixels' }
 
+    specify { expect { Canvas.new(-10, 10) }.to raise_error 'negative array size' }
+    specify { expect { Canvas.new(10, -10) }.to raise_error 'negative array size'}
+    specify { expect { Canvas.new(-10, -10) }.to raise_error 'negative array size' }
+
     context 'row of pixels' do
       subject { Canvas.new(10, 1) }
 
@@ -22,26 +26,6 @@ RSpec.describe Canvas do
       subject { Canvas.new(1, 10) }
 
       it { is_expected.to have_attributes(width: 1, height: 10) }
-    end
-
-    context 'negative dimensions' do
-      context 'width and height negative' do
-        it 'errors' do
-          expect { Canvas.new(-10, -10) }.to raise_error 'negative array size'
-        end
-      end
-
-      context 'width negative' do
-        it 'errors' do
-          expect { Canvas.new(-10, 10) }.to raise_error 'negative array size'
-        end
-      end
-
-      context 'height negative' do
-        it 'errors' do
-          expect { Canvas.new(10, -10) }.to raise_error 'negative array size'
-        end
-      end
     end
   end
 
