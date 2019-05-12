@@ -28,25 +28,13 @@ RSpec.describe Tuple do
   end
 
   describe 'w' do
-    context 'not a number' do
-      specify { expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number' }
-    end
+    specify { expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number' }
+    
+    specify { expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0) }
+    specify { expect(Tuple.new(4, -4, 3, 1).w).to be_an_instance_of(Float) and eq(1.0) }
 
-    context '1.0' do
-      specify { expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0) }
-    end
-
-    context '1' do
-      specify { expect(Tuple.new(4, -4, 3, 1).w).to be_an_instance_of(Float) and eq(1.0) }
-    end
-
-    context '0.0' do
-      specify { expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0) }
-    end
-
-    context '0' do
-      specify { expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0) }
-    end
+    specify { expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0) }
+    specify { expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0) }
   end
 
   describe 'x' do
