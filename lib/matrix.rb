@@ -13,16 +13,7 @@ class Matrix
     if other.is_a? Matrix
       multiply_by_matrix other
     elsif other.is_a? Tuple
-      a = [0, 0, 0, 0]
-
-      for row in 0..3
-        a[row] =  get(row, 0) * other.x +
-                  get(row, 1) * other.y +
-                  get(row, 2) * other.z +
-                  get(row, 3) * other.w
-      end
-
-      Tuple.new(a[0], a[1], a[2], a[3])
+      multiply_by_tuple other
     end
   end
 
@@ -47,5 +38,18 @@ private
     end
 
     Matrix.new a
+  end
+
+  def multiply_by_tuple tuple
+    a = [0, 0, 0, 0]
+
+    for row in 0..3
+      a[row] =  get(row, 0) * tuple.x +
+                get(row, 1) * tuple.y +
+                get(row, 2) * tuple.z +
+                get(row, 3) * tuple.w
+    end
+
+    Tuple.new(a[0], a[1], a[2], a[3])
   end
 end
