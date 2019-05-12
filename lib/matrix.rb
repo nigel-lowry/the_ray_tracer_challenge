@@ -22,6 +22,10 @@ class Matrix
     end
   end
 
+  def transpose
+    Matrix.new data.transpose
+  end
+
   def ==(other)
     @data.flatten == other.data.flatten
   end

@@ -159,4 +159,22 @@ RSpec.describe Matrix do
       specify { expect(Matrix::IDENTITY_4X4 * a).to eq(a) }
     end
   end
+
+  describe '#transpose' do
+    context 'transpose a matrix' do
+      let(:a) do 
+        Matrix.new  [0, 9, 3, 0], 
+                    [9, 8, 0, 8],
+                    [1, 8, 5, 3],
+                    [0, 0, 5, 8]
+      end
+
+      specify { expect(a.transpose).to eq(
+        Matrix.new  [0, 9, 1, 0], 
+                    [9, 8, 8, 0],
+                    [3, 0, 5, 5],
+                    [0, 8, 3, 8]
+      ) }
+    end
+  end
 end
