@@ -52,23 +52,9 @@ RSpec.describe Vector do
   end
 
   describe '#magnitude' do
-    context 'x is 1' do
-      subject { Vector.new(1, 0, 0).magnitude }
-
-      it { is_expected.to eq(1) }
-    end
-
-    context 'y is 1' do
-      subject { Vector.new(0, 1, 0).magnitude }
-
-      it { is_expected.to eq(1) }
-    end
-
-    context 'z is 1' do
-      subject { Vector.new(0, 0, 1).magnitude }
-
-      it { is_expected.to eq(1) }
-    end
+    specify { expect(Vector.new(1, 0, 0).magnitude).to eq(1) }
+    specify { expect(Vector.new(0, 1, 0).magnitude).to eq(1) }
+    specify { expect(Vector.new(0, 0, 1).magnitude).to eq(1) }
 
     context 'x = 1, y = 2, z = 3' do
       subject { Vector.new(1, 2, 3).magnitude }
