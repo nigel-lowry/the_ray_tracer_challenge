@@ -1,9 +1,9 @@
 class Canvas
 
-  def initialize(width, height)
+  def initialize(width, height, color = Color.new(0, 0, 0) )
     raise 'canvas has no pixels' if [width, height].any? &:zero?
 
-    @array = Array.new(height) { Array.new(width) { Color.new(0, 0, 0) } }
+    @array = Array.new(height) { Array.new(width) { color } }
   end
 
   def width

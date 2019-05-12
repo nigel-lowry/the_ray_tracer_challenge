@@ -26,9 +26,42 @@ RSpec.describe CanvasWriter do
         expect(canvas_writer.to_s).to end_with(
           "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n" +
           "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n" +
-          "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255"
+          "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255\n"
         )
       end
+    end
+
+    describe 'contents' do
+      let(:expected) do
+        <<-EXPECTED
+P3
+5 3
+255
+255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
+        EXPECTED
+      end
+
+      subject { canvas_writer.to_s }
+
+      it { is_expected.to eq(expected) }
+      it { is_expected.to end_with("\n") }
+    end
+  end
+
+  describe 'splitting long lines' do
+    let(:color) { Color.new(1, 0.8, 0.6) }
+    let(:canvas) { Canvas.new(10, 2, color) }
+    let(:canvas_writer) { CanvasWriter.new(canvas) }
+
+    xit 'keeps long lines no more than 70 characters' do
+      expect(canvas_writer.to_s).to end_with(
+        "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n" +
+        "153 255 204 153 255 204 153 255 204 153 255 204 153\n" +
+        "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n" +
+        "153 255 204 153 255 204 153 255 204 153 255 204 153"
+      )
     end
   end
 end
