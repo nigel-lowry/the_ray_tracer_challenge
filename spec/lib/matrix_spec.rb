@@ -129,6 +129,17 @@ RSpec.describe Matrix do
       ) }
     end
 
+    context 'multiply by identity matrix' do
+      let(:a) do 
+        Matrix.new  [0, 1,  2,  4], 
+                    [1, 2,  4,  8],
+                    [2, 4,  8, 16],
+                    [4, 8, 16, 32]
+      end
+
+      specify { expect(a * Matrix::IDENTITY_4X4).to eq(a) }
+    end
+
     context 'multiply by tuple' do
       let(:a) do 
         Matrix.new  [1, 2, 3, 4], 
