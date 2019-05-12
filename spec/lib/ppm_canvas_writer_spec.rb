@@ -17,7 +17,7 @@ RSpec.describe CanvasWriter do
 
     describe 'PPM header' do
       it 'has the identifier, then the width and height, then the maximum color value' do
-        expect(canvas_writer.to_s).to start_with("P3\n5 3\n255")
+        expect(canvas_writer.to_s).to start_with("P3\n5 3\n255\n")
       end
     end
 

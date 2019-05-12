@@ -12,7 +12,7 @@ class CanvasWriter
 private
 
   def ppm_header
-    "P3\n#{@canvas.width} #{@canvas.height}\n#{MAXIMUM_COLOR_VALUE}"
+    "P3\n#{@canvas.width} #{@canvas.height}\n#{MAXIMUM_COLOR_VALUE}\n"
   end
 
   def pixel_data
