@@ -152,5 +152,11 @@ RSpec.describe Matrix do
 
       specify { expect(a * b).to eq(Tuple.new(18, 24, 33, 1)) }
     end
+
+    context 'multiple identity matrix by tuple' do
+      let(:a) { Tuple.new(1, 2, 3, 4) }
+
+      specify { expect(Matrix::IDENTITY_4X4 * a).to eq(a) }
+    end
   end
 end
