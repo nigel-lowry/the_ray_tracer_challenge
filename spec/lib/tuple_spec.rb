@@ -29,57 +29,41 @@ RSpec.describe Tuple do
 
   describe 'w' do
     context 'not a number' do
-      it 'errors' do
-        expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number'
-      end
+      specify { expect { Tuple.new(4.3, -4.2, 3.1, 'nan') }.to raise_error 'w must be a number' }
     end
 
     context '1.0' do
-      it 'stores it as 1.0' do
-        expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0)
-      end
+      specify { expect(Tuple.new(4, -4, 3, 1.0).w).to be_an_instance_of(Float) and eq(1.0) }
     end
 
     context '1' do
-      it 'stores it as 1.0' do
-        expect(Tuple.new(4, -4, 3, 1).w).to be_an_instance_of(Float) and eq(1.0)
-      end
+      specify { expect(Tuple.new(4, -4, 3, 1).w).to be_an_instance_of(Float) and eq(1.0) }
     end
 
     context '0.0' do
-      it 'stores it as 0.0' do
-        expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0)
-      end
+      specify { expect(Tuple.new(4, -4, 3, 0.0).w).to be_an_instance_of(Float) and eq(0.0) }
     end
 
     context '0' do
-      it 'stores it as 0.0' do
-        expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0)
-      end
+      specify { expect(Tuple.new(4, -4, 3, 0).w).to be_an_instance_of(Float) and eq(0.0) }
     end
   end
 
   describe 'x' do
     context 'not a number' do
-      it 'errors' do
-        expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number'
-      end
+      specify { expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number' }
     end
   end
 
   describe 'y' do
     context 'not a number' do
-      it 'errors' do
-        expect { Tuple.new(4.3, 'nan', 3.1, 1.0) }.to raise_error 'y must be a number'
-      end
+      specify { expect { Tuple.new(4.3, 'nan', 3.1, 1.0) }.to raise_error 'y must be a number' }
     end
   end
 
   describe 'z' do
     context 'not a number' do
-      it 'errors' do
-        expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number'
-      end
+      specify { expect { Tuple.new(4.3, -4.2, 'nan', 1.0) }.to raise_error 'z must be a number' }
     end
   end
 
