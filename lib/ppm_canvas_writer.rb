@@ -21,10 +21,10 @@ private
     @canvas.to_a.each_slice(@canvas.width) { |row_array| rows << row_array.collect { |color| color.to_s_ppm(MAXIMUM_COLOR_VALUE) }.join(' ') }
 
     rows.collect! do |row|
-      split_row_string_into_array row
+      split_row_string_into_array(row).flatten
     end
 
-    rows.flatten.join "\n"
+    rows.join "\n"
   end
 
   def split_row_string_into_array row
@@ -35,7 +35,7 @@ private
       everything_after_first_chunk = row[MAXIMUM_LINE_LENGTH..-1]
       partitioned_first_chunk = first_chunk.rpartition ' '
       head, tail = partitioned_first_chunk.first, partitioned_first_chunk.last
-      [head, "#{tail}#{everything_after_first_chunk}"]
+      [head, split_row_string_into_array("#{tail}#{everything_after_first_chunk}")]
     end
   end
 end
