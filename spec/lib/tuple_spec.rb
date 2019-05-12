@@ -100,9 +100,9 @@ RSpec.describe Tuple do
   end
 
   describe '#-@' do
-    let(:t) { Tuple.new(1, -2, 3, 0) }
+    let(:t) { Tuple.new(1, -2, 3, -4) }
 
-    specify { expect(-t).to eq(Tuple.new(-1, 2, -3, 0)) }
+    specify { expect(-t).to eq(Tuple.new(-1, 2, -3, 4)) }
   end
 
   describe '#*' do

@@ -49,7 +49,7 @@ class Tuple
   end
 
   def -@
-    Factory.create(Tuple.new(-x, -y, -z, -w))
+    Tuple.new(-x, -y, -z, -w)
   end
 
   def ==(other)
