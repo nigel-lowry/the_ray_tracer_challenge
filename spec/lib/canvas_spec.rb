@@ -33,13 +33,8 @@ RSpec.describe Canvas do
     let(:red) { Color.new(1, 0, 0) }
     before { subject.write_pixel(2, 3, red) }
 
-    it 'changes the pixel color' do
-      expect(subject.pixel_at(2, 3)).to eq(red)
-    end
-
-    it 'keeps other pixels black' do
-      expect(subject.pixel_at(0, 0)).to be_black
-    end
+    specify { expect(subject.pixel_at(2, 3)).to eq(red) }
+    specify { expect(subject.pixel_at(0, 0)).to be_black }
   end
 
   describe 'boundaries' do
