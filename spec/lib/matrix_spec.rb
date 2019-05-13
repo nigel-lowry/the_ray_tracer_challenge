@@ -4,8 +4,8 @@ RSpec.describe Matrix do
   describe '.new' do
     context '2x2' do
       let(:m) do
-        Matrix.new  [-3,  5],
-                    [ 1, -2]
+        Matrix.new [[-3,  5],
+                    [ 1, -2]]
       end
 
       specify { expect(m.get(0, 0)).to eq(-3) }
@@ -17,9 +17,9 @@ RSpec.describe Matrix do
 
     context '3x3' do
       let(:m) do
-        Matrix.new  [-3,  5,  0],
+        Matrix.new [[-3,  5,  0],
                     [ 1, -2, -7],
-                    [ 0,  1,  1]
+                    [ 0,  1,  1]]
       end
 
       specify { expect(m.get(0, 0)).to eq(-3) }
@@ -37,10 +37,10 @@ RSpec.describe Matrix do
 
     context '4x4' do
       let(:m) do 
-        Matrix.new  [   1,    2,    3, 4   ], 
+        Matrix.new [[   1,    2,    3, 4   ], 
                     [ 5.5,  6.5,  7.5, 8.5 ],
                     [   9,   10,   11, 12  ],
-                    [13.5, 14.5, 15.5, 16.5]
+                    [13.5, 14.5, 15.5, 16.5]]
       end
 
       specify { expect(m.get(0, 0)).to eq(1) }
@@ -68,17 +68,17 @@ RSpec.describe Matrix do
   describe '#eq' do
     context 'identical' do
       let(:a) do 
-        Matrix.new  [1, 2, 3, 4], 
+        Matrix.new [[1, 2, 3, 4], 
                     [5, 6, 7, 8],
                     [9, 8, 7, 6],
-                    [5, 4, 3, 2]
+                    [5, 4, 3, 2]]
       end
 
       let(:b) do 
-        Matrix.new  [1, 2, 3, 4], 
+        Matrix.new [[1, 2, 3, 4], 
                     [5, 6, 7, 8],
                     [9, 8, 7, 6],
-                    [5, 4, 3, 2]
+                    [5, 4, 3, 2]]
       end
 
       specify { expect(a).to eq(b) }
@@ -87,17 +87,17 @@ RSpec.describe Matrix do
 
     context 'different' do
       let(:a) do 
-        Matrix.new  [1, 2, 3, 4], 
+        Matrix.new [[1, 2, 3, 4], 
                     [5, 6, 7, 8],
                     [9, 8, 7, 6],
-                    [5, 4, 3, 2]
+                    [5, 4, 3, 2]]
       end
 
       let(:b) do 
-        Matrix.new  [2, 3, 4, 5], 
+        Matrix.new [[2, 3, 4, 5], 
                     [6, 7, 8, 9],
                     [8, 7, 6, 5],
-                    [4, 3, 2, 1]
+                    [4, 3, 2, 1]]
       end
 
       specify { expect(a).to_not eq(b) }
@@ -108,33 +108,33 @@ RSpec.describe Matrix do
   describe '#*' do
     context 'multiply by matrix' do
       let(:a) do 
-        Matrix.new  [1, 2, 3, 4], 
+        Matrix.new [[1, 2, 3, 4], 
                     [5, 6, 7, 8],
                     [9, 8, 7, 6],
-                    [5, 4, 3, 2]
+                    [5, 4, 3, 2]]
       end
 
       let(:b) do 
-        Matrix.new  [-2, 1, 2,  3], 
+        Matrix.new [[-2, 1, 2,  3], 
                     [ 3, 2, 1, -1],
                     [ 4, 3, 6,  5],
-                    [ 1, 2, 7,  8]
+                    [ 1, 2, 7,  8]]
       end
 
       specify { expect(a * b).to eq(
-        Matrix.new  [20, 22,  50,  48], 
+        Matrix.new [[20, 22,  50,  48], 
                     [44, 54, 114, 108],
                     [40, 58, 110, 102],
-                    [16, 26,  46,  42]
+                    [16, 26,  46,  42]]
       ) }
     end
 
     context 'multiply by identity matrix' do
       let(:a) do 
-        Matrix.new  [0, 1,  2,  4], 
+        Matrix.new [[0, 1,  2,  4], 
                     [1, 2,  4,  8],
                     [2, 4,  8, 16],
-                    [4, 8, 16, 32]
+                    [4, 8, 16, 32]]
       end
 
       specify { expect(a * Matrix::IDENTITY_4X4).to eq(a) }
@@ -142,10 +142,10 @@ RSpec.describe Matrix do
 
     context 'multiply by tuple' do
       let(:a) do 
-        Matrix.new  [1, 2, 3, 4], 
+        Matrix.new [[1, 2, 3, 4], 
                     [2, 4, 4, 2],
                     [8, 6, 4, 1],
-                    [0, 0, 0, 1]
+                    [0, 0, 0, 1]]
       end
 
       let(:b) { Tuple.new(1, 2, 3, 1) }
@@ -163,17 +163,17 @@ RSpec.describe Matrix do
   describe '#transpose' do
     context 'transpose a matrix' do
       let(:a) do 
-        Matrix.new  [0, 9, 3, 0], 
+        Matrix.new [[0, 9, 3, 0], 
                     [9, 8, 0, 8],
                     [1, 8, 5, 3],
-                    [0, 0, 5, 8]
+                    [0, 0, 5, 8]]
       end
 
       specify { expect(a.transpose).to eq(
-        Matrix.new  [0, 9, 1, 0], 
+        Matrix.new [[0, 9, 1, 0], 
                     [9, 8, 8, 0],
                     [3, 0, 5, 5],
-                    [0, 8, 3, 8]
+                    [0, 8, 3, 8]]
       ) }
     end
 
@@ -184,8 +184,8 @@ RSpec.describe Matrix do
 
   describe '#determinant' do
     let(:a) do
-      Matrix.new  [1, 5],
-                  [-3, 2]
+      Matrix.new [[ 1, 5],
+                  [-3, 2]]
     end
 
     specify { expect(a.determinant).to eq(17) }
@@ -194,30 +194,44 @@ RSpec.describe Matrix do
   describe '#submatrix' do
     context '3x3' do
       let(:a) do
-        Matrix.new  [ 1, 5,  0],
+        Matrix.new [[ 1, 5,  0],
                     [-3, 2,  7],
-                    [ 0, 6, -3]
+                    [ 0, 6, -3]]
       end
 
       specify { expect(a.submatrix(0, 2)).to eq(
-        Matrix.new  [-3, 2],
-                    [ 0, 6]
+        Matrix.new [[-3, 2],
+                    [ 0, 6]]
       ) }
     end
 
     context '4x4' do
       let(:a) do
-        Matrix.new  [-6, 1,  1, 6],
+        Matrix.new [[-6, 1,  1, 6],
                     [-8, 5,  8, 6],
                     [-1, 0,  8, 2],
-                    [-7, 1, -1, 1]
+                    [-7, 1, -1, 1]]
       end
 
       specify { expect(a.submatrix(2, 1)).to eq(
-        Matrix.new  [-6,  1, 6],
+        Matrix.new [[-6,  1, 6],
                     [-8,  8, 6],
-                    [-7, -1, 1]
+                    [-7, -1, 1]]
       ) }
     end
+  end
+
+  describe '#minor' do
+    let(:a) do
+      Matrix.new [[3,  5,  0],
+                  [2, -1, -7],
+                  [6, -1,  5]]
+    end
+
+    let(:b) { a.submatrix(1, 0) }
+
+    specify { expect(b.determinant).to eq(25) }
+    specify { expect(a.minor(1, 0)).to eq(25) }
+    xspecify { expect(a.minor(1, 0)).to eq(b.determinant) }
   end
 end

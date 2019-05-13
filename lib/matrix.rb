@@ -1,14 +1,17 @@
 class Matrix
   attr_reader :data
 
-  def initialize *rows
-    @data = rows
+  def initialize two_dimensional_array
+    row_count = two_dimensional_array.length
+    column_count = two_dimensional_array[0].length # assumes square, populated array
+    raise 'only accepts 2x2, 3x3, 4x4' unless row_count == column_count and [2, 3, 4].include?(row_count)
+    @data = two_dimensional_array
   end
 
-  IDENTITY_4X4 = self.new [1, 0, 0, 0],
-                          [0, 1, 0, 0],
-                          [0, 0, 1, 0],
-                          [0, 0, 0, 1]
+  IDENTITY_4X4 = self.new [[1, 0, 0, 0],
+                           [0, 1, 0, 0],
+                           [0, 0, 1, 0],
+                           [0, 0, 0, 1]]
 
   def get row, column
     @data[row][column]
@@ -34,6 +37,8 @@ class Matrix
       d = get 1, 1
 
       a * d - b * c
+    else
+      raise 'wrong dimensions'
     end
   end
 
@@ -46,8 +51,12 @@ class Matrix
     Matrix.new array_copy
   end
 
+  def minor row, column
+    submatrix(row, column).determinant
+  end
+
   def ==(other)
-    @data.flatten == other.data.flatten
+    @data == other.data
   end
 
 private
