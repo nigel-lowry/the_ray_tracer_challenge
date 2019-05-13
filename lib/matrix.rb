@@ -37,6 +37,15 @@ class Matrix
     end
   end
 
+  def submatrix row, column
+    array_copy = Array.new data
+
+    array_copy.delete_at row
+    array_copy.each { |row| row.delete_at(column) }
+
+    Matrix.new array_copy
+  end
+
   def ==(other)
     @data.flatten == other.data.flatten
   end

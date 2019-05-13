@@ -190,4 +190,34 @@ RSpec.describe Matrix do
 
     specify { expect(a.determinant).to eq(17) }
   end
+
+  describe '#submatrix' do
+    context '3x3' do
+      let(:a) do
+        Matrix.new  [ 1, 5,  0],
+                    [-3, 2,  7],
+                    [ 0, 6, -3]
+      end
+
+      specify { expect(a.submatrix(0, 2)).to eq(
+        Matrix.new  [-3, 2],
+                    [ 0, 6]
+      ) }
+    end
+
+    context '4x4' do
+      let(:a) do
+        Matrix.new  [-6, 1,  1, 6],
+                    [-8, 5,  8, 6],
+                    [-1, 0,  8, 2],
+                    [-7, 1, -1, 1]
+      end
+
+      specify { expect(a.submatrix(2, 1)).to eq(
+        Matrix.new  [-6,  1, 6],
+                    [-8,  8, 6],
+                    [-7, -1, 1]
+      ) }
+    end
+  end
 end
