@@ -234,4 +234,17 @@ RSpec.describe Matrix do
     specify { expect(a.minor(1, 0)).to eq(25) }
     xspecify { expect(a.minor(1, 0)).to eq(b.determinant) }
   end
+
+  describe '#cofactor' do
+    let(:a) do
+      Matrix.new [[3,  5,  0],
+                  [2, -1, -7],
+                  [6, -1,  5]]
+    end
+
+    specify { expect(a.minor(0, 0)).to eq(-12) }
+    specify { expect(a.cofactor(0, 0)).to eq(-12) }
+    specify { expect(a.minor(1, 0)).to eq(25) }
+    specify { expect(a.cofactor(1, 0)).to eq(-25) }
+  end
 end

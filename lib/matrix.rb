@@ -55,6 +55,11 @@ class Matrix
     submatrix(row, column).determinant
   end
 
+  def cofactor row, column
+    minor = submatrix(row, column).determinant
+    (row + column).odd? ? -minor : minor
+  end
+
   def ==(other)
     @data == other.data
   end
