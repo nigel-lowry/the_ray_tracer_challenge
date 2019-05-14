@@ -12,8 +12,6 @@ RSpec::Matchers.define :closely_eq do |expected|
           return false unless numbers_close? expected.get(row, column), actual.get(row, column)
         end
       end
-
-      true
     else
       false
     end
