@@ -10,7 +10,7 @@ private
 end
 
 RSpec::Matchers.define :closely_eq_matrix do |expected|
-  match do |actual| # actual.data == expected.data # for each elements see if numbers close }
+  match do |actual|
     return false unless expected.size == actual.size
 
     for row in 0...expected.data.length
