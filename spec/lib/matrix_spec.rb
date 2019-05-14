@@ -301,4 +301,30 @@ RSpec.describe Matrix do
     specify { expect(a.minor(1, 0)).to eq(25) }
     specify { expect(a.cofactor(1, 0)).to eq(-25) }
   end
+
+  describe 'inversion' do
+    context 'invertible' do
+      let(:a) do
+        Matrix.new [[6,  4, 4,  4], 
+                    [5,  5, 7,  6], 
+                    [4, -9, 3, -7], 
+                    [9,  1, 7, -6]]
+      end
+
+      specify { expect(a.determinant).to eq(-2120) }
+      specify { expect(a).to be_invertible }
+    end
+
+    context 'not invertible' do
+      let(:a) do
+        Matrix.new [[-4,  2, -2, -3], 
+                    [ 9,  6,  2,  6], 
+                    [ 0, -5,  1, -5], 
+                    [ 0,  0,  0,  0]]
+      end
+
+      specify { expect(a.determinant).to eq(0) }
+      specify { expect(a).to_not be_invertible }
+    end
+  end
 end

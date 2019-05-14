@@ -31,6 +31,10 @@ class Matrix
     Matrix.new data.transpose
   end
 
+  def invertible?
+    not determinant.zero?
+  end
+
   def determinant
     if size == 2
       a = get 0, 0
