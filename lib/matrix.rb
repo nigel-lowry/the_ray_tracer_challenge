@@ -35,6 +35,22 @@ class Matrix
     not determinant.zero?
   end
 
+  def inverse
+    raise 'not invertible' unless invertible?
+
+    array_copy = data.deep_dup
+
+    for row in 0...size
+      for column in 0...size
+        c = cofactor(row, column)
+
+        array_copy[column][row] = c / determinant
+      end
+    end
+
+    Matrix.new array_copy
+  end
+
   def determinant
     if size == 2
       a = get 0, 0

@@ -326,5 +326,22 @@ RSpec.describe Matrix do
       specify { expect(a.determinant).to eq(0) }
       specify { expect(a).to_not be_invertible }
     end
+
+    context 'inverse' do
+      let(:a) do
+        Matrix.new [[-5,  2,  6, -8], 
+                    [ 1, -5,  1,  8], 
+                    [ 7,  7, -6, -7], 
+                    [ 1, -3,  7,  4]]
+      end
+
+      let(:b) { a.inverse }
+
+      specify { expect(a.determinant).to eq(532) }
+      specify { expect(a.cofactor(2, 3)).to eq(-160) }
+      specify { expect(b.get(3, 2)).to eq(-160 / 532) }
+      specify { expect(a.cofactor(3, 2)).to eq(105) }
+      specify { expect(b.get(2, 3)).to eq(105 / 532) }
+    end
   end
 end
