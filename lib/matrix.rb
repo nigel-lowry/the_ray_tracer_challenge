@@ -108,10 +108,7 @@ class Matrix
 private
 
   def multiply_by_matrix matrix
-    a = [[0, 0, 0, 0],
-         [0, 0, 0, 0],
-         [0, 0, 0, 0],
-         [0, 0, 0, 0]]
+    a = Array.new(4) { Array.new(4) }
 
     for row in 0..3
       for col in 0..3
