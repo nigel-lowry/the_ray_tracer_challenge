@@ -4,7 +4,7 @@ class Matrix
   def initialize two_dimensional_array
     row_count = two_dimensional_array.length
     column_count = two_dimensional_array[0].length # assumes square, populated array
-    raise 'only accepts 2x2, 3x3, 4x4' unless row_count == column_count and [2, 3, 4].include?(row_count)
+    raise "only accepts 2x2, 3x3, 4x4: #{two_dimensional_array}" unless row_count == column_count and [2, 3, 4].include?(row_count)
     @data = two_dimensional_array
   end
 
@@ -30,16 +30,40 @@ class Matrix
   end
 
   def determinant
-    if row_count == 2 and column_count == 2
+    det = 0
+
+    if size == 2
       a = get 0, 0
       b = get 0, 1
       c = get 1, 0
       d = get 1, 1
 
-      a * d - b * c
+      det = a * d - b * c
     else
-      raise 'wrong dimensions'
+      # for column in 0...size
+      #   det = det + get(0, column) * cofactor(0, column)
+      #   puts det
+      # end
+
+      if size == 3
+        det = get(0, 0) * cofactor(0, 0) + get(0, 1) * cofactor(0, 1) + get(0, 2) * cofactor(0, 2)
+      end
     end
+
+    det
+  end
+
+  def size
+    row_count # assuming square matrix
+  end
+
+  def cofactor row, column
+    minor = minor(row, column)
+    (row + column).odd? ? -minor : minor
+  end
+
+  def minor row, column
+    submatrix(row, column).determinant
   end
 
   def submatrix row, column
@@ -49,15 +73,6 @@ class Matrix
     array_copy.each { |row| row.delete_at(column) }
 
     Matrix.new array_copy
-  end
-
-  def minor row, column
-    submatrix(row, column).determinant
-  end
-
-  def cofactor row, column
-    minor = submatrix(row, column).determinant
-    (row + column).odd? ? -minor : minor
   end
 
   def ==(other)

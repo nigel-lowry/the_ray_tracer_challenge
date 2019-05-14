@@ -13,6 +13,8 @@ RSpec.describe Matrix do
 
       specify { expect(m.get(1, 0)).to eq(1) }
       specify { expect(m.get(1, 1)).to eq(-2) }
+
+      specify { expect(m.size).to eq(2) }
     end
 
     context '3x3' do
@@ -33,6 +35,8 @@ RSpec.describe Matrix do
       specify { expect(m.get(2, 0)).to eq(0) }
       specify { expect(m.get(2, 1)).to eq(1) }
       specify { expect(m.get(2, 2)).to eq(1) }
+
+      specify { expect(m.size).to eq(3) }
     end
 
     context '4x4' do
@@ -62,6 +66,8 @@ RSpec.describe Matrix do
       specify { expect(m.get(3, 1)).to eq(14.5) }
       specify { expect(m.get(3, 2)).to eq(15.5) }
       specify { expect(m.get(3, 3)).to eq(16.5) }
+
+      specify { expect(m.size).to eq(4) }
     end
   end
 
@@ -183,12 +189,42 @@ RSpec.describe Matrix do
   end
 
   describe '#determinant' do
-    let(:a) do
-      Matrix.new [[ 1, 5],
-                  [-3, 2]]
+    context '2x2' do
+      let(:a) do
+        Matrix.new [[ 1, 5],
+                    [-3, 2]]
+      end
+
+      specify { expect(a.determinant).to eq(17) }
     end
 
-    specify { expect(a.determinant).to eq(17) }
+    context '3x3' do
+      let(:a) do
+        Matrix.new [[ 1, 2,  6],
+                    [-5, 8, -4],
+                    [ 2, 6,  4]]
+      end
+
+      specify { expect(a.cofactor(0, 0)).to eq(56) }
+      specify { expect(a.cofactor(0, 1)).to eq(12) }
+      specify { expect(a.cofactor(0, 2)).to eq(-46) }
+      xspecify { expect(a.determinant).to eq(-196) }
+    end
+
+    context '4x4' do
+      let(:a) do
+        Matrix.new [[-2, -8,  3,  5],
+                    [-3,  1,  7,  3],
+                    [ 1,  2, -9,  6],
+                    [-6,  7,  7, -9]]
+      end
+
+      xspecify { expect(a.cofactor(0, 0)).to eq(690) }
+      xspecify { expect(a.cofactor(0, 1)).to eq(447) }
+      xspecify { expect(a.cofactor(0, 2)).to eq(210) }
+      xspecify { expect(a.cofactor(0, 3)).to eq(51) }
+      xspecify { expect(a.determinant).to eq(-4071) }
+    end
   end
 
   describe '#submatrix' do
