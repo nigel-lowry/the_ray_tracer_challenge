@@ -403,6 +403,10 @@ RSpec.describe Matrix do
 
         specify { expect(c * b.inverse).to closely_eq(a) }
       end
+
+      describe 'inverting the identity matrix' do
+        specify { expect(Matrix::IDENTITY_4X4.inverse).to eq(Matrix::IDENTITY_4X4) }
+      end
     end
   end
 end
