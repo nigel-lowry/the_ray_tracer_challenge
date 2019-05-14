@@ -123,9 +123,9 @@ private
   end
 
   def multiply_by_tuple tuple
-    a = [0, 0, 0, 0]
+    a = Array.new(4)
 
-    for row in 0..3
+    for row in 0...4
       a[row] =  get(row, 0) * tuple.x +
                 get(row, 1) * tuple.y +
                 get(row, 2) * tuple.z +
