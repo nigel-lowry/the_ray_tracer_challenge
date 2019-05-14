@@ -328,27 +328,48 @@ RSpec.describe Matrix do
     end
 
     context 'inverse' do
-      let(:a) do
-        Matrix.new [[-5,  2,  6, -8], 
-                    [ 1, -5,  1,  8], 
-                    [ 7,  7, -6, -7], 
-                    [ 1, -3,  7,  4]]
+      context 'calculating the inverse of a matrix' do
+        let(:a) do
+          Matrix.new [[-5,  2,  6, -8], 
+                      [ 1, -5,  1,  8], 
+                      [ 7,  7, -6, -7], 
+                      [ 1, -3,  7,  4]]
+        end
+
+        let(:b) { a.inverse }
+
+        specify { expect(a.determinant).to eq(532) }
+        specify { expect(a.cofactor(2, 3)).to eq(-160) }
+        specify { expect(b.get(3, 2)).to eq(-160 / 532.to_f) }
+        specify { expect(a.cofactor(3, 2)).to eq(105) }
+        specify { expect(b.get(2, 3)).to eq(105 / 532.to_f) }
+
+        specify { expect(b).to closely_eq(
+          Matrix.new [[ 0.21805,  0.45113,  0.24060, -0.04511],
+                      [-0.80827, -1.45677, -0.44361,  0.52068],
+                      [-0.07895, -0.22368, -0.05263,  0.19737],
+                      [-0.52256, -0.81391, -0.30075,  0.30639]]
+        ) }
       end
 
-      let(:b) { a.inverse }
+      context 'second matrix' do
+        let(:a) do
+          Matrix.new [[ 8, -5,  9,  2], 
+                      [ 7,  5,  6,  1], 
+                      [-6,  0,  9,  6], 
+                      [-3,  0, -9, -4]]
+        end
 
-      specify { expect(a.determinant).to eq(532) }
-      specify { expect(a.cofactor(2, 3)).to eq(-160) }
-      specify { expect(b.get(3, 2)).to eq(-160 / 532.to_f) }
-      specify { expect(a.cofactor(3, 2)).to eq(105) }
-      specify { expect(b.get(2, 3)).to eq(105 / 532.to_f) }
+        specify { expect(a.inverse).to closely_eq(
+          Matrix.new [[-0.15385, -0.15385, -0.28205, -0.53846],
+                      [-0.07692,  0.12308,  0.02564,  0.03077],
+                      [ 0.35897,  0.35897,  0.43590,  0.92308],
+                      [-0.69231, -0.69231, -0.76923, -1.92308]]
+        ) }
+      end
 
-      specify { expect(b).to closely_eq(
-        Matrix.new [[ 0.21805,  0.45113,  0.24060, -0.04511],
-                    [-0.80827, -1.45677, -0.44361,  0.52068],
-                    [-0.07895, -0.22368, -0.05263,  0.19737],
-                    [-0.52256, -0.81391, -0.30075,  0.30639]]
-      ) }
+      context 'third matrix' do
+      end
     end
   end
 end
