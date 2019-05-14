@@ -108,10 +108,11 @@ class Matrix
 private
 
   def multiply_by_matrix matrix
-    a = Array.new(4) { Array.new(4) }
+    size = 4
+    a = Array.new(size) { Array.new(size) }
 
-    for row in 0...4
-      for col in 0...4
+    for row in 0...size
+      for col in 0...size
         a[row][col] = get(row, 0) * matrix.get(0, col) +
                       get(row, 1) * matrix.get(1, col) +
                       get(row, 2) * matrix.get(2, col) +
