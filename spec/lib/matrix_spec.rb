@@ -343,7 +343,7 @@ RSpec.describe Matrix do
       specify { expect(a.cofactor(3, 2)).to eq(105) }
       specify { expect(b.get(2, 3)).to eq(105 / 532.to_f) }
 
-      specify { expect(b).to closely_eq_matrix(
+      specify { expect(b).to closely_eq(
         Matrix.new [[ 0.21805,  0.45113,  0.24060, -0.04511],
                     [-0.80827, -1.45677, -0.44361,  0.52068],
                     [-0.07895, -0.22368, -0.05263,  0.19737],
