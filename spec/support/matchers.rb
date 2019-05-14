@@ -8,3 +8,17 @@ private
   end
 
 end
+
+RSpec::Matchers.define :closely_eq_matrix do |expected|
+  match do |actual| # actual.data == expected.data # for each elements see if numbers close }
+    return false unless expected.size == actual.size
+
+    for row in 0...expected.data.length
+      for column in 0...expected.data[0].length
+        return false unless (expected.get(row, column) - actual.get(row, column)).abs < 0.00001
+      end
+    end
+
+    true
+  end  
+end
