@@ -1,3 +1,5 @@
+require 'active_support/core_ext'
+
 class Matrix
   attr_reader :data
 
@@ -40,13 +42,8 @@ class Matrix
 
       det = a * d - b * c
     else
-      # for column in 0...size
-      #   det = det + get(0, column) * cofactor(0, column)
-      #   puts det
-      # end
-
-      if size == 3
-        det = get(0, 0) * cofactor(0, 0) + get(0, 1) * cofactor(0, 1) + get(0, 2) * cofactor(0, 2)
+      for column in 0...size
+        det = det + get(0, column) * cofactor(0, column)
       end
     end
 
@@ -67,7 +64,7 @@ class Matrix
   end
 
   def submatrix row, column
-    array_copy = Array.new data
+    array_copy = data.deep_dup
 
     array_copy.delete_at row
     array_copy.each { |row| row.delete_at(column) }
