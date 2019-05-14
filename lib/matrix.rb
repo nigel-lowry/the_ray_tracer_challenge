@@ -8,7 +8,7 @@ class Matrix
     column_count = two_dimensional_array[0].length # assumes square, populated array
     raise "only accepts 2x2, 3x3, 4x4: #{two_dimensional_array}" unless row_count == column_count and [2, 3, 4].include?(row_count)
     
-    copy = two_dimensional_array.deep_dup
+    copy = Array.new(row_count) { Array.new(column_count) }
 
     for row in 0...two_dimensional_array.length
       for col in 0...two_dimensional_array[0].length
