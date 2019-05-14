@@ -32,22 +32,22 @@ class Matrix
   end
 
   def determinant
-    det = 0
-
     if size == 2
       a = get 0, 0
       b = get 0, 1
       c = get 1, 0
       d = get 1, 1
 
-      det = a * d - b * c
+      a * d - b * c
     else
-      for column in 0...size
-        det = det + get(0, column) * cofactor(0, column)
-      end
-    end
+      det = 0
 
-    det
+      for column in 0...size
+        det += get(0, column) * cofactor(0, column)
+      end
+
+      det
+    end
   end
 
   def size
