@@ -33,6 +33,8 @@ class Matrix
       multiply_by_matrix other
     elsif other.is_a? Tuple
       multiply_by_tuple other
+    else
+      raise 'unsupported type'
     end
   end
 
