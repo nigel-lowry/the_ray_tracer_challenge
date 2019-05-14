@@ -53,9 +53,7 @@ class Matrix
 
     for row in 0...size
       for column in 0...size
-        c = cofactor(row, column)
-
-        array_copy[column][row] = c / determinant
+        array_copy[column][row] = cofactor(row, column) / determinant
       end
     end
 
