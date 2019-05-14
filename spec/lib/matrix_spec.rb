@@ -407,6 +407,28 @@ RSpec.describe Matrix do
       describe 'inverting the identity matrix' do
         specify { expect(Matrix::IDENTITY_4X4.inverse).to eq(Matrix::IDENTITY_4X4) }
       end
+
+      describe 'multiply matrix by its inverse' do
+        let(:a) do
+          Matrix.new [[ 3, -9,  7,  3], 
+                      [ 3, -8,  2, -9], 
+                      [-4,  4,  4,  1], 
+                      [-6,  5, -1,  1]]
+        end
+
+        specify { expect(a * a.inverse).to_not eq(a) }
+      end
+
+      describe 'inverse and transpose' do
+        let(:a) do
+          Matrix.new [[ 3, -9,  7,  3], 
+                      [ 3, -8,  2, -9], 
+                      [-4,  4,  4,  1], 
+                      [-6,  5, -1,  1]]
+        end
+
+        specify { expect(a.transpose.inverse).to eq(a.inverse.transpose) }
+      end
     end
   end
 end
