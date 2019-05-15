@@ -79,5 +79,14 @@ RSpec.describe Transform do
         expect(inv * p).to closely_eq(Point.new(0, Math.sqrt(2) / 2, -Math.sqrt(2) / 2))
       end
     end
+
+    describe 'around y axis' do
+      let(:p) { Point.new(0, 0, 1) }
+      let(:half_quarter) { Transform.new_rotation_y(Math::PI / 4) }
+      let(:full_quarter) { Transform.new_rotation_y(Math::PI / 2) }
+
+      specify { expect(half_quarter * p).to closely_eq(Point.new(Math.sqrt(2) / 2, 0, Math.sqrt(2) / 2)) }
+      specify { expect(full_quarter * p).to closely_eq(Point.new(1, 0, 0)) }
+    end
   end
 end

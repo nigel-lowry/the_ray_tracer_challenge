@@ -23,6 +23,13 @@ class Transform
                     [0,                 0,                  0, 1]]
   end
 
+  def self.new_rotation_y radians
+    new Matrix.new [[ Math.cos(radians), 0, Math.sin(radians), 0],
+                    [                 0, 1,                 0, 0],
+                    [-Math.sin(radians), 0, Math.cos(radians), 0],
+                    [                 0, 0,                 0, 1]]
+  end
+
   def initialize m
     @transformation_matrix = m
   end
