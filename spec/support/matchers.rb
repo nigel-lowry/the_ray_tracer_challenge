@@ -3,7 +3,7 @@ EPSILON = 0.00001
 RSpec::Matchers.define :closely_eq do |expected|
   match do |actual|
     if composed_of_a_tuple?(expected) and composed_of_a_tuple?(actual) and same_class?(expected, actual)
-      numbers_close?(actual.x, expected.x) and numbers_close?(actual.y, expected.y) and numbers_close?(actual.z, expected.z) && numbers_close?(actual.w, expected.w)
+      expected.class == actual.class and numbers_close?(expected.x, actual.x) and numbers_close?(expected.y, actual.y) and numbers_close?(expected.z, actual.z) && numbers_close?(expected.w, actual.w)
     elsif both_matrices?(expected, actual)
       return false unless expected.size == actual.size
 
