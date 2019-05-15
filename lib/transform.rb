@@ -16,6 +16,13 @@ class Transform
                     [0, 0, 0, 1]]
   end
 
+  def self.new_rotation_x radians
+    new Matrix.new [[1,                 0,                  0, 0],
+                    [0, Math.cos(radians), -Math.sin(radians), 0],
+                    [0, Math.sin(radians),  Math.cos(radians), 0],
+                    [0,                 0,                  0, 1]]
+  end
+
   def initialize m
     @transformation_matrix = m
   end
