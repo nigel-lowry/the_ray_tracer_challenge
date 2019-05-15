@@ -33,8 +33,10 @@ class Matrix
       multiply_by_matrix other
     elsif other.is_a? Tuple
       multiply_by_tuple other
+    elsif other.respond_to?(:tuple)
+      multiply_by_tuple other.tuple
     else
-      raise 'unsupported type'
+      raise "unsupported type: #{other.class}"
     end
   end
 
