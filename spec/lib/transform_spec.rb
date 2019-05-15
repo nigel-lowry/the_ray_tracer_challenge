@@ -49,5 +49,14 @@ RSpec.describe Transform do
 
       specify { expect(inv * v).to eq(Vector.new(-2, 2, 2)) }
     end
+
+    describe 'scaling by a negative value' do
+      let(:transform) { Transform.new_scaling(-1, 1, 1) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      it 'reflects' do
+        expect(transform * p).to eq(Point.new(-2, 3, 4))
+      end
+    end
   end
 end
