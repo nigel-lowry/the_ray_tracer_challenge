@@ -1,4 +1,5 @@
 require 'ppm_canvas_writer'
+require 'canvas'
 
 RSpec.describe PpmCanvasWriter do
 

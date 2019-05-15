@@ -1,3 +1,5 @@
+require 'vector'
+
 RSpec.describe Vector do
   describe '#tuple' do
     subject { Vector.new(4, -4, 3).tuple }

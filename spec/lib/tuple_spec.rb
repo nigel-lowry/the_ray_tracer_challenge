@@ -1,6 +1,4 @@
 require 'tuple'
-require 'point'
-require 'vector'
 
 RSpec.describe Tuple do
 

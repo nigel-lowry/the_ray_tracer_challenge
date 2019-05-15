@@ -1,4 +1,5 @@
-require 'active_support/core_ext'
+require 'active_support/core_ext/object'
+require 'tuple'
 
 class Matrix
   attr_reader :data

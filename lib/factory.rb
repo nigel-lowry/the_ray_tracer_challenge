@@ -1,3 +1,6 @@
+require 'point'
+require 'vector'
+
 class Factory
   def self.create tuple
     if tuple.point?

@@ -1,3 +1,5 @@
+require 'color'
+
 class Canvas
 
   def initialize(width, height, color = Color.new(0, 0, 0) )

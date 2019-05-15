@@ -1,3 +1,5 @@
+require 'matrix'
+
 class Transform
   def self.new_translation x, y, z
     new Matrix.new [[1, 0, 0, x],
