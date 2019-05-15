@@ -26,4 +26,28 @@ RSpec.describe Transform do
       end
     end
   end
+
+  context 'scaling' do
+    describe 'scaling matrix applied to a point' do
+      let(:transform) { Transform.new_scaling(2, 3, 4) }
+      let(:p) { Point.new(-4, 6, 8) }
+
+      specify { expect(transform * p).to eq(Point.new(-8, 18, 32)) }
+    end
+
+    describe 'scaling matrix applied to a vector' do
+      let(:transform) { Transform.new_scaling(2, 3, 4) }
+      let(:v) { Vector.new(-4, 6, 8) }
+
+      specify { expect(transform * v).to eq(Vector.new(-8, 18, 32)) }
+    end
+
+    describe 'multiplying by the inverse of a scaling matrix' do
+      let(:transform) { Transform.new_scaling(2, 3, 4) }
+      let(:v) { Vector.new(-4, 6, 8) }
+      let(:inv) { transform.inverse }
+
+      specify { expect(inv * v).to eq(Vector.new(-2, 2, 2)) }
+    end
+  end
 end
