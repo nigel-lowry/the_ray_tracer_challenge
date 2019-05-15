@@ -17,24 +17,30 @@ class Transform
   end
 
   def self.new_rotation_x radians
-    new Matrix.new [[1,                 0,                  0, 0],
-                    [0, Math.cos(radians), -Math.sin(radians), 0],
-                    [0, Math.sin(radians),  Math.cos(radians), 0],
-                    [0,                 0,                  0, 1]]
+    sin, cos = Math.sin(radians), Math.cos(radians)
+
+    new Matrix.new [[1,   0,    0, 0],
+                    [0, cos, -sin, 0],
+                    [0, sin,  cos, 0],
+                    [0,   0,    0, 1]]
   end
 
   def self.new_rotation_y radians
-    new Matrix.new [[ Math.cos(radians), 0, Math.sin(radians), 0],
-                    [                 0, 1,                 0, 0],
-                    [-Math.sin(radians), 0, Math.cos(radians), 0],
-                    [                 0, 0,                 0, 1]]
+    sin, cos = Math.sin(radians), Math.cos(radians)
+
+    new Matrix.new [[ cos, 0, sin, 0],
+                    [   0, 1,   0, 0],
+                    [-sin, 0, cos, 0],
+                    [   0, 0,   0, 1]]
   end
 
   def self.new_rotation_z radians
-    new Matrix.new [[Math.cos(radians), -Math.sin(radians), 0, 0],
-                    [Math.sin(radians),  Math.cos(radians), 0, 0],
-                    [                0,                  0, 1, 0],
-                    [                0,                  0, 0, 1]]
+    sin, cos = Math.sin(radians), Math.cos(radians)
+
+    new Matrix.new [[cos, -sin, 0, 0],
+                    [sin,  cos, 0, 0],
+                    [0,      0, 1, 0],
+                    [0,      0, 0, 1]]
   end
 
   def initialize m
