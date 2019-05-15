@@ -1,5 +1,3 @@
-require 'factory'
-
 class Tuple
   attr_reader :x, :y, :z, :w
 
@@ -33,11 +31,11 @@ class Tuple
   end
 
   def +(other)
-    Factory.create(Tuple.new(x + other.x, y + other.y, z + other.z, w + other.w))
+    Tuple.new(x + other.x, y + other.y, z + other.z, w + other.w)
   end
 
   def -(other)
-    Factory.create(Tuple.new(x - other.x, y - other.y, z - other.z, w - other.w))
+    Tuple.new(x - other.x, y - other.y, z - other.z, w - other.w)
   end
 
   def *(scalar)
@@ -53,7 +51,7 @@ class Tuple
   end
 
   def ==(other)
-    x == other.x and y == other.y and z == other.z and w == other.w
+    self.class == other.class and x == other.x and y == other.y and z == other.z and w == other.w
   end
 
 private

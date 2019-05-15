@@ -1,4 +1,5 @@
 require 'color'
+require 'vector'
 
 RSpec.describe Color do
   describe '.new' do

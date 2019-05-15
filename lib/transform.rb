@@ -1,4 +1,5 @@
 require 'matrix'
+require 'factory'
 
 class Transform
   def self.new_translation x, y, z
@@ -20,7 +21,7 @@ class Transform
   end
 
   def *(other)
-    @transformation_matrix * other
+    Factory.create @transformation_matrix * other
   end
 
   def inverse
