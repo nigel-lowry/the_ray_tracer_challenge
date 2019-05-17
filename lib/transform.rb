@@ -43,6 +43,13 @@ class Transform
                     [0,      0, 0, 1]]
   end
 
+  def self.shearing x_y, x_z, y_x, y_z, z_x, z_y
+    new Matrix.new [[  1, x_y, x_z, 0],
+                    [y_x,   1, y_z, 0],
+                    [z_x, z_y,   1, 0],
+                    [  0,   0,   0, 1]]
+  end
+
   def initialize m
     @transformation_matrix = m
   end

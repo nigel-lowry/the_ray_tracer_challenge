@@ -98,4 +98,48 @@ RSpec.describe Transform do
       specify { expect(full_quarter * p).to closely_eq(Point.new(-1, 0, 0)) }
     end
   end
+
+  describe 'shearing' do
+    context 'x in proportion to y' do
+      let(:transform) { Transform.shearing(1, 0, 0, 0, 0, 0) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(5, 3, 4))}
+    end
+
+    context 'x in proportion to z' do
+      let(:transform) { Transform.shearing(0, 1, 0, 0, 0, 0) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(6, 3, 4))}
+    end
+
+    context 'y in proportion to x' do
+      let(:transform) { Transform.shearing(0, 0, 1, 0, 0, 0) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(2, 5, 4))}
+    end
+
+    context 'y in proportion to z' do
+      let(:transform) { Transform.shearing(0, 0, 0, 1, 0, 0) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(2, 7, 4))}
+    end
+
+    context 'z in proportion to x' do
+      let(:transform) { Transform.shearing(0, 0, 0, 0, 1, 0) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(2, 3, 6))}
+    end
+
+    context 'z in proportion to y' do
+      let(:transform) { Transform.shearing(0, 0, 0, 0, 0, 1) }
+      let(:p) { Point.new(2, 3, 4) }
+
+      specify { expect(transform * p).to eq(Point.new(2, 3, 7))}
+    end
+  end
 end
