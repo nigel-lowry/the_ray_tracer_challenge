@@ -142,4 +142,36 @@ RSpec.describe Transform do
       specify { expect(transform * p).to eq(Point.new(2, 3, 7))}
     end
   end
+
+  describe 'chaining transforms' do
+    context 'individual transforms in sequence' do
+      let(:p) { Point.new(1, 0, 1) }
+      let(:a) { Transform.rotation_x(Math::PI / 2) }
+      let(:b) { Transform.scaling(5, 5, 5) }
+      let(:c) { Transform.translation(10, 5, 7) }
+
+      it 'performs them in the order they are applied' do
+        p2 = a * p
+        expect(p2).to closely_eq(Point.new(1, -1, 0))
+
+        p3 = b * p2
+        expect(p3).to closely_eq(Point.new(5, -5, 0))
+
+        p4 = c * p3
+        expect(p4).to eq(Point.new(15, 0, 7))
+      end
+    end
+
+    context 'chained transforms' do
+      let(:p) { Point.new(1, 0, 1) }
+      let(:a) { Transform.rotation_x(Math::PI / 2) }
+      let(:b) { Transform.scaling(5, 5, 5) }
+      let(:c) { Transform.translation(10, 5, 7) }
+
+      it 'works when they are applied in reverse order' do
+        t = c * b * a
+        expect(t * p).to eq(Point.new(15, 0, 7))
+      end
+    end
+  end
 end

@@ -2,6 +2,8 @@ require 'matrix'
 require 'factory'
 
 class Transform
+  attr_reader :transformation_matrix
+
   def self.translation x, y, z
     new Matrix.new [[1, 0, 0, x],
                     [0, 1, 0, y],
@@ -55,7 +57,13 @@ class Transform
   end
 
   def *(other)
-    Factory.create @transformation_matrix * other
+    if other.respond_to? :tuple
+      Factory.create @transformation_matrix * other
+    elsif other.is_a? Transform
+      Transform.new(transformation_matrix * other.transformation_matrix)
+    else
+      raise "unknown type #{other.class}"
+    end
   end
 
   def inverse
