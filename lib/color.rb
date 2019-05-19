@@ -55,13 +55,7 @@ private
   end
 
   def clamp_component component
-    if component < 0
-      0.0
-    elsif component > 1
-      1.0
-    else
-      component
-    end
+    [0.0, component, 1.0].sort[1]
   end
 
   def scale_component clamped_component, maximum_color_value
