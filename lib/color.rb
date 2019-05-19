@@ -39,7 +39,7 @@ class Color
   end
 
   def black?
-    x == 0 and y == 0 and z == 0
+    [x, y, z].all? &:zero?
   end
 
   def ==(other)
