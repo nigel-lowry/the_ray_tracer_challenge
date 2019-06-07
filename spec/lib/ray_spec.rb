@@ -38,6 +38,17 @@ RSpec.describe Ray do
       its(:origin) { is_expected.to eq(Point.new(2, 6, 12)) }
       its(:direction) { is_expected.to eq(Vector.new(0, 3, 0)) }
       its(:direction) { is_expected.to_not be_a_unit_vector }
+
+      it 'returns a new ray' do
+        expect(subject).to_not equal(r)
+      end
+
+      it 'leaves the original ray unmodified' do
+        expect(subject.origin).to_not eq(r.origin)
+        expect(subject.direction).to_not eq(r.direction)
+        expect(subject.origin).to_not equal(r.origin)
+        expect(subject.direction).to_not equal(r.direction)
+      end
     end
   end
 end
