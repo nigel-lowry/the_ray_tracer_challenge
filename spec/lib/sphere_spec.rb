@@ -22,6 +22,8 @@ RSpec.describe Sphere do
         expect(xs.count).to eq(2)
         expect(xs.first).to eq(Intersection.new(4.0, s))
         expect(xs.last).to eq(Intersection.new(6.0, s))
+        expect(xs.first.object).to eq(s)
+        expect(xs.last.object).to eq(s)
       end
     end
 
