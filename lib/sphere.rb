@@ -4,9 +4,11 @@ require 'intersections'
 
 class Sphere
   attr_reader :radius
+  attr_accessor :transform
 
   def initialize
     @radius = 1
+    @transform = Matrix::IDENTITY_4X4
   end
 
   def intersect ray

@@ -77,4 +77,23 @@ RSpec.describe Sphere do
       end
     end
   end
+
+  describe '#transform' do
+    context 'default transformation' do
+      let(:s) { Sphere.new }
+
+      it 'is the identity transform' do
+        expect(s.transform).to eq(Matrix::IDENTITY_4X4)
+      end 
+    end
+
+    context 'set transformation' do
+      let(:s) { Sphere.new }
+      let(:t) { Transform.translation(2, 3, 4) }
+
+      before { s.transform = t }
+
+      specify { expect(s.transform).to eq(t) }
+    end
+  end
 end
