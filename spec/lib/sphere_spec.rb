@@ -77,33 +77,35 @@ RSpec.describe Sphere do
       end
     end
 
-    context 'scaled sphere' do
-      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
-      let(:t) { Transform.scaling(2, 2, 2) }
+    context 'transformed' do
+      context 'scaled sphere' do
+        let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+        let(:s) { Sphere.new }
+        let(:t) { Transform.scaling(2, 2, 2) }
 
-      before { s.transform = t }
+        before { s.transform = t }
 
-      it 'intersects' do
-        xs = s.intersect(r)
+        it 'intersects' do
+          xs = s.intersect(r)
 
-        expect(xs.count).to eq(2)
-        expect(xs.first.t).to eq(3)
-        expect(xs.last.t).to eq(7)
+          expect(xs.count).to eq(2)
+          expect(xs.first.t).to eq(3)
+          expect(xs.last.t).to eq(7)
+        end
       end
-    end
 
-    context 'translated sphere' do
-      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
-      let(:t) { Transform.translation(5, 0, 0) }
+      context 'translated sphere' do
+        let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+        let(:s) { Sphere.new }
+        let(:t) { Transform.translation(5, 0, 0) }
 
-      before { s.transform = t }
+        before { s.transform = t }
 
-      it 'does not intersect' do
-        xs = s.intersect(r)
+        it 'does not intersect' do
+          xs = s.intersect(r)
 
-        expect(xs.count).to eq(0)
+          expect(xs.count).to eq(0)
+        end
       end
     end
   end
