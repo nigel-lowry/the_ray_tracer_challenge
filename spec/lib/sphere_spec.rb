@@ -78,7 +78,7 @@ RSpec.describe Sphere do
     end
 
     context 'transformed' do
-      context 'scaled sphere' do
+      context 'scaled' do
         let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
         let(:s) { Sphere.new }
         let(:t) { Transform.scaling(2, 2, 2) }
@@ -94,7 +94,7 @@ RSpec.describe Sphere do
         end
       end
 
-      context 'translated sphere' do
+      context 'translated' do
         let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
         let(:s) { Sphere.new }
         let(:t) { Transform.translation(5, 0, 0) }
