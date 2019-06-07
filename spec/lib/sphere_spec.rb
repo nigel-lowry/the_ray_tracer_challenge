@@ -104,7 +104,7 @@ RSpec.describe Sphere do
         it 'does not intersect' do
           xs = s.intersect(r)
 
-          expect(xs.count).to eq(0)
+          expect(xs).to be_empty
         end
       end
     end
