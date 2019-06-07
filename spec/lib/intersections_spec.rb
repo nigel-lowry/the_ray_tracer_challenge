@@ -15,4 +15,15 @@ RSpec.describe Intersections do
       expect(subject.last.t).to eq(2)
     end
   end
+
+  describe '#hit' do
+    context 'all intersections have positive t' do
+      let(:s) { Sphere.new }
+      let(:i1) { Intersection.new(1, s) }
+      let(:i2) { Intersection.new(2, s) }
+      subject { Intersections.new(i1, i2) }
+
+      its(:hit) { is_expected.to eq(i1) }
+    end
+  end
 end

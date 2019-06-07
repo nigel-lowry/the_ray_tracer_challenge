@@ -8,4 +8,8 @@ class Intersections
   def initialize *intersections
     @intersections = intersections.sort.freeze
   end
+
+  def hit
+    @intersections.find { |intersection| intersection.t > 0 }
+  end
 end
