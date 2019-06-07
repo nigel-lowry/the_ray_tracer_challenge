@@ -27,7 +27,7 @@ class DiscriminantCalculator
   attr_reader :sphere_to_ray, :a, :b, :c, :discriminant
 
   def initialize sphere, ray
-    @sphere_to_ray = ray.origin - Point.new(0, 0, 0) # const
+    @sphere_to_ray = ray.origin - Point::ORIGIN
 
     @a = Vector.dot(ray.direction, ray.direction)
     @b = 2 * Vector.dot(ray.direction, sphere_to_ray)
