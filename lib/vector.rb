@@ -41,6 +41,10 @@ class Vector
     Factory.create tuple - other
   end
 
+  def *(scalar)
+    Factory.create tuple * scalar
+  end
+
   def -@
     Factory.create -tuple
   end

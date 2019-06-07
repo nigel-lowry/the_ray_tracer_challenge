@@ -9,4 +9,10 @@ RSpec.describe Ray do
     its(:origin) { is_expected.to eq(origin) }
     its(:direction) { is_expected.to eq(direction) }
   end
+
+  describe '#position' do
+    let(:r) { Ray.new(Point.new(2, 3, 4), Vector.new(1, 0, 0)) }
+
+    specify { expect(r.position(0)).to eq(Point.new(2, 3, 4)) }
+  end
 end
