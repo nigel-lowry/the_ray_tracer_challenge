@@ -1,4 +1,4 @@
-FROM ruby:2.6
+FROM ruby:2.6.3
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nodejs
