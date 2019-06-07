@@ -76,6 +76,36 @@ RSpec.describe Sphere do
         expect(xs.last).to eq(Intersection.new(-4.0, s))
       end
     end
+
+    context 'scaled sphere' do
+      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+      let(:s) { Sphere.new }
+      let(:t) { Transform.scaling(2, 2, 2) }
+
+      before { s.transform = t }
+
+      it 'intersects' do
+        xs = s.intersect(r)
+
+        expect(xs.count).to eq(2)
+        expect(xs.first.t).to eq(3)
+        expect(xs.last.t).to eq(7)
+      end
+    end
+
+    context 'translated sphere' do
+      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+      let(:s) { Sphere.new }
+      let(:t) { Transform.translation(5, 0, 0) }
+
+      before { s.transform = t }
+
+      it 'does not intersect' do
+        xs = s.intersect(r)
+
+        expect(xs.count).to eq(0)
+      end
+    end
   end
 
   describe '#transform' do

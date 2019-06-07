@@ -12,7 +12,7 @@ class Sphere
   end
 
   def intersect ray
-    dc = DiscriminantCalculator.new(self, ray)
+    dc = DiscriminantCalculator.new(self, ray.transform(self.transform.inverse))
     discriminant, a, b = dc.discriminant, dc.a, dc.b
 
     if discriminant < 0
