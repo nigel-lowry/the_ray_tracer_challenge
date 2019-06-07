@@ -2,7 +2,7 @@ require 'color'
 
 class Canvas
 
-  def initialize(width, height, color = Color.new(0, 0, 0) )
+  def initialize(width, height, color = Color::BLACK )
     raise 'canvas has no pixels' if [width, height].any? &:zero?
 
     @array = Array.new(height) { Array.new(width) { color } }

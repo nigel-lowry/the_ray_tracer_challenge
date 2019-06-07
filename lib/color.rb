@@ -12,6 +12,8 @@ class Color
     @tuple = Tuple.new_vector(red, green, blue)
   end
 
+  BLACK = Color.new(0, 0, 0)
+
   def +(other)
     Color.from_tuple(tuple + other)
   end
@@ -39,7 +41,7 @@ class Color
   end
 
   def black?
-    [x, y, z].all? &:zero?
+    self == BLACK
   end
 
   def ==(other)
