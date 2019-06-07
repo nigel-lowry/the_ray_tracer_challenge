@@ -1,3 +1,5 @@
+require 'ray'
+
 class Sphere
   attr_reader :radius
 
