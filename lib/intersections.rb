@@ -6,6 +6,6 @@ class Intersections
   delegate :count, :first, :last, :to => :intersections
 
   def initialize *intersections
-    @intersections = intersections.sort
+    @intersections = intersections.sort.freeze
   end
 end
