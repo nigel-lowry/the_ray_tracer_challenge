@@ -1,4 +1,5 @@
 require 'ray'
+require 'intersection'
 
 class Sphere
   attr_reader :radius
@@ -20,7 +21,7 @@ class Sphere
       t1 = (-b - sqrt_of_discriminant) / two_a
       t2 = (-b + sqrt_of_discriminant) / two_a
 
-      [t1, t2].sort
+      [Intersection.new(t1, self), Intersection.new(t2, self)].sort
     end
   end
 end

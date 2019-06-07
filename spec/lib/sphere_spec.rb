@@ -20,8 +20,8 @@ RSpec.describe Sphere do
         xs = s.intersect(r)
 
         expect(xs.count).to eq(2)
-        expect(xs.first).to eq(4.0)
-        expect(xs.last).to eq(6.0)
+        expect(xs.first).to eq(Intersection.new(4.0, s))
+        expect(xs.last).to eq(Intersection.new(6.0, s))
       end
     end
 
@@ -33,8 +33,8 @@ RSpec.describe Sphere do
         xs = s.intersect(r)
 
         expect(xs.count).to eq(2)
-        expect(xs.first).to eq(5.0)
-        expect(xs.last).to eq(5.0)
+        expect(xs.first).to eq(Intersection.new(5.0, s))
+        expect(xs.last).to eq(Intersection.new(5.0, s))
       end
     end
 
@@ -57,8 +57,8 @@ RSpec.describe Sphere do
         xs = s.intersect(r)
 
         expect(xs.count).to eq(2)
-        expect(xs.first).to eq(-1.0)
-        expect(xs.last).to eq(1.0)
+        expect(xs.first).to eq(Intersection.new(-1.0, s))
+        expect(xs.last).to eq(Intersection.new(1.0, s))
       end
     end
 
@@ -70,8 +70,8 @@ RSpec.describe Sphere do
         xs = s.intersect(r)
 
         expect(xs.count).to eq(2)
-        expect(xs.first).to eq(-6.0)
-        expect(xs.last).to eq(-4.0)
+        expect(xs.first).to eq(Intersection.new(-6.0, s))
+        expect(xs.last).to eq(Intersection.new(-4.0, s))
       end
     end
   end
