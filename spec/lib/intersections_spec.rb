@@ -44,7 +44,7 @@ RSpec.describe Intersections do
       its(:hit) { is_expected.to be_nil }
     end
 
-    context 'mixed up' do
+    context 'random order' do
       let(:s) { Sphere.new }
       let(:i1) { Intersection.new(5, s) }
       let(:i2) { Intersection.new(7, s) }
