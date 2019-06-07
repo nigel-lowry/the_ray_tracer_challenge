@@ -25,5 +25,34 @@ RSpec.describe Intersections do
 
       its(:hit) { is_expected.to eq(i1) }
     end
+
+    context 'some intersections have negative t' do
+      let(:s) { Sphere.new }
+      let(:i1) { Intersection.new(-1, s) }
+      let(:i2) { Intersection.new(1, s) }
+      subject { Intersections.new(i1, i2) }
+
+      its(:hit) { is_expected.to eq(i2) }
+    end
+
+    context 'all intersections have negative t' do
+      let(:s) { Sphere.new }
+      let(:i1) { Intersection.new(-2, s) }
+      let(:i2) { Intersection.new(-1, s) }
+      subject { Intersections.new(i1, i2) }
+
+      its(:hit) { is_expected.to be_nil }
+    end
+
+    context 'mixed up' do
+      let(:s) { Sphere.new }
+      let(:i1) { Intersection.new(5, s) }
+      let(:i2) { Intersection.new(7, s) }
+      let(:i3) { Intersection.new(-3, s) }
+      let(:i4) { Intersection.new(2, s) }
+      subject { Intersections.new(i1, i2, i3, i4) }
+
+      its(:hit) { is_expected.to eq(i4) }
+    end
   end
 end
