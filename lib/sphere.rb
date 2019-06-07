@@ -12,8 +12,11 @@ class Sphere
     if discriminant < 0
       []
     else
-      t1 = (-b - Math.sqrt(discriminant)) / (2 * a)
-      t2 = (-b + Math.sqrt(discriminant)) / (2 * a)
+      sqrt_of_discriminant = Math.sqrt discriminant
+      two_a = 2 * a
+
+      t1 = (-b - sqrt_of_discriminant) / two_a
+      t2 = (-b + sqrt_of_discriminant) / two_a
 
       [t1, t2]
     end
