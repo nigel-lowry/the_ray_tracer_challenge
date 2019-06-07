@@ -18,7 +18,7 @@ class Sphere
       t1 = (-b - sqrt_of_discriminant) / two_a
       t2 = (-b + sqrt_of_discriminant) / two_a
 
-      [t1, t2]
+      [t1, t2].sort
     end
   end
 end
