@@ -1,14 +1,16 @@
 require 'ray'
+require 'material'
 require 'intersection'
 require 'intersections'
 
 class Sphere
-  attr_reader :radius
+  attr_reader :radius, :material
   attr_accessor :transform
 
   def initialize
     @radius = 1
     @transform = Transform.new Matrix::IDENTITY_4X4
+    @material = Material.new
   end
 
   def intersect ray

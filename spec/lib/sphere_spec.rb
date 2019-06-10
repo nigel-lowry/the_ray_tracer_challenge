@@ -170,4 +170,10 @@ RSpec.describe Sphere do
       specify { expect(n).to be_normalized }
     end
   end
+
+  describe '#material' do
+    context 'default' do
+      specify { expect(s.material).to eq(Material.new) }
+    end
+  end
 end
