@@ -4,8 +4,8 @@ require 'intersection'
 require 'intersections'
 
 class Sphere
-  attr_reader :radius, :material
-  attr_accessor :transform
+  attr_reader :radius
+  attr_accessor :transform, :material
 
   def initialize
     @radius = 1

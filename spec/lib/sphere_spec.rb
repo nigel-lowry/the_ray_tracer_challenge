@@ -175,5 +175,16 @@ RSpec.describe Sphere do
     context 'default' do
       specify { expect(s.material).to eq(Material.new) }
     end
+
+    context 'assigned' do
+      let(:m) { Material.new }
+
+      before do
+        m.ambient = 1
+        s.material = m
+      end
+
+      specify { expect(s.material).to eq(m) }
+    end
   end
 end
