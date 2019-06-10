@@ -29,7 +29,7 @@ class Sphere
   end
 
   def normal_at p
-    (p - Point.new(0, 0, 0)).normalize
+    p - Point.new(0, 0, 0)
   end
 end
 
