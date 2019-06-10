@@ -166,14 +166,15 @@ RSpec.describe Sphere do
     end
 
     context 'translated sphere' do
-      let(:t) { Transform.translation(0, 1, 0) }
+      before { s.transform = Transform.translation(0, 1, 0) }
 
-      before { s.transform = t }
+      let(:n) { s.normal_at(Point.new(0, 1.70711, -0.70711)) }
 
       it 'accounts for sphere origin' do
-        n = s.normal_at(Point.new(0, 1.70711, -0.70711))
         expect(n).to closely_eq(Vector.new(0, 0.70711, -0.70711))
       end
+
+      specify { expect(n).to be_normalized }
     end
 
     context 'transformed sphere' do
