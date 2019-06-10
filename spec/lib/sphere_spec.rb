@@ -1,8 +1,11 @@
 require 'sphere'
 
 RSpec.describe Sphere do
+
+  let(:s) { Sphere.new }
+
   describe '.initialize' do
-    subject { Sphere.new }
+    subject { s }
 
     its(:radius) { is_expected.to eq(1.0) }
 
@@ -14,7 +17,6 @@ RSpec.describe Sphere do
   describe '#intersect' do
     context 'not tangential' do
       let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
 
       it 'intersects at two points' do
         xs = s.intersect(r)
@@ -29,7 +31,6 @@ RSpec.describe Sphere do
 
     context 'at a tangent' do
       let(:r) { Ray.new(Point.new(0, 1, -5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
 
       it 'intersects at one point' do
         xs = s.intersect(r)
@@ -42,7 +43,6 @@ RSpec.describe Sphere do
 
     context 'not intersecting' do
       let(:r) { Ray.new(Point.new(0, 2, -5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
 
       it 'has no intersections' do
         xs = s.intersect(r)
@@ -53,7 +53,6 @@ RSpec.describe Sphere do
 
     context 'ray originate inside sphere' do
       let(:r) { Ray.new(Point.new(0, 0, 0), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
 
       it 'has an intersection behind the starting point too' do
         xs = s.intersect(r)
@@ -66,7 +65,6 @@ RSpec.describe Sphere do
 
     context 'ray originates after sphere' do
       let(:r) { Ray.new(Point.new(0, 0, 5), Vector.new(0, 0, 1)) }
-      let(:s) { Sphere.new }
 
       it 'has two intersections behind' do
         xs = s.intersect(r)
@@ -80,7 +78,6 @@ RSpec.describe Sphere do
     context 'transformed' do
       context 'scaled' do
         let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-        let(:s) { Sphere.new }
         let(:t) { Transform.scaling(2, 2, 2) }
 
         before { s.transform = t }
@@ -96,7 +93,6 @@ RSpec.describe Sphere do
 
       context 'translated' do
         let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-        let(:s) { Sphere.new }
         let(:t) { Transform.translation(5, 0, 0) }
 
         before { s.transform = t }
@@ -112,15 +108,12 @@ RSpec.describe Sphere do
 
   describe '#transform' do
     context 'default transformation' do
-      let(:s) { Sphere.new }
-
       it 'is the identity transform' do
         expect(s.transform).to eq(Matrix::IDENTITY_4X4)
       end 
     end
 
     context 'set transformation' do
-      let(:s) { Sphere.new }
       let(:t) { Transform.translation(2, 3, 4) }
 
       before { s.transform = t }
@@ -131,7 +124,7 @@ RSpec.describe Sphere do
 
   describe '#normal_at' do
     context 'point on x axis' do
-      let(:s) { Sphere.new }
+      
       let(:n) { s.normal_at(Point.new(1, 0, 0)) }
 
       it 'is the same as the unit circle' do
@@ -144,7 +137,6 @@ RSpec.describe Sphere do
     end
 
     context 'point on y axis' do
-      let(:s) { Sphere.new }
       let(:n) { s.normal_at(Point.new(0, 1, 0)) }
 
       it 'is the same as the unit circle' do
@@ -157,7 +149,6 @@ RSpec.describe Sphere do
     end
 
     context 'point on z axis' do
-      let(:s) { Sphere.new }
       let(:n) { s.normal_at(Point.new(0, 0, 1)) }
 
       it 'is the same as the unit circle' do
@@ -170,7 +161,6 @@ RSpec.describe Sphere do
     end
 
     context 'non-axial' do
-      let(:s) { Sphere.new }
       let(:sqrt_of_3_divided_by_3) { Math::sqrt(3) / 3 }
       let(:n) { s.normal_at(Point.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3)) }
 
@@ -184,7 +174,6 @@ RSpec.describe Sphere do
     end
 
     context 'translated sphere' do
-      let(:s) { Sphere.new }
       let(:t) { Transform.translation(0, 1, 0) }
 
       before { s.transform = t }
@@ -196,7 +185,6 @@ RSpec.describe Sphere do
     end
 
     context 'transformed sphere' do
-      let(:s) { Sphere.new }
       let(:m) { Transform.scaling(1, 0.5, 1) * Transform.rotation_z(Math::PI / 5) }
       let(:sqrt_of_2_divided_by_2) { Math::sqrt(2) / 2 }
 
