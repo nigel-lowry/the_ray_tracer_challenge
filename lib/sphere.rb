@@ -28,8 +28,13 @@ class Sphere
     end
   end
 
-  def normal_at p
-    p - Point.new(0, 0, 0)
+  def normal_at world_point
+    transform_inverse = transform.inverse
+    object_point = transform_inverse * world_point
+    object_normal = object_point - Point::ORIGIN
+    matrix = transform_inverse.is_a?(Matrix) ? transform_inverse : transform_inverse.transformation_matrix
+    world_normal = matrix.transpose * object_normal
+    Factory.create(Tuple.new_vector(world_normal.x, world_normal.y, world_normal.z)).normalize
   end
 end
 
