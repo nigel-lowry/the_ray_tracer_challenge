@@ -131,9 +131,7 @@ RSpec.describe Sphere do
         expect(n).to eq(Vector.new(1, 0, 0))
       end
 
-      it 'is normalized' do
-        expect(n).to be_normalized
-      end
+      specify { expect(n).to be_normalized }
     end
 
     context 'point on y axis' do
@@ -143,9 +141,7 @@ RSpec.describe Sphere do
         expect(n).to eq(Vector.new(0, 1, 0))
       end
 
-      it 'is normalized' do
-        expect(n).to be_normalized
-      end
+      specify { expect(n).to be_normalized }
     end
 
     context 'point on z axis' do
@@ -155,9 +151,7 @@ RSpec.describe Sphere do
         expect(n).to eq(Vector.new(0, 0, 1))
       end
 
-      it 'is normalized' do
-        expect(n).to be_normalized
-      end
+      specify { expect(n).to be_normalized }
     end
 
     context 'non-axial' do
@@ -168,9 +162,7 @@ RSpec.describe Sphere do
         expect(n).to eq(Vector.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3))
       end
 
-      it 'is normalized' do
-        expect(n).to be_normalized
-      end
+      specify { expect(n).to be_normalized }
     end
 
     context 'translated sphere' do
