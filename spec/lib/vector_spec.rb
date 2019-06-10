@@ -97,4 +97,21 @@ RSpec.describe Vector do
     specify { expect(Vector.cross(v2, v1)).to eq(Vector.new(1, -2, 1)) }
     specify { expect(Vector.cross(v1, v2)).not_to eq(Vector.cross(v2, v1)) }
   end
+
+  describe '#reflect' do
+    context 'approaching at 45 degrees' do
+      let(:v) { Vector.new(1, -1, 0) }
+      let(:n) { Vector.new(0, 1, 0) }
+
+      specify { expect(v.reflect(n)).to eq(Vector.new(1, 1, 0)) }
+    end
+
+    context 'slanted surface' do
+      let(:v) { Vector.new(0, -1, 0) }
+      let(:sqrt_of_2_divided_by_2) { Math::sqrt(2) / 2 }
+      let(:n) { Vector.new(sqrt_of_2_divided_by_2, sqrt_of_2_divided_by_2, 0) }
+
+      specify { expect(v.reflect(n)).to closely_eq(Vector.new(1, 0, 0)) }
+    end
+  end
 end

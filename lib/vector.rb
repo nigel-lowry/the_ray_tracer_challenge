@@ -37,6 +37,10 @@ class Vector
                a.x * b.y - a.y * b.x)
   end
 
+  def reflect normal
+    self - normal * 2 * Vector.dot(self, normal)
+  end
+
   def +(other)
     Factory.create tuple + other
   end
