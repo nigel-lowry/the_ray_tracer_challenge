@@ -13,6 +13,7 @@ class Color
   end
 
   BLACK = Color.new(0, 0, 0)
+  WHITE = Color.new(1, 1, 1)
 
   def +(other)
     Color.from_tuple(tuple + other)
