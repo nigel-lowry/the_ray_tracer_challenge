@@ -178,15 +178,15 @@ RSpec.describe Sphere do
     end
 
     context 'transformed sphere' do
-      let(:m) { Transform.scaling(1, 0.5, 1) * Transform.rotation_z(Math::PI / 5) }
+      before { s.transform = Transform.scaling(1, 0.5, 1) * Transform.rotation_z(Math::PI / 5) }
+      let(:n) { s.normal_at(Point.new(0, sqrt_of_2_divided_by_2, -sqrt_of_2_divided_by_2)) }
       let(:sqrt_of_2_divided_by_2) { Math::sqrt(2) / 2 }
 
-      before { s.transform = m }
-
       it 'accounts for sphere origin' do
-        n = s.normal_at(Point.new(0, sqrt_of_2_divided_by_2, -sqrt_of_2_divided_by_2))
         expect(n).to closely_eq(Vector.new(0, 0.97014, -0.24254))
       end
+
+      specify { expect(n).to be_normalized }
     end
   end
 end
