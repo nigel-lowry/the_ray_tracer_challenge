@@ -8,7 +8,7 @@ class Sphere
 
   def initialize
     @radius = 1
-    @transform = Matrix::IDENTITY_4X4
+    @transform = Transform.new Matrix::IDENTITY_4X4
   end
 
   def intersect ray
@@ -32,8 +32,7 @@ class Sphere
     transform_inverse = transform.inverse
     object_point = transform_inverse * world_point
     object_normal = object_point - Point::ORIGIN
-    matrix = transform_inverse.is_a?(Matrix) ? transform_inverse : transform_inverse.transformation_matrix
-    world_normal = matrix.transpose * object_normal
+    world_normal = transform_inverse.transformation_matrix.transpose * object_normal
     Factory.create(Tuple.new_vector(world_normal.x, world_normal.y, world_normal.z)).normalize
   end
 end

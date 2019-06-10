@@ -109,7 +109,7 @@ RSpec.describe Sphere do
   describe '#transform' do
     context 'default transformation' do
       it 'is the identity transform' do
-        expect(s.transform).to eq(Matrix::IDENTITY_4X4)
+        expect(s.transform.transformation_matrix).to eq(Matrix::IDENTITY_4X4)
       end 
     end
 
