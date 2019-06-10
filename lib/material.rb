@@ -28,11 +28,11 @@ class Material
       reflect_v = -light_v.reflect(normal_v)
       reflect_dot_eye = Vector.dot(reflect_v, eye_v)
 
-      if reflect_dot_eye <= 0
-        specular_contribution = Color::BLACK
+      specular_contribution = if reflect_dot_eye <= 0
+        Color::BLACK
       else
         factor = reflect_dot_eye ** shininess
-        specular_contribution = light.intensity * specular * factor
+        light.intensity * specular * factor
       end
     end
 
