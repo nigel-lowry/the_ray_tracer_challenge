@@ -128,4 +128,59 @@ RSpec.describe Sphere do
       specify { expect(s.transform).to eq(t) }
     end
   end
+
+  describe '#normal_at' do
+    context 'point on x axis' do
+      let(:s) { Sphere.new }
+      let(:n) { s.normal_at(Point.new(1, 0, 0)) }
+
+      it 'is the same as the unit circle' do
+        expect(n).to eq(Vector.new(1, 0, 0))
+      end
+
+      it 'is normalized' do
+        expect(n).to be_normalized
+      end
+    end
+
+    context 'point on y axis' do
+      let(:s) { Sphere.new }
+      let(:n) { s.normal_at(Point.new(0, 1, 0)) }
+
+      it 'is the same as the unit circle' do
+        expect(n).to eq(Vector.new(0, 1, 0))
+      end
+
+      it 'is normalized' do
+        expect(n).to be_normalized
+      end
+    end
+
+    context 'point on z axis' do
+      let(:s) { Sphere.new }
+      let(:n) { s.normal_at(Point.new(0, 0, 1)) }
+
+      it 'is the same as the unit circle' do
+        expect(n).to eq(Vector.new(0, 0, 1))
+      end
+
+      it 'is normalized' do
+        expect(n).to be_normalized
+      end
+    end
+
+    context 'non-axial' do
+      let(:s) { Sphere.new }
+      let(:sqrt_of_3_divided_by_3) { Math::sqrt(3) / 3 }
+      let(:n) { s.normal_at(Point.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3)) }
+
+      it 'is the same as the unit circle' do
+        expect(n).to eq(Vector.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3))
+      end
+
+      it 'is normalized' do
+        expect(n).to be_normalized
+      end
+    end
+  end
 end

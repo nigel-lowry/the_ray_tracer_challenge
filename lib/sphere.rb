@@ -27,6 +27,10 @@ class Sphere
       Intersections.new Intersection.new(t1, self), Intersection.new(t2, self)
     end
   end
+
+  def normal_at p
+    (p - Point.new(0, 0, 0)).normalize
+  end
 end
 
 class DiscriminantCalculator

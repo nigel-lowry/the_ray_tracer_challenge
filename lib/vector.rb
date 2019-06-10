@@ -23,6 +23,10 @@ class Vector
     magnitude == 1.0
   end
 
+  def normalized?
+    unit_vector?
+  end
+
   def self.dot a, b
     a.x * b.x + a.y * b.y + a.z * b.z
   end
