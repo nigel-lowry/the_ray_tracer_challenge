@@ -124,33 +124,23 @@ RSpec.describe Sphere do
 
   describe '#normal_at' do
     context 'point on x axis' do
-      
       let(:n) { s.normal_at(Point.new(1, 0, 0)) }
 
-      it 'is the same as the unit circle' do
-        expect(n).to eq(Vector.new(1, 0, 0))
-      end
-
+      specify { expect(n).to eq(Vector.new(1, 0, 0)) }
       specify { expect(n).to be_normalized }
     end
 
     context 'point on y axis' do
       let(:n) { s.normal_at(Point.new(0, 1, 0)) }
 
-      it 'is the same as the unit circle' do
-        expect(n).to eq(Vector.new(0, 1, 0))
-      end
-
+      specify { expect(n).to eq(Vector.new(0, 1, 0)) }
       specify { expect(n).to be_normalized }
     end
 
     context 'point on z axis' do
       let(:n) { s.normal_at(Point.new(0, 0, 1)) }
 
-      it 'is the same as the unit circle' do
-        expect(n).to eq(Vector.new(0, 0, 1))
-      end
-
+      specify { expect(n).to eq(Vector.new(0, 0, 1)) }
       specify { expect(n).to be_normalized }
     end
 
@@ -158,10 +148,7 @@ RSpec.describe Sphere do
       let(:sqrt_of_3_divided_by_3) { Math::sqrt(3) / 3 }
       let(:n) { s.normal_at(Point.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3)) }
 
-      it 'is the same as the unit circle' do
-        expect(n).to eq(Vector.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3))
-      end
-
+      specify { expect(n).to eq(Vector.new(sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3, sqrt_of_3_divided_by_3)) }
       specify { expect(n).to be_normalized }
     end
 
@@ -170,22 +157,16 @@ RSpec.describe Sphere do
 
       let(:n) { s.normal_at(Point.new(0, 1.70711, -0.70711)) }
 
-      it 'accounts for sphere origin' do
-        expect(n).to closely_eq(Vector.new(0, 0.70711, -0.70711))
-      end
-
+      specify { expect(n).to closely_eq(Vector.new(0, 0.70711, -0.70711)) }
       specify { expect(n).to be_normalized }
     end
 
     context 'transformed sphere' do
       before { s.transform = Transform.scaling(1, 0.5, 1) * Transform.rotation_z(Math::PI / 5) }
-      let(:n) { s.normal_at(Point.new(0, sqrt_of_2_divided_by_2, -sqrt_of_2_divided_by_2)) }
       let(:sqrt_of_2_divided_by_2) { Math::sqrt(2) / 2 }
+      let(:n) { s.normal_at(Point.new(0, sqrt_of_2_divided_by_2, -sqrt_of_2_divided_by_2)) }
 
-      it 'accounts for sphere origin' do
-        expect(n).to closely_eq(Vector.new(0, 0.97014, -0.24254))
-      end
-
+      specify { expect(n).to closely_eq(Vector.new(0, 0.97014, -0.24254)) }
       specify { expect(n).to be_normalized }
     end
   end
