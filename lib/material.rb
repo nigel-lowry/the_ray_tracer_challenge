@@ -20,8 +20,7 @@ class Material
     light_dot_normal = Vector.dot(light_v, normal_v)
 
     if light_dot_normal < 0
-      diffuse_contribution = Color::BLACK
-      specular_contribution = Color::BLACK
+      diffuse_contribution = specular_contribution = Color::BLACK
     else
       diffuse_contribution = effective_color * diffuse * light_dot_normal
 
