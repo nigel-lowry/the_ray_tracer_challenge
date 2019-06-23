@@ -29,10 +29,10 @@ RSpec.describe World do
     specify { expect(w.objects).to contain_exactly(s1, s2) }
   end
 
-  describe '#intersect_world' do
+  describe '#intersect' do
     let(:w) { World.default }
     let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
-    let(:xs) { w.intersect_world(r) }
+    let(:xs) { w.intersect(r) }
 
     specify { expect(xs.count).to eq(4) }
     specify { expect(xs[0].t).to eq(4) }
