@@ -69,4 +69,8 @@ class Transform
   def inverse
     Transform.new @transformation_matrix.inverse
   end
+
+  def ==(other)
+    self.class == other.class and self.transformation_matrix == other.transformation_matrix
+  end
 end

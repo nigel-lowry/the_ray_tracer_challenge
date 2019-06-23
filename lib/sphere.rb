@@ -37,6 +37,10 @@ class Sphere
     world_normal = transform_inverse.transformation_matrix.transpose * object_normal
     Factory.create(Tuple.new_vector(world_normal.x, world_normal.y, world_normal.z)).normalize
   end
+
+  def ==(other)
+    self.class == other.class and self.radius == other.radius and self.transform == other.transform and self.material == other.material
+  end
 end
 
 class DiscriminantCalculator
