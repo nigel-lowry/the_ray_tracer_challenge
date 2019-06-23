@@ -1,3 +1,6 @@
+require 'world'
+require 'prepare_computations'
+
 class ShadeHit
   attr_reader :color
 
