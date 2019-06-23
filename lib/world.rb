@@ -1,3 +1,6 @@
+require 'material'
+require 'sphere'
+
 class World
   attr_reader :objects, :light
 
