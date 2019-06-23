@@ -20,6 +20,8 @@ RSpec.describe PrepareComputations do
       let(:comps) { PrepareComputations.new(i, r) }
 
       specify { expect(comps.inside).to be false }
+      specify { expect(comps).to_not be_inside }
+      specify { expect(comps).to be_outside }
     end
 
     context 'intersection on inside' do
@@ -31,6 +33,8 @@ RSpec.describe PrepareComputations do
       specify { expect(comps.point).to eq(Point.new(0, 0, 1)) }
       specify { expect(comps.eyev).to eq(Vector.new(0, 0, -1)) }
       specify { expect(comps.inside).to be true }
+      specify { expect(comps).to be_inside }
+      specify { expect(comps).to_not be_outside }
       specify { expect(comps.normalv).to eq(Vector.new(0, 0, -1)) }
     end
   end

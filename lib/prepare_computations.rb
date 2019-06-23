@@ -18,4 +18,12 @@ class PrepareComputations
       false
     end
   end
+
+  def inside?
+    @inside
+  end
+
+  def outside?
+    !inside?
+  end
 end
