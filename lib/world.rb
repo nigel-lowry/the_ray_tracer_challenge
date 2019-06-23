@@ -2,7 +2,7 @@ require 'material'
 require 'sphere'
 
 class World
-  attr_reader :objects, :light
+  attr_accessor :objects, :light
 
   def initialize objects=[], light=nil
     @objects, @light = objects, light
