@@ -39,4 +39,14 @@ class World
     raise 'multiple lights' if @lights.try :many?
     @lights.first
   end
+
+  def color_at r
+    hit = intersect(r).hit
+
+    if hit.nil?
+      Color::BLACK
+    else
+      ShadeHit.new(self, PrepareComputations.new(hit, r)).color
+    end
+  end
 end

@@ -18,7 +18,7 @@ class Sphere
     discriminant, a, b = dc.discriminant, dc.a, dc.b
 
     if discriminant < 0
-      []
+      Intersections::NO_INTERSECTIONS
     else
       sqrt_of_discriminant = Math.sqrt discriminant
       two_a = 2 * a

@@ -59,4 +59,31 @@ RSpec.describe World do
       specify { expect(w.lights).to eq([light1, light2]) }
     end
   end
+
+  describe '#color_at' do
+    context 'ray misses' do
+      let(:w) { World.default }
+      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 1, 0)) }
+
+      specify { expect(w.color_at(r)).to eq(Color::BLACK) }
+    end
+
+    context 'ray hits' do
+      let(:w) { World.default }
+      let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+
+      specify { expect(w.color_at(r)).to closely_eq(Color.new(0.38066, 0.47583, 0.2855)) }
+    end
+
+    context 'intesection behind the ray' do
+      let(:w) { World.default }
+      let(:outer) { w.objects.first }
+      let(:inner) { w.objects.last }
+      let(:r) { Ray.new(Point.new(0, 0, 0.75), Vector.new(0, 0, -1)) }
+
+      before { outer.material.ambient = inner.material.ambient = 1 }
+      
+      specify { expect(w.color_at(r)).to eq(inner.material.color) }
+    end
+  end
 end
