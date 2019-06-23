@@ -31,11 +31,12 @@ class World
   end
 
   def light=(other_light)
-    @lights = Array.wrap other_light
+    raise 'multiple lights' if @other_light.try :many?
+    @lights = [other_light]
   end
 
   def light
-    raise 'multiple lights' if @lights.many?
+    raise 'multiple lights' if @lights.try :many?
     @lights.first
   end
 end
