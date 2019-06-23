@@ -28,4 +28,16 @@ RSpec.describe World do
     specify { expect(w.light).to eq(PointLight.new(Point.new(-10, 10, -10), Color.new(1, 1, 1))) }
     specify { expect(w.objects).to contain_exactly(s1, s2) }
   end
+
+  describe '#intersect_world' do
+    let(:w) { World.default }
+    let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+    let(:xs) { w.intersect_world(r) }
+
+    specify { expect(xs.count).to eq(4) }
+    specify { expect(xs[0].t).to eq(4) }
+    specify { expect(xs[1].t).to eq(4.5) }
+    specify { expect(xs[2].t).to eq(5.5) }
+    specify { expect(xs[3].t).to eq(6) }
+  end
 end

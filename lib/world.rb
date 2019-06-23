@@ -23,4 +23,9 @@ class World
 
     new([s1, s2], PointLight.new(Point.new(-10, 10, -10), Color.new(1, 1, 1)))
   end
+
+  def intersect_world r
+    intersection_arrays = @objects.collect { |object| object.intersect(r).intersections }
+    Intersections.new(*intersection_arrays.flatten)
+  end
 end
