@@ -12,8 +12,8 @@ class Color
     @tuple = Tuple.new_vector(red, green, blue)
   end
 
-  BLACK = Color.new(0, 0, 0)
-  WHITE = Color.new(1, 1, 1)
+  BLACK = new 0, 0, 0
+  WHITE = new 1, 1, 1
 
   def +(other)
     Color.from_tuple(tuple + other)

@@ -9,7 +9,7 @@ class Intersections
     @intersections = intersections.sort.freeze
   end
 
-  NO_INTERSECTIONS = Intersections.new(*[])
+  NO_INTERSECTIONS = new *[]
 
   def hit
     @intersections.find { |intersection| intersection.t > 0 }

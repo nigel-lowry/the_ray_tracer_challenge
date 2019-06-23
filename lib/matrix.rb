@@ -20,10 +20,10 @@ class Matrix
     @data = copy
   end
 
-  IDENTITY_4X4 = self.new [[1, 0, 0, 0],
-                           [0, 1, 0, 0],
-                           [0, 0, 1, 0],
-                           [0, 0, 0, 1]]
+  IDENTITY_4X4 = new [[1, 0, 0, 0],
+                      [0, 1, 0, 0],
+                      [0, 0, 1, 0],
+                      [0, 0, 0, 1]]
 
   def get row, column
     @data[row][column]

@@ -10,7 +10,7 @@ class Point
     @tuple = Tuple.new_point(x, y, z)
   end
 
-  ORIGIN = Point.new(0, 0, 0)
+  ORIGIN = new 0, 0, 0
 
   def +(other)
     Factory.create tuple + other
