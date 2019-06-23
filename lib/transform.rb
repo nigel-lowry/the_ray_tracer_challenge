@@ -56,6 +56,8 @@ class Transform
     @transformation_matrix = m
   end
 
+  IDENTITY = new Matrix::IDENTITY_4X4
+
   def *(other)
     if other.respond_to? :tuple
       Factory.create @transformation_matrix * other

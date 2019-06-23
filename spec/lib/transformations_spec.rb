@@ -7,7 +7,7 @@ RSpec.describe Transformations do
       let(:to) { Point.new(0, 0, -1) }
       let(:up) { Vector.new(0, 1, 0) }
 
-      specify { expect(Transformations.view_transform(from, to, up)).to eq(Transform.new Matrix::IDENTITY_4X4) }
+      specify { expect(Transformations.view_transform(from, to, up)).to eq(Transform::IDENTITY) }
     end
 
     context 'looking in the positive z direction' do
