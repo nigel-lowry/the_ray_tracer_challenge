@@ -1,8 +1,8 @@
 class World
-  attr_reader :objects, :light_source
+  attr_reader :objects, :light
 
-  def initialize objects=[], light_source=nil
-    @objects, @light_source = objects, light_source
+  def initialize objects=[], light=nil
+    @objects, @light = objects, light
   end
 
   def self.default
