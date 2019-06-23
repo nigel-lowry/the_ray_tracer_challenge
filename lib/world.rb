@@ -1,11 +1,12 @@
+require 'active_support/core_ext/enumerable'
 require 'material'
 require 'sphere'
 
 class World
-  attr_accessor :objects, :light
+  attr_accessor :objects, :lights
 
-  def initialize objects=[], light=nil
-    @objects, @light = objects, light
+  def initialize objects=nil, lights=nil
+    @objects, @lights = Array.wrap(objects), Array.wrap(lights)
   end
 
   def self.default
@@ -27,5 +28,14 @@ class World
   def intersect r
     intersection_arrays = @objects.collect { |object| object.intersect(r).intersections }
     Intersections.new(*intersection_arrays.flatten)
+  end
+
+  def light=(other_light)
+    @lights = Array.wrap other_light
+  end
+
+  def light
+    raise 'multiple lights' if @lights.many?
+    @lights.first
   end
 end

@@ -40,4 +40,23 @@ RSpec.describe World do
     specify { expect(xs[2].t).to eq(5.5) }
     specify { expect(xs[3].t).to eq(6) }
   end
+
+  describe '#light' do
+    context 'one light' do
+      let(:light) { PointLight.new(Point.new(-10, 10, -10), Color.new(1, 1, 1)) } 
+      let(:w) { World.new nil, light }
+
+      specify { expect(w.light).to eq(light) }
+      specify { expect(w.lights).to eq([light]) }
+    end
+
+    context 'two lights' do
+      let(:light1) { PointLight.new(Point.new(-10, 10, -10), Color.new(1, 1, 1)) } 
+      let(:light2) { PointLight.new(Point.new(-20, 20, -20), Color.new(1, 1, 1)) } 
+      let(:w) { World.new nil, [light1, light2] }
+
+      specify { expect { w.light }.to raise_error('multiple lights') }
+      specify { expect(w.lights).to eq([light1, light2]) }
+    end
+  end
 end
