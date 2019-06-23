@@ -46,7 +46,7 @@ class Color
   end
 
   def ==(other)
-    red == other.red and green == other.green and blue == other.blue
+    self.class == other.class and self.tuple == other.tuple
   end
 
 private
