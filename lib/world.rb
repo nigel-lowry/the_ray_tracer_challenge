@@ -1,6 +1,7 @@
 require 'active_support/core_ext/enumerable'
 require 'material'
 require 'sphere'
+require 'shade_hit'
 
 class World
   attr_accessor :objects, :lights
