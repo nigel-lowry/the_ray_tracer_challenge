@@ -13,4 +13,18 @@ RSpec.describe Camera do
     its(:field_of_view) { is_expected.to eq(Math::PI / 2) }
     its(:transform) { is_expected.to eq(Transform::IDENTITY) }
   end
+
+  describe '#pixel_size' do
+    context 'landscape' do
+      subject { Camera.new(200, 125, Math::PI / 2) }
+
+      its(:pixel_size) { is_expected.to closely_eq(0.01) }
+    end
+
+    context 'portrait' do
+      subject { Camera.new(125, 200, Math::PI / 2) }
+
+      its(:pixel_size) { is_expected.to closely_eq(0.01) }
+    end
+  end
 end

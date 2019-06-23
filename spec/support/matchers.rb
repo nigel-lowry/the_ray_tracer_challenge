@@ -12,6 +12,8 @@ RSpec::Matchers.define :closely_eq do |expected|
           return false unless numbers_close? expected.get(row, column), actual.get(row, column)
         end
       end
+    elsif both_numeric?(expected, actual)
+      numbers_close? expected, actual
     else
       false
     end
@@ -33,5 +35,9 @@ private
 
   def both_matrices? a, b
     a.class == Matrix and b.class == Matrix
+  end
+
+  def both_numeric? a, b
+    a.is_a? Numeric and b.is_a? Numeric
   end
 end
