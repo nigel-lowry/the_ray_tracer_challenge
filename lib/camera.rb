@@ -1,4 +1,8 @@
 require 'transform'
+require 'transformations'
+require 'ray'
+require 'world'
+require 'canvas'
 
 class Camera
   attr_reader :hsize, :vsize, :field_of_view, :pixel_size
