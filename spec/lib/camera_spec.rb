@@ -27,4 +27,32 @@ RSpec.describe Camera do
       its(:pixel_size) { is_expected.to closely_eq(0.01) }
     end
   end
+
+  describe '#ray_for_pixel' do
+    context 'centre of canvas' do
+      let(:c) { Camera.new(201, 101, Math::PI / 2) }
+      subject { c.ray_for_pixel(100, 50) }
+
+      its(:origin) { is_expected.to eq(Point::ORIGIN) }
+      its(:direction) { is_expected.to closely_eq(Vector.new(0, 0, -1)) }
+    end
+
+    context 'corner of canvas' do
+      let(:c) { Camera.new(201, 101, Math::PI / 2) }
+      subject { c.ray_for_pixel(0, 0) }
+
+      its(:origin) { is_expected.to eq(Point::ORIGIN) }
+      its(:direction) { is_expected.to closely_eq(Vector.new(0.66519, 0.33259, -0.66851)) }
+    end
+
+    context 'camera transformed' do
+      let(:c) { Camera.new(201, 101, Math::PI / 2) }
+
+      before { c.transform = Transform.rotation_y(Math::PI / 4) * Transform.translation(0, -2, 5) }
+      subject { c.ray_for_pixel(100, 50) }
+
+      its(:origin) { is_expected.to eq(Point.new(0, 2, -5)) }
+      its(:direction) { is_expected.to closely_eq(Vector.new(Math.sqrt(2) / 2, 0, -Math.sqrt(2) / 2)) }
+    end
+  end
 end
