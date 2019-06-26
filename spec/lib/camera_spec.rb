@@ -55,4 +55,18 @@ RSpec.describe Camera do
       its(:direction) { is_expected.to closely_eq(Vector.new(Math.sqrt(2) / 2, 0, -Math.sqrt(2) / 2)) }
     end
   end
+
+  describe '#render' do
+    let(:w) { World.default }
+    let(:c) { Camera.new(11, 11, Math::PI / 2) }
+    let(:from) { Point.new(0, 0, -5) }
+    let(:to) { Point::ORIGIN }
+    let(:up) { Vector.new(0, 1, 0) }
+
+    before { c.transform = Transformations.view_transform(from, to, up) }
+
+    let(:image) { c.render(w) }
+
+    specify { expect(image.pixel_at(5, 5)).to closely_eq(Color.new(0.38066, 0.47583, 0.2855)) }
+  end
 end

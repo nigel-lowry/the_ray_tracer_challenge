@@ -37,4 +37,18 @@ class Camera
 
     Ray.new(origin, direction)
   end
+
+  def render world
+    image = Canvas.new(@hsize, @vsize)
+
+    (0...@vsize).each do |y|
+      (0...@hsize).each do |x|
+        ray = ray_for_pixel(x, y)
+        color = world.color_at(ray)
+        image.write_pixel(x, y, color)
+      end
+    end
+
+    image
+  end
 end
