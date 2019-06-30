@@ -52,6 +52,7 @@ class World
   end
 
   def shadowed? point
+    light = lights.first # FIXME this doesn't handle multiple light sources
     v = light.position - point
     h = intersect(Ray.new(point, v.normalize)).hit
 

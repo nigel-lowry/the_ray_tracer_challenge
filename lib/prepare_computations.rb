@@ -1,7 +1,7 @@
 require 'intersection'
 
 class PrepareComputations
-  attr_reader :t, :object, :point, :eyev, :normalv, :inside
+  attr_reader :t, :object, :point, :eyev, :normalv, :inside, :over_point
 
   def initialize intersection, ray
     @t = intersection.t
@@ -17,6 +17,8 @@ class PrepareComputations
     else
       false
     end
+
+    @over_point = @point + @normalv * EPSILON
   end
 
   def inside?

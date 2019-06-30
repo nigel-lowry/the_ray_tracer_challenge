@@ -38,4 +38,17 @@ RSpec.describe PrepareComputations do
       specify { expect(comps.normalv).to eq(Vector.new(0, 0, -1)) }
     end
   end
+
+  describe '#over_point' do
+    let(:r) { Ray.new(Point.new(0, 0, -5), Vector.new(0, 0, 1)) }
+    let(:shape) { Sphere.new }
+
+    before { shape.transform = Transform.translation(0, 0, 1) }
+
+    let(:i) { Intersection.new(5, shape) }
+    let(:comps) { PrepareComputations.new(i, r) }
+
+    specify { expect(comps.over_point.z).to be < -EPSILON / 2 }
+    specify { expect(comps.point.z).to be > comps.over_point.z }
+  end
 end

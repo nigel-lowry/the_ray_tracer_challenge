@@ -40,5 +40,25 @@ RSpec.describe ShadeHit do
 
       specify { expect(c.color).to closely_eq(Color.new(0.90498, 0.90498, 0.90498)) }
     end
+
+    context 'intersection in shadow' do
+      let(:w) { World.new }
+
+      before { w.light = PointLight.new(Point.new(0, 0, -10), Color.new(1, 1, 1)) }
+
+      let(:s1) { Sphere.new }
+      let(:s2) { Sphere.new }
+
+      before { s2.transform = Transform.translation(0, 0, 10) }
+      before { w.objects = [s1, s2] }
+
+      let(:r) { Ray.new(Point.new(0, 0, 5), Vector.new(0, 0, 1)) }
+      let(:i) { Intersection.new(4, s2) }
+      
+      let(:comps) { PrepareComputations.new(i, r) }
+      let(:c) { ShadeHit.new(w, comps) }
+
+      specify { expect(c.color).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
+    end
   end
 end
