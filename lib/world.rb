@@ -53,14 +53,8 @@ class World
 
   def shadowed? point
     v = light.position - point
-    distance = v.magnitude
-    direction = v.normalize
+    h = intersect(Ray.new(point, v.normalize)).hit
 
-    r = Ray.new(point, direction)
-    intersections = intersect r
-
-    h = intersections.hit
-
-    h.present? and h.t < distance
+    h.present? and h.t < v.magnitude
   end
 end
