@@ -19,7 +19,7 @@ class Material
 
     light_dot_normal = Vector.dot(light_v, normal_v)
 
-    if light_dot_normal < 0
+    if in_shadow or light_dot_normal < 0
       diffuse_contribution = specular_contribution = Color::BLACK
     else
       diffuse_contribution = effective_color * diffuse * light_dot_normal
@@ -35,10 +35,6 @@ class Material
       end
     end
 
-    if in_shadow
-      ambient_contribution
-    else
-      ambient_contribution + diffuse_contribution + specular_contribution
-    end
+    ambient_contribution + diffuse_contribution + specular_contribution
   end
 end
