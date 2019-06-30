@@ -3,6 +3,7 @@ require 'transformations'
 require 'ray'
 require 'world'
 require 'canvas'
+require 'ruby-progressbar'
 
 class Camera
   attr_reader :hsize, :vsize, :field_of_view, :pixel_size
@@ -24,6 +25,8 @@ class Camera
     end
 
     @pixel_size = @half_width * 2 / hsize.to_f
+
+    @progress_bar = ProgressBar.create format: "%a %e %P% Processed: %c of %C", total: @hsize * @vsize
   end
 
   def ray_for_pixel px, py
@@ -50,6 +53,7 @@ class Camera
         ray = ray_for_pixel(x, y)
         color = world.color_at(ray)
         image.write_pixel(x, y, color)
+        @progress_bar.increment
       end
     end
 
