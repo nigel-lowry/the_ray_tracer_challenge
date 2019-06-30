@@ -4,10 +4,10 @@ require 'sphere'
 require 'shade_hit'
 
 class World
-  attr_accessor :objects, :lights
+  attr_accessor :objects, :light
 
-  def initialize objects=nil, lights=nil
-    @objects, @lights = Array.wrap(objects), Array.wrap(lights)
+  def initialize objects=nil, light=nil
+    @objects, @light = Array.wrap(objects), light
   end
 
   def self.default
@@ -31,16 +31,6 @@ class World
     Intersections.new(*intersection_arrays.flatten)
   end
 
-  def light=(other_light)
-    raise 'multiple lights' if @other_light.try :many?
-    @lights = [other_light]
-  end
-
-  def light
-    raise 'multiple lights' if @lights.try :many?
-    @lights.first
-  end
-
   def color_at r
     hit = intersect(r).hit
 
@@ -51,7 +41,7 @@ class World
     end
   end
 
-  def shadowed? point, light=lights.first
+  def shadowed? point
     v = light.position - point
     h = intersect(Ray.new(point, v.normalize)).hit
 
