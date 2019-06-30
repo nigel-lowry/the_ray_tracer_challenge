@@ -86,4 +86,34 @@ RSpec.describe World do
       specify { expect(w.color_at(r)).to eq(inner.material.color) }
     end
   end
+
+  describe '#shadowed?' do
+    context 'nothing is colinear with the point and the light' do
+      let(:w) { World.default }
+      let(:p) { Point.new(0, 10, 0) }
+
+      specify { expect(w.shadowed?(p)).to be false }
+    end
+
+    context 'an object is between the point and the light' do
+      let(:w) { World.default }
+      let(:p) { Point.new(10, -10, 10) }
+
+      specify { expect(w.shadowed?(p)).to be true }
+    end
+
+    context 'an object is behind the light' do
+      let(:w) { World.default }
+      let(:p) { Point.new(-20, 20, -20) }
+
+      specify { expect(w.shadowed?(p)).to be false }
+    end
+
+    context 'an object is behind the point' do
+      let(:w) { World.default }
+      let(:p) { Point.new(-2, 2, -2) }
+
+      specify { expect(w.shadowed?(p)).to be false }
+    end
+  end
 end

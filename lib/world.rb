@@ -50,4 +50,17 @@ class World
       ShadeHit.new(self, PrepareComputations.new(hit, r)).color
     end
   end
+
+  def shadowed? point
+    v = light.position - point
+    distance = v.magnitude
+    direction = v.normalize
+
+    r = Ray.new(point, direction)
+    intersections = intersect r
+
+    h = intersections.hit
+
+    h.present? and h.t < distance
+  end
 end
