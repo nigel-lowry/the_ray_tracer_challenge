@@ -8,6 +8,9 @@ log/*
 # Temp files
 tmp/*
 
-Editor temp files
+# Editor temp files
 *.swp
 *.swo
+
+# PPM files
+*.ppm
