@@ -12,7 +12,7 @@ class Material
     self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess
   end
 
-  def lighting light, point, eye_v, normal_v
+  def lighting light, point, eye_v, normal_v, in_shadow=false
     effective_color = color * light.intensity
     light_v = (light.position - point).normalize
     ambient_contribution = effective_color * ambient
@@ -35,6 +35,10 @@ class Material
       end
     end
 
-    ambient_contribution + diffuse_contribution + specular_contribution
+    if in_shadow
+      ambient_contribution
+    else
+      ambient_contribution + diffuse_contribution + specular_contribution
+    end
   end
 end

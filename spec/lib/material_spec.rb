@@ -56,5 +56,14 @@ RSpec.describe Material do
 
       specify { expect(m.lighting(light, position, eye_v, normal_v)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
     end
+
+    context 'lighting with the surface in shadow' do
+      let(:eye_v) { Vector.new(0, 0, -1) }
+      let(:normal_v) { Vector.new(0, 0, -1) }
+      let(:light) { PointLight.new(Point.new(0, 0, -10), Color.new(1, 1, 1)) }
+      let(:in_shadow) { true }
+
+      specify { expect(m.lighting(light, position, eye_v, normal_v, in_shadow)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
+    end
   end
 end
