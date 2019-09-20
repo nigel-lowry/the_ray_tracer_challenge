@@ -14,3 +14,6 @@ tmp/*
 
 # PPM files
 *.ppm
+
+# OS files
+.DS_Store
