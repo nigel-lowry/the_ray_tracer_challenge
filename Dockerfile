@@ -1,4 +1,4 @@
-FROM arm64v8/ruby:3.0.1
+FROM arm64v8/ruby:3.0.2
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   apt-transport-https
