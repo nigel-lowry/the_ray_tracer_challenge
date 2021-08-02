@@ -8,6 +8,7 @@ class Point
 
   def initialize x, y, z
     @tuple = Tuple.new_point(x, y, z)
+    freeze
   end
 
   ORIGIN = new 0, 0, 0

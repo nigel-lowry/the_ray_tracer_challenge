@@ -8,10 +8,16 @@ RSpec.describe Camera do
 
     subject { Camera.new(hsize, vsize, field_of_view) }
 
-    its(:hsize) { is_expected.to eq(160) }
-    its(:vsize) { is_expected.to eq(120) }
-    its(:field_of_view) { is_expected.to eq(Math::PI / 2) }
+    it { is_expected.to have_attributes(hsize: 160, vsize: 120, field_of_view: Math::PI / 2) }
     its(:transform) { is_expected.to eq(Transform::IDENTITY) }
+    it { is_expected.to be_frozen }
+
+    context 'with transform' do
+      let(:transform) { Transform.rotation_y(Math::PI / 4) * Transform.translation(0, -2, 5) }
+      subject { Camera.new(201, 101, Math::PI / 2, transform) }
+
+      it { is_expected.to have_attributes(hsize: 201, vsize: 101, field_of_view: Math::PI / 2, transform: transform) }
+    end
   end
 
   describe '#pixel_size' do
@@ -46,9 +52,9 @@ RSpec.describe Camera do
     end
 
     context 'camera transformed' do
-      let(:c) { Camera.new(201, 101, Math::PI / 2) }
+      let(:transform) { Transform.rotation_y(Math::PI / 4) * Transform.translation(0, -2, 5) }
+      let(:c) { Camera.new(201, 101, Math::PI / 2, transform) }
 
-      before { c.transform = Transform.rotation_y(Math::PI / 4) * Transform.translation(0, -2, 5) }
       subject { c.ray_for_pixel(100, 50) }
 
       its(:origin) { is_expected.to eq(Point.new(0, 2, -5)) }
@@ -58,12 +64,11 @@ RSpec.describe Camera do
 
   describe '#render' do
     let(:w) { World.default }
-    let(:c) { Camera.new(11, 11, Math::PI / 2) }
     let(:from) { Point.new(0, 0, -5) }
     let(:to) { Point::ORIGIN }
     let(:up) { Vector.new(0, 1, 0) }
-
-    before { c.transform = Transformations.view_transform(from, to, up) }
+    let(:transform) { Transformations.view_transform(from, to, up) }
+    let(:c) { Camera.new(11, 11, Math::PI / 2, transform) }
 
     let(:image) { c.render(w) }
 

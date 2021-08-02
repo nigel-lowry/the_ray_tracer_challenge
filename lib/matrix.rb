@@ -18,6 +18,7 @@ class Matrix
     end
 
     @data = copy
+    freeze
   end
 
   IDENTITY_4X4 = new [[1, 0, 0, 0],

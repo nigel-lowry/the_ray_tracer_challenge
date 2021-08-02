@@ -4,9 +4,11 @@ require 'point_light'
 class Material
   attr_accessor :color, :ambient, :diffuse, :specular, :shininess
 
-  def initialize
-    @color, @ambient, @diffuse, @specular, @shininess = Color::WHITE, 0.1, 0.9, 0.9, 200.0
+  def initialize(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0)
+    @color, @ambient, @diffuse, @specular, @shininess = color, ambient, diffuse, specular, shininess
   end
+
+  DEFAULT = new
 
   def ==(other)
     self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess

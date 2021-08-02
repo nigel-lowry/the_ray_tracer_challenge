@@ -2,8 +2,9 @@ require 'ray'
 require 'material'
 require 'intersection'
 require 'intersections'
+require 'shape'
 
-class Sphere
+class Sphere < Shape
   attr_reader :radius
   attr_accessor :transform, :material
 
@@ -13,8 +14,8 @@ class Sphere
     @material = Material.new
   end
 
-  def intersect ray
-    dc = DiscriminantCalculator.new(self, ray.transform(self.transform.inverse))
+  def local_intersect ray
+    dc = DiscriminantCalculator.new(ray)
     discriminant, a, b = dc.discriminant, dc.a, dc.b
 
     if discriminant < 0
@@ -26,16 +27,14 @@ class Sphere
       t1 = (-b - sqrt_of_discriminant) / two_a
       t2 = (-b + sqrt_of_discriminant) / two_a
 
+      # TODO might only be one intersection
       Intersections.new Intersection.new(t1, self), Intersection.new(t2, self)
     end
   end
 
-  def normal_at world_point
-    transform_inverse = transform.inverse
-    object_point = transform_inverse * world_point
-    object_normal = object_point - Point::ORIGIN
-    world_normal = transform_inverse.transformation_matrix.transpose * object_normal
-    Factory.create(Tuple.new_vector(world_normal.x, world_normal.y, world_normal.z)).normalize
+  def local_normal_at local_point
+    object_normal = local_point - Point::ORIGIN
+    Factory.create(Tuple.new_vector(object_normal.x, object_normal.y, object_normal.z)).normalize
   end
 
   def ==(other)
@@ -46,7 +45,7 @@ end
 class DiscriminantCalculator
   attr_reader :sphere_to_ray, :a, :b, :c, :discriminant
 
-  def initialize sphere, ray
+  def initialize ray
     @sphere_to_ray = ray.origin - Point::ORIGIN
 
     @a = Vector.dot(ray.direction, ray.direction)

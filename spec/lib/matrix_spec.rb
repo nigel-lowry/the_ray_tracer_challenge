@@ -15,6 +15,7 @@ RSpec.describe Matrix do
       specify { expect(m.get(1, 1)).to eq(-2) }
 
       specify { expect(m.size).to eq(2) }
+      specify { expect(m).to be_frozen }
     end
 
     context '3x3' do

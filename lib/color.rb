@@ -10,6 +10,7 @@ class Color
 
   def initialize red, green, blue
     @tuple = Tuple.new_vector(red, green, blue)
+    freeze
   end
 
   BLACK = new 0, 0, 0
