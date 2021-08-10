@@ -11,8 +11,7 @@ RSpec.describe Vector do
   describe '#tuple' do
     subject { Vector.new(4, -4, 3).tuple }
 
-    it { is_expected.to have_attributes(x: 4, y: -4, z: 3) }
-    its(:w) { is_expected.to eq(0) }
+    it { is_expected.to have_attributes(x: 4, y: -4, z: 3, w: 0) }
   end
 
   describe '#+' do
@@ -21,7 +20,6 @@ RSpec.describe Vector do
       let(:v2) { Vector.new(-2, 3, 1) }
       subject { v1 + v2 }
 
-      it { is_expected.to be_an_instance_of(Vector) }
       it { is_expected.to eq(Vector.new(1, 1, 6)) }
     end
   end
@@ -32,7 +30,6 @@ RSpec.describe Vector do
       let(:v2) { Vector.new(5, 6, 7) }
       subject { v1 - v2 }
 
-      it { is_expected.to be_an_instance_of(Vector) }
       it { is_expected.to eq(Vector.new(-2, -4, -6)) }
     end
 

@@ -27,8 +27,11 @@ class Sphere < Shape
       t1 = (-b - sqrt_of_discriminant) / two_a
       t2 = (-b + sqrt_of_discriminant) / two_a
 
-      # TODO might only be one intersection
-      Intersections.new Intersection.new(t1, self), Intersection.new(t2, self)
+      if t1 == t2
+        Intersections.new Intersection.new(t1, self)
+      else
+        Intersections.new Intersection.new(t1, self), Intersection.new(t2, self)
+      end
     end
   end
 

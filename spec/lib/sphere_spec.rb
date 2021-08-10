@@ -37,9 +37,8 @@ RSpec.describe Sphere do
       it 'intersects at one point' do
         xs = s.intersect(r)
 
-        expect(xs.count).to eq(2)
+        expect(xs.count).to eq(1)
         expect(xs.first).to eq(Intersection.new(5.0, s))
-        expect(xs.last).to eq(Intersection.new(5.0, s))
       end
     end
 

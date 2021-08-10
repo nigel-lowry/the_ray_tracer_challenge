@@ -54,8 +54,6 @@ RSpec.describe Shape do
 
 			before { s.intersect(r) }
 
-			# TODO check this and in the next spec
-			# specify { expect(s).to have_received(:local_intersect).once }
 			specify { expect(s.saved_ray.origin).to eq(Point.new(0, 0, -2.5)) }
 			specify { expect(s.saved_ray.direction).to eq(Vector.new(0, 0, 0.5)) }
 		end

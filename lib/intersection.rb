@@ -7,6 +7,7 @@ class Intersection
 
   def initialize t, object
     @t, @object = t, object
+    freeze
   end
 
   def <=>(other)
@@ -14,6 +15,6 @@ class Intersection
   end
 
   def ==(other)
-    @t == other.t and @object == other.object
+    self.class == other.class and @t == other.t and @object == other.object
   end
 end

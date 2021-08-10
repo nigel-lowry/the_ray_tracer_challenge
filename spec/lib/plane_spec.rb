@@ -1,6 +1,8 @@
 require 'plane'
 
 RSpec.describe Plane do
+	it { is_expected.to be_a(Shape) }
+	
 	specify { expect(subject.local_normal_at(Point.new(0, 0, 0))).to eq(Vector.new(0, 1, 0)) }
 	specify { expect(subject.local_normal_at(Point.new(10, 0, -10))).to eq(Vector.new(0, 1, 0)) }
 	specify { expect(subject.local_normal_at(Point.new(-5, 0, 150))).to eq(Vector.new(0, 1, 0)) }

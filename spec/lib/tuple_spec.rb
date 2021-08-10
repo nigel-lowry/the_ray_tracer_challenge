@@ -36,7 +36,6 @@ RSpec.describe Tuple do
 
       it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 1.0) }
       it { is_expected.to be_a_point }
-      it { is_expected.to_not be_a_vector }
     end
 
     context 'w = 0' do
@@ -44,14 +43,11 @@ RSpec.describe Tuple do
 
       it { is_expected.to have_attributes(x: 4.3, y: -4.2, z: 3.1, w: 0.0) }
       it { is_expected.to be_a_vector }
-      it { is_expected.to_not be_a_point }
     end
 
     context 'w = 2' do
       subject { Tuple.new(4.3, -4.2, 3.1, 2.0) }
 
-      it { is_expected.to_not be_a_vector }
-      it { is_expected.to_not be_a_point }
       it { is_expected.to be_neither_a_point_nor_a_vector }
     end
   end
