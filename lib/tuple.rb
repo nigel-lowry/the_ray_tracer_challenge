@@ -16,6 +16,7 @@ class Tuple
     raise_error_unless_numeric x, y, z, w
 
     @x, @y, @z, @w = x.to_f, y.to_f, z.to_f, w.to_f
+    freeze
   end
 
   def point?

@@ -8,6 +8,7 @@ class Vector
 
   def initialize x, y, z
     @tuple = Tuple.new_vector(x, y, z)
+    freeze
   end
 
   def magnitude

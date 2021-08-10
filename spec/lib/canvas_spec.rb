@@ -1,10 +1,12 @@
 require 'canvas'
 
 RSpec.describe Canvas do
+  let(:red) { Color.new(1, 0, 0) }
   subject { Canvas.new(10, 20) }
 
   describe '.new' do
     it { is_expected.to have_attributes(width: 10, height: 20) }
+    it { is_expected.to be_frozen }
     
     specify { expect(subject.to_a).to all be_black }
 
@@ -30,7 +32,6 @@ RSpec.describe Canvas do
   end
 
   describe '#write_pixel' do
-    let(:red) { Color.new(1, 0, 0) }
     before { subject.write_pixel(2, 3, red) }
 
     specify { expect(subject.pixel_at(2, 3)).to eq(red) }
@@ -39,7 +40,6 @@ RSpec.describe Canvas do
 
   describe 'boundaries' do
     subject { Canvas.new(3, 2) }
-    let(:red) { Color.new(1, 0, 0) }
 
     context 'inside' do
       it 'returns black pixels' do

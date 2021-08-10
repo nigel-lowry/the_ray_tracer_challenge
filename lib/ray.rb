@@ -6,6 +6,7 @@ class Ray
 
   def initialize origin, direction
     @origin, @direction = origin, direction
+    freeze
   end
 
   def position t

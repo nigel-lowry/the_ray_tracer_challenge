@@ -6,12 +6,10 @@ require 'canvas'
 require 'ruby-progressbar'
 
 class Camera
-  attr_reader :hsize, :vsize, :field_of_view, :pixel_size
-  attr_accessor :transform
+  attr_reader :hsize, :vsize, :field_of_view, :pixel_size, :transform
 
-  def initialize hsize, vsize, field_of_view
-    @hsize, @vsize, @field_of_view = hsize, vsize, field_of_view
-    @transform = Transform::IDENTITY
+  def initialize hsize, vsize, field_of_view, transform=Transform::IDENTITY
+    @hsize, @vsize, @field_of_view, @transform = hsize, vsize, field_of_view, transform
 
     half_view = Math.tan(field_of_view / 2.0)
     aspect = hsize / vsize.to_f
@@ -27,6 +25,7 @@ class Camera
     @pixel_size = @half_width * 2 / hsize.to_f
 
     @progress_bar = ProgressBar.create format: "%a %e %P% Processed: %c of %C", total: @hsize * @vsize
+    freeze
   end
 
   def ray_for_pixel px, py

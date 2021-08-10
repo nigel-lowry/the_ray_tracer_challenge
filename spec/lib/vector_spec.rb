@@ -1,6 +1,13 @@
 require 'vector'
 
 RSpec.describe Vector do
+  describe '.new' do
+    subject { Vector.new(1, 2, 3) }
+
+    it { is_expected.to have_attributes(x: 1, y: 2, z: 3) }
+    it { is_expected.to be_frozen }
+  end
+
   describe '#tuple' do
     subject { Vector.new(4, -4, 3).tuple }
 

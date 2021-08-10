@@ -1,6 +1,14 @@
 require 'tuple'
 
 RSpec.describe Tuple do
+  describe '.new' do
+    subject { Tuple.new(1, 2, 3, 1) }
+
+    it { is_expected.to have_attributes(x: 1, y: 2, z: 3, w: 1) }
+    it { is_expected.to be_frozen }
+
+    specify { expect([subject.x, subject.y, subject.z, subject.w]).to all be_a(Float) }
+  end
 
   describe 'x' do
     specify { expect { Tuple.new('nan', -4.2, 3.1, 1.0) }.to raise_error 'x must be a number' }

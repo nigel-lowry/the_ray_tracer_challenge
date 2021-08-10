@@ -4,6 +4,8 @@ RSpec.describe Sphere do
 
   let(:s) { Sphere.new }
 
+  it { is_expected.to be_a(Shape) }
+
   describe '.initialize' do
     subject { s }
 
@@ -106,22 +108,6 @@ RSpec.describe Sphere do
     end
   end
 
-  describe '#transform' do
-    context 'default transformation' do
-      it 'is the identity transform' do
-        expect(s.transform.transformation_matrix).to eq(Matrix::IDENTITY_4X4)
-      end 
-    end
-
-    context 'set transformation' do
-      let(:t) { Transform.translation(2, 3, 4) }
-
-      before { s.transform = t }
-
-      specify { expect(s.transform).to eq(t) }
-    end
-  end
-
   describe '#normal_at' do
     context 'point on x axis' do
       let(:n) { s.normal_at(Point.new(1, 0, 0)) }
@@ -168,23 +154,6 @@ RSpec.describe Sphere do
 
       specify { expect(n).to closely_eq(Vector.new(0, 0.97014, -0.24254)) }
       specify { expect(n).to be_normalized }
-    end
-  end
-
-  describe '#material' do
-    context 'default' do
-      specify { expect(s.material).to eq(Material.new) }
-    end
-
-    context 'assigned' do
-      let(:m) { Material.new }
-
-      before do
-        m.ambient = 1
-        s.material = m
-      end
-
-      specify { expect(s.material).to eq(m) }
     end
   end
 end

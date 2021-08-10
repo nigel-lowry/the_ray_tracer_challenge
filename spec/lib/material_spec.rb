@@ -4,11 +4,14 @@ RSpec.describe Material do
   describe '.new' do
     subject { Material.new }
 
-    its(:color) { is_expected.to eq(Color::WHITE) }
-    its(:ambient) { is_expected.to eq(0.1) }
-    its(:diffuse) { is_expected.to eq(0.9) }
-    its(:specular) { is_expected.to eq(0.9) }
-    its(:shininess) { is_expected.to eq(200.0) }
+    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0) }
+  end
+
+  describe '::DEFAULT' do
+    subject { Material::DEFAULT }
+
+    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0) }
+    specify { expect(subject).to eq(Material.new) }
   end
 
   describe '#lighting' do
