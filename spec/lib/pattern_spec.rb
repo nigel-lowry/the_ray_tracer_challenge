@@ -1,6 +1,9 @@
 require 'pattern'
 
 class TestPattern < AbstractPattern
+  def initialize(a: Color::WHITE, b: Color::BLACK)
+    super a, b
+  end
 end
 
 RSpec.describe Pattern do
@@ -8,7 +11,7 @@ RSpec.describe Pattern do
   let(:color_b) { Color::BLACK }
 
   describe 'default transformation' do
-    subject { TestPattern.new(color_a, color_b) }
+    subject { TestPattern.new() }
 
     its(:transform) { is_expected.to eq(Transform::IDENTITY) }
   end
@@ -71,5 +74,14 @@ RSpec.describe Pattern do
 
       specify { expect(pattern.stripe_at_object(object, Point.new(2.5, 0, 0))).to eq(Color::WHITE) }
     end
+  end
+
+  describe '#transform=' do
+    let(:pattern) { TestPattern.new }
+    let(:transform) { Transform.translation(1, 2, 3) }
+
+    before { pattern.transform = transform }
+
+    specify { expect(pattern.transform).to eq(transform) }
   end
 end
