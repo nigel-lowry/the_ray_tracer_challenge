@@ -9,9 +9,8 @@ class Sphere < Shape
   attr_accessor :transform, :material
 
   def initialize
+    super transform: Transform::IDENTITY, material: Material.new
     @radius = 1
-    @transform = Transform.new Matrix::IDENTITY_4X4
-    @material = Material.new
   end
 
   def local_intersect ray
