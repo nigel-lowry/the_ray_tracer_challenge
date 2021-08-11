@@ -1,4 +1,4 @@
-class AbstractPattern
+class Pattern
   attr_reader :a, :b
   attr_accessor :transform
 
@@ -7,25 +7,26 @@ class AbstractPattern
     @transform = Transform::IDENTITY
   end
 
+  def pattern_at_shape(object, world_point)
+    object_point = object.transform.inverse * world_point
+    pattern_point = transform.inverse * object_point
+
+    pattern_at(pattern_point)
+  end
 end
 
-class Pattern < AbstractPattern
-  def self.stripe_pattern(a, b)
-    new a, b
-  end
-
+class StripePattern < Pattern
   def initialize(a, b)
     super a, b
   end
 
-  def stripe_at(point)
-    point.x.floor % 2 == 0 ? a : b
+  def pattern_at(point)
+    stripe_at(point)
   end
 
-  def stripe_at_object(object, world_point)
-    object_point = object.transform.inverse * world_point
-    pattern_point = transform.inverse * object_point
+  private
 
-    stripe_at(pattern_point)
+  def stripe_at(point)
+    point.x.floor % 2 == 0 ? a : b
   end
 end

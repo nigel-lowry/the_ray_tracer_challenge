@@ -71,7 +71,7 @@ RSpec.describe Material do
     end
 
     context 'lighting with a pattern' do
-      let(:pattern) { Pattern.stripe_pattern(Color::WHITE, Color::BLACK) }
+      let(:pattern) { StripePattern.new(Color::WHITE, Color::BLACK) }
       let(:m) { Material.new(pattern: pattern, ambient: 1, diffuse: 0, specular: 0) }
       let(:eye_v) { Vector.new(0, 0, -1) }
       let(:normal_v) { Vector.new(0, 0, -1) }

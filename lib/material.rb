@@ -19,7 +19,7 @@ class Material
   end
 
   def lighting object, light, point, eye_v, normal_v, in_shadow=false
-    material_or_pattern_color = color.nil? ? pattern.stripe_at_object(object, point) : color
+    material_or_pattern_color = color.nil? ? pattern.pattern_at_shape(object, point) : color
 
 
     effective_color = material_or_pattern_color * light.intensity
