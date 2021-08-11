@@ -36,4 +36,31 @@ RSpec.describe Pattern do
       specify { expect(subject.stripe_at(Point.new(-1.1, 0, 0))).to eq(color_a) }
     end
   end
+
+  describe '#stripe_at_object' do
+    let(:object) { Sphere.new }
+    let(:transform) { Transform.scaling(2, 2, 2) }
+    let(:pattern) { Pattern.stripe_pattern(Color::WHITE, Color::BLACK) }
+
+    context 'object transformation' do
+      before { object.transform = transform }
+
+      specify { expect(pattern.stripe_at_object(object, Point.new(1.5, 0, 0))).to eq(Color::WHITE) }
+    end
+
+    context 'pattern transformation' do
+      before { pattern.transform = transform }
+
+      specify { expect(pattern.stripe_at_object(object, Point.new(1.5, 0, 0))).to eq(Color::WHITE) }
+    end
+
+    context 'both object and pattern transformation' do
+      before do
+        object.transform = transform
+        pattern.transform = Transform.translation(0.5, 0, 0)
+      end
+
+      specify { expect(pattern.stripe_at_object(object, Point.new(2.5, 0, 0))).to eq(Color::WHITE) }
+    end
+  end
 end
