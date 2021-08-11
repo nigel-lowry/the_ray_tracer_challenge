@@ -17,13 +17,14 @@ RSpec.describe Material do
   describe '#lighting' do
     let(:m) { Material.new }
     let(:position) { Point::ORIGIN }
+    let(:object) { Sphere.new }
 
     context 'lighting with the eye between the light and the surface' do
       let(:eye_v) { Vector.new(0, 0, -1) }
       let(:normal_v) { Vector.new(0, 0, -1) }
       let(:light) { PointLight.new(Point.new(0, 0, -10), Color.new(1, 1, 1)) }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v)).to eq(Color.new(1.9, 1.9, 1.9)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v)).to eq(Color.new(1.9, 1.9, 1.9)) }
     end
 
     context 'lighting with the eye between the light and the surface, eye offset 45 degrees' do
@@ -32,7 +33,7 @@ RSpec.describe Material do
       let(:normal_v) { Vector.new(0, 0, -1) }
       let(:light) { PointLight.new(Point.new(0, 0, -10), Color.new(1, 1, 1)) }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v)).to eq(Color.new(1.0, 1.0, 1.0)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v)).to eq(Color.new(1.0, 1.0, 1.0)) }
     end
 
     context 'lighting with the eye opposite surface, light offset 45 degrees' do
@@ -40,7 +41,7 @@ RSpec.describe Material do
       let(:normal_v) { Vector.new(0, 0, -1) }
       let(:light) { PointLight.new(Point.new(0, 10, -10), Color.new(1, 1, 1)) }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v)).to closely_eq(Color.new(0.7364, 0.7364, 0.7364)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v)).to closely_eq(Color.new(0.7364, 0.7364, 0.7364)) }
     end
 
     context 'lighting with the eye in the path of the reflection vector' do
@@ -49,7 +50,7 @@ RSpec.describe Material do
       let(:normal_v) { Vector.new(0, 0, -1) }
       let(:light) { PointLight.new(Point.new(0, 10, -10), Color.new(1, 1, 1)) }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v)).to closely_eq(Color.new(1.6364, 1.6364, 1.6364)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v)).to closely_eq(Color.new(1.6364, 1.6364, 1.6364)) }
     end
 
     context 'lighting with the light behind the surface' do
@@ -57,7 +58,7 @@ RSpec.describe Material do
       let(:normal_v) { Vector.new(0, 0, -1) }
       let(:light) { PointLight.new(Point.new(0, 0, 10), Color.new(1, 1, 1)) }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
     end
 
     context 'lighting with the surface in shadow' do
@@ -66,7 +67,18 @@ RSpec.describe Material do
       let(:light) { PointLight.new(Point.new(0, 0, -10), Color.new(1, 1, 1)) }
       let(:in_shadow) { true }
 
-      specify { expect(m.lighting(light, position, eye_v, normal_v, in_shadow)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
+      specify { expect(m.lighting(object, light, position, eye_v, normal_v, in_shadow)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
+    end
+
+    context 'lighting with a pattern' do
+      let(:pattern) { StripePattern.new(Color::WHITE, Color::BLACK) }
+      let(:m) { Material.new(pattern: pattern, ambient: 1, diffuse: 0, specular: 0) }
+      let(:eye_v) { Vector.new(0, 0, -1) }
+      let(:normal_v) { Vector.new(0, 0, -1) }
+      let(:light) { PointLight.new(Point.new(0, 0, -10), Color::WHITE) }
+
+      specify { expect(m.lighting(object, light, Point.new(0.9, 0, 0), eye_v, normal_v, false)).to eq(Color::WHITE) }
+      specify { expect(m.lighting(object, light, Point.new(1.1, 0, 0), eye_v, normal_v, false)).to eq(Color::BLACK) }
     end
   end
 end

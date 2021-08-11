@@ -2,10 +2,14 @@ require 'color'
 require 'point_light'
 
 class Material
-  attr_accessor :color, :ambient, :diffuse, :specular, :shininess
+  attr_accessor :pattern, :color, :ambient, :diffuse, :specular, :shininess
 
-  def initialize(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0)
-    @color, @ambient, @diffuse, @specular, @shininess = color, ambient, diffuse, specular, shininess
+  def initialize(pattern: nil, color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0)
+    if pattern
+      @pattern, @ambient, @diffuse, @specular, @shininess = pattern, ambient, diffuse, specular, shininess
+    else
+      @color, @ambient, @diffuse, @specular, @shininess = color, ambient, diffuse, specular, shininess
+    end
   end
 
   DEFAULT = new
@@ -14,8 +18,11 @@ class Material
     self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess
   end
 
-  def lighting light, point, eye_v, normal_v, in_shadow=false
-    effective_color = color * light.intensity
+  def lighting object, light, point, eye_v, normal_v, in_shadow=false
+    material_or_pattern_color = color.nil? ? pattern.pattern_at_shape(object, point) : color
+
+
+    effective_color = material_or_pattern_color * light.intensity
     light_v = (light.position - point).normalize
     ambient_contribution = effective_color * ambient
 
