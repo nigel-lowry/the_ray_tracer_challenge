@@ -1,8 +1,17 @@
 require 'pattern'
 
+class TestPattern < AbstractPattern
+end
+
 RSpec.describe Pattern do
   let(:color_a) { Color::WHITE }
   let(:color_b) { Color::BLACK }
+
+  describe 'default transformation' do
+    subject { TestPattern.new(color_a, color_b) }
+
+    its(:transform) { is_expected.to eq(Transform::IDENTITY) }
+  end
 
   describe '.stripe_pattern' do
     subject { Pattern.stripe_pattern(color_a, color_b) }

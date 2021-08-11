@@ -1,14 +1,21 @@
-class Pattern
+class AbstractPattern
   attr_reader :a, :b
   attr_accessor :transform
 
+  def initialize(a, b)
+    @a, @b = a, b
+    @transform = Transform::IDENTITY
+  end
+
+end
+
+class Pattern < AbstractPattern
   def self.stripe_pattern(a, b)
     new a, b
   end
 
   def initialize(a, b)
-    @a, @b = a, b
-    @transform = Transform::IDENTITY
+    super a, b
   end
 
   def stripe_at(point)
