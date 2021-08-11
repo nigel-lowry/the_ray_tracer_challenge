@@ -3,6 +3,7 @@ class Pattern
   attr_accessor :transform
 
   def initialize(a, b)
+    # TODO some refactoring needed here
     @a, @b = a, b
     @transform = Transform::IDENTITY
   end
