@@ -18,8 +18,8 @@ class Material
     self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess
   end
 
-  def lighting light, point, eye_v, normal_v, in_shadow=false
-    material_or_pattern_color = color.nil? ? pattern.stripe_at(point) : color
+  def lighting object, light, point, eye_v, normal_v, in_shadow=false
+    material_or_pattern_color = color.nil? ? pattern.stripe_at_object(object, point) : color
 
 
     effective_color = material_or_pattern_color * light.intensity

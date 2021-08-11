@@ -5,6 +5,6 @@ class ShadeHit
   attr_reader :color
 
   def initialize world, comps
-    @color = comps.object.material.lighting(world.light, comps.over_point, comps.eyev, comps.normalv, world.shadowed?(comps.over_point))
+    @color = comps.object.material.lighting(comps.object, world.light, comps.over_point, comps.eyev, comps.normalv, world.shadowed?(comps.over_point))
   end
 end
