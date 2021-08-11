@@ -69,4 +69,15 @@ RSpec.describe Material do
       specify { expect(m.lighting(light, position, eye_v, normal_v, in_shadow)).to closely_eq(Color.new(0.1, 0.1, 0.1)) }
     end
   end
+
+  describe 'lighting with a pattern' do
+    let(:pattern) { Pattern.stripe_pattern(Color::WHITE, Color::BLACK) }
+    let(:m) { Material.new(pattern: pattern, ambient: 1, diffuse: 0, specular: 0) }
+    let(:eye_v) { Vector.new(0, 0, -1) }
+    let(:normal_v) { Vector.new(0, 0, -1) }
+    let(:light) { PointLight.new(Point.new(0, 0, -10), Color::WHITE) }
+
+    specify { expect(m.lighting(light, Point.new(0.9, 0, 0), eye_v, normal_v, false)).to eq(Color::WHITE) }
+    specify { expect(m.lighting(light, Point.new(1.1, 0, 0), eye_v, normal_v, false)).to eq(Color::BLACK) }
+  end
 end
