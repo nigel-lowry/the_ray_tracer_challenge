@@ -9,7 +9,7 @@ class Sphere < Shape
   attr_accessor :transform, :material
 
   def initialize
-    super transform: Transform::IDENTITY, material: Material.new
+    super
     @radius = 1
   end
 
