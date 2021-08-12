@@ -4,7 +4,7 @@ RSpec.describe RingPattern do
   let(:color_a) { Color::WHITE }
   let(:color_b) { Color::BLACK }
 
-  subject { RingPattern.new(a: color_a, b: color_b) }
+  subject { RingPattern.new(color_a, color_b) }
 
   specify { expect(subject.pattern_at(Point.new(0, 0, 0))).to eq(color_a) }
   specify { expect(subject.pattern_at(Point.new(1, 0, 0))).to eq(color_b) }

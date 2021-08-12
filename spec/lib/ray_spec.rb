@@ -1,4 +1,6 @@
 require 'ray'
+require 'point'
+require 'transform'
 
 RSpec.describe Ray do
   describe '.new' do

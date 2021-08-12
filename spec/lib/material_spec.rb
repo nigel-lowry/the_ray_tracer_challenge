@@ -1,4 +1,7 @@
 require 'material'
+require 'stripe_pattern'
+require 'sphere'
+require 'point_light'
 
 RSpec.describe Material do
   describe '.new' do

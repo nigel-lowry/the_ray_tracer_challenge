@@ -1,5 +1,3 @@
-require 'sphere'
-
 class Intersection
   include Comparable
 

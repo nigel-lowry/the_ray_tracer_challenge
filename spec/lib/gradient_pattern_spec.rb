@@ -4,7 +4,7 @@ RSpec.describe GradientPattern do
   let(:color_a) { Color::WHITE }
   let(:color_b) { Color::BLACK }
 
-  subject { GradientPattern.new(a: color_a, b: color_b) }
+  subject { GradientPattern.new(color_a, color_b) }
 
   specify { expect(subject.pattern_at(Point.new(0, 0, 0))).to eq(color_a) }
   specify { expect(subject.pattern_at(Point.new(0.25, 0, 0))).to eq(Color.new(0.75, 0.75, 0.75)) }

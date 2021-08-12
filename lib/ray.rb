@@ -1,6 +1,3 @@
-require 'point'
-require 'transform'
-
 class Ray
   attr_reader :origin, :direction
 

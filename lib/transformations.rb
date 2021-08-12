@@ -1,4 +1,3 @@
-require 'point'
 require 'matrix'
 require 'transform'
 

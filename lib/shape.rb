@@ -1,3 +1,8 @@
+require 'transform'
+require 'material'
+require 'ray'
+require 'vector'
+
 class Shape
 	attr_accessor :transform, :material
 

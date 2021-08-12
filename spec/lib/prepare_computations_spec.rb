@@ -1,4 +1,5 @@
 require 'prepare_computations'
+require 'sphere'
 
 RSpec.describe PrepareComputations do
   describe '.new' do

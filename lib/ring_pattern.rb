@@ -1,6 +1,8 @@
+require 'pattern'
+
 class RingPattern < Pattern
-  def initialize(a:, b:)
-    super a, b
+  def initialize(a, b)
+    super
   end
 
   def pattern_at(point)

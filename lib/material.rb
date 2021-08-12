@@ -1,5 +1,5 @@
+require 'pattern'
 require 'color'
-require 'point_light'
 
 class Material
   attr_accessor :pattern, :color, :ambient, :diffuse, :specular, :shininess

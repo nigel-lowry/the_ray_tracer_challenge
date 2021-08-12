@@ -1,4 +1,6 @@
 require 'point_light'
+require 'point'
+require 'color'
 
 RSpec.describe PointLight do
   describe '.new' do

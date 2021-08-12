@@ -1,5 +1,4 @@
-require 'active_support/core_ext/module'
-require 'tuple'
+require 'vector'
 
 class Color
   attr_reader :tuple

@@ -1,4 +1,7 @@
 require 'shape'
+require 'vector'
+require 'intersections'
+require 'intersection'
 
 class Plane < Shape
 	THE_NORMAL = Vector.new(0, 1, 0)

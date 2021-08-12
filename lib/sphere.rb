@@ -1,5 +1,3 @@
-require 'ray'
-require 'material'
 require 'intersection'
 require 'intersections'
 require 'shape'

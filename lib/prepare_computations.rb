@@ -1,4 +1,4 @@
-require 'intersection'
+require 'vector'
 
 class PrepareComputations
   attr_reader :t, :object, :point, :eyev, :normalv, :inside, :over_point

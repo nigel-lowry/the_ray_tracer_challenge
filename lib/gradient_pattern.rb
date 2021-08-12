@@ -1,8 +1,8 @@
 require 'pattern'
 
 class GradientPattern < Pattern
-	def initialize(a:, b:)
-    super a, b
+	def initialize(a, b)
+    super
   end
 
   def pattern_at(point)

@@ -1,4 +1,5 @@
 require 'intersection'
+require 'sphere'
 
 RSpec.describe Intersection do
   describe '.initialize' do
