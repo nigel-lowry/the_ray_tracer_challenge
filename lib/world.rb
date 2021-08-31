@@ -48,6 +48,6 @@ class World
   end
 
   def reflected_color comps
-    Color::BLACK
+    Color::BLACK if comps.object.material.reflective.zero?
   end
 end
