@@ -66,6 +66,25 @@ RSpec.describe World do
       
       specify { expect(w.color_at(r)).to eq(inner.material.color) }
     end
+
+    context 'mutually reflective surfaces' do
+      let(:w) { World.default }
+      let(:lower) { Plane.new }
+      let(:upper) { Plane.new }
+      let(:r) { Ray.new(Point.new(0, 0, 0), Vector.new(0, 1, 0)) }
+
+      before do
+        lower.material.reflective = 1
+        lower.transform = Transform.translation(0, -1, 0)
+
+        upper.material.reflective = 1
+        upper.transform = Transform.translation(0, 1, 0)
+
+        w.objects << lower << upper
+      end
+
+      specify { expect(w.color_at(r)).to be_an_instance_of(Color) }
+    end
   end
 
   describe '#shadowed?' do
@@ -154,6 +173,6 @@ RSpec.describe World do
 
         expect(ShadeHit.new(w, comps).color).to closely_eq(Color.new(0.87677, 0.92436, 0.82918))
       end
-    end 
+    end
   end
 end
