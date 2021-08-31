@@ -99,17 +99,37 @@ RSpec.describe World do
   end
 
   describe '#reflected_color' do
-    let(:w) { World.default }
-    let(:r) { Ray.new(Point.new(0, 0, 0), Vector.new(0, 0, 1)) }
-    let(:shape) { w.objects[1] }
+    context 'nonreflective material' do
+      let(:w) { World.default }
+      let(:r) { Ray.new(Point.new(0, 0, 0), Vector.new(0, 0, 1)) }
+      let(:shape) { w.objects[1] }
 
-    before { shape.material.ambient = 1 }
+      before { shape.material.ambient = 1 }
 
-    it 'sets to black' do
-      i = Intersection.new(1, shape)
-      comps = PrepareComputations.new(i, r)
+      it 'sets to black' do
+        i = Intersection.new(1, shape)
+        comps = PrepareComputations.new(i, r)
 
-      expect(w.reflected_color(comps)).to eq(Color::BLACK)
+        expect(w.reflected_color(comps)).to eq(Color::BLACK)
+      end
     end
+
+    context 'reflective material' do
+      let(:w) { World.default }
+      let(:shape) { Plane.new }
+      let(:transform) { Transform.translation(0, -1, 0) }
+      let(:r) { Ray.new(Point.new(0, 0, -3), Vector.new(0, -Math::sqrt(2) / 2, Math::sqrt(2) / 2)) }
+
+      before do
+        shape.material.reflective = 0.5
+      end
+
+      it 'returns the color' do
+        i = Intersection.new(Math::sqrt(2), shape)
+        comps = PrepareComputations.new(i, r)
+
+        expect(w.reflected_color(comps)).to closely_eq(Color.new(0.19032, 0.2379, 0.14274))
+      end
+    end    
   end
 end

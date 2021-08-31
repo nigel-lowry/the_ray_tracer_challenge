@@ -1,4 +1,4 @@
-EPSILON = 0.00001
+EPSILON = 0.0001
 
 RSpec::Matchers.define :closely_eq do |expected|
   match do |actual|

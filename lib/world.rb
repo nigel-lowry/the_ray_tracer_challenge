@@ -48,6 +48,12 @@ class World
   end
 
   def reflected_color comps
-    Color::BLACK if comps.object.material.reflective.zero?
+    if comps.object.material.reflective.zero?
+      Color::BLACK
+    else
+      reflect_ray = Ray.new(comps.over_point, comps.reflectv)
+      color = color_at(reflect_ray)
+      color * comps.object.material.reflective
+    end
   end
 end
