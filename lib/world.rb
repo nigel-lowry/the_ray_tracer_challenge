@@ -46,4 +46,8 @@ class World
 
     h.present? and h.t < v.magnitude
   end
+
+  def reflected_color comps
+    Color::BLACK
+  end
 end

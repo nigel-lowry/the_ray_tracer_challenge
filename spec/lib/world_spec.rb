@@ -97,4 +97,19 @@ RSpec.describe World do
       specify { expect(w.shadowed?(p)).to be false }
     end
   end
+
+  describe '#reflected_color' do
+    let(:w) { World.default }
+    let(:r) { Ray.new(Point.new(0, 0, 0), Vector.new(0, 0, 1)) }
+    let(:shape) { w.objects[1] }
+
+    before { shape.material.ambient = 1 }
+
+    it 'sets to black' do
+      i = Intersection.new(1, shape)
+      comps = PrepareComputations.new(i, r)
+
+      expect(w.reflected_color(comps)).to eq(Color::BLACK)
+    end
+  end
 end
