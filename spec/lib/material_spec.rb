@@ -7,13 +7,13 @@ RSpec.describe Material do
   describe '.new' do
     subject { Material.new }
 
-    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0) }
+    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0, reflective: 0.0) }
   end
 
   describe '::DEFAULT' do
     subject { Material::DEFAULT }
 
-    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0) }
+    specify { expect(subject).to have_attributes(color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0, reflective: 0.0) }
     specify { expect(subject).to eq(Material.new) }
   end
 

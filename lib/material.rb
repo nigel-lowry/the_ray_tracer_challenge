@@ -2,20 +2,20 @@ require 'pattern'
 require 'color'
 
 class Material
-  attr_accessor :pattern, :color, :ambient, :diffuse, :specular, :shininess
+  attr_accessor :pattern, :color, :ambient, :diffuse, :specular, :shininess, :reflective
 
-  def initialize(pattern: nil, color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0)
+  def initialize(pattern: nil, color: Color::WHITE, ambient: 0.1, diffuse: 0.9, specular: 0.9, shininess: 200.0, reflective: 0.0)
     if pattern
-      @pattern, @ambient, @diffuse, @specular, @shininess = pattern, ambient, diffuse, specular, shininess
+      @pattern, @ambient, @diffuse, @specular, @shininess, @reflective = pattern, ambient, diffuse, specular, shininess, reflective
     else
-      @color, @ambient, @diffuse, @specular, @shininess = color, ambient, diffuse, specular, shininess
+      @color, @ambient, @diffuse, @specular, @shininess, @reflective = color, ambient, diffuse, specular, shininess, reflective
     end
   end
 
   DEFAULT = new
 
   def ==(other)
-    self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess
+    self.class == other.class and self.color == other.color and self.ambient == other.ambient and self.diffuse == other.diffuse and self.specular == other.specular and self.shininess == other.shininess and self.reflective == other.reflective
   end
 
   def lighting object, light, point, eye_v, normal_v, in_shadow=false
