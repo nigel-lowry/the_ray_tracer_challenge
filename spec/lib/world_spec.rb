@@ -132,4 +132,28 @@ RSpec.describe World do
       end
     end    
   end
+
+  describe '#shade_hit' do
+    context 'reflective material' do
+      let(:w) { World.default }
+      let(:shape) { Plane.new }
+      let(:transform) { Transform.translation(0, -1, 0) }
+      let(:r) { Ray.new(Point.new(0, 0, -3), Vector.new(0, -Math::sqrt(2) / 2, Math::sqrt(2) / 2)) }
+
+      it 'returns the color' do
+        shape.material.reflective = 0.5
+        shape.transform = transform
+        w.objects << shape
+
+        expect(w.objects).to include(shape)
+        expect(shape.material.reflective).to eq(0.5)
+        expect(shape.transform).to eq(transform)
+
+        i = Intersection.new(Math::sqrt(2), shape)
+        comps = PrepareComputations.new(i, r)
+
+        expect(ShadeHit.new(w, comps).color).to closely_eq(Color.new(0.87677, 0.92436, 0.82918))
+      end
+    end 
+  end
 end
