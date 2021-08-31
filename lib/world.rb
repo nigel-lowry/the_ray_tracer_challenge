@@ -30,13 +30,13 @@ class World
     Intersections.new(*intersection_arrays.flatten)
   end
 
-  def color_at r
+  def color_at r, remaining = 5
     hit = intersect(r).hit
 
     if hit.nil?
       Color::BLACK
     else
-      ShadeHit.new(self, PrepareComputations.new(hit, r)).color
+      ShadeHit.new(self, PrepareComputations.new(hit, r, remaining)).color
     end
   end
 
@@ -47,12 +47,12 @@ class World
     h.present? and h.t < v.magnitude
   end
 
-  def reflected_color comps
-    if comps.object.material.reflective.zero?
+  def reflected_color comps, remaining = 5
+    if remaining.zero? or comps.object.material.reflective.zero?
       Color::BLACK
     else
       reflect_ray = Ray.new(comps.over_point, comps.reflectv)
-      color = color_at(reflect_ray)
+      color = color_at(reflect_ray, remaining - 1)
       color * comps.object.material.reflective
     end
   end

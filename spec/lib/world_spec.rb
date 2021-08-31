@@ -149,7 +149,29 @@ RSpec.describe World do
 
         expect(w.reflected_color(comps)).to closely_eq(Color.new(0.19032, 0.2379, 0.14274))
       end
-    end    
+    end
+
+    context 'maximum recursive depth' do
+      let(:w) { World.default }
+      let(:shape) { Plane.new }
+      let(:transform) { Transform.translation(0, -1, 0) }
+      let(:r) { Ray.new(Point.new(0, 0, -3), Vector.new(0, -Math::sqrt(2) / 2, Math::sqrt(2) / 2)) }
+
+      it 'returns the color' do
+        shape.material.reflective = 0.5
+        shape.transform = transform
+        w.objects << shape
+
+        expect(w.objects).to include(shape)
+        expect(shape.material.reflective).to eq(0.5)
+        expect(shape.transform).to eq(transform)
+
+        i = Intersection.new(Math::sqrt(2), shape)
+        comps = PrepareComputations.new(i, r)
+
+        expect(w.reflected_color(comps, 0)).to eq(Color::BLACK)
+      end
+    end
   end
 
   describe '#shade_hit' do
