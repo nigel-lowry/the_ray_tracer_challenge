@@ -52,4 +52,14 @@ RSpec.describe PrepareComputations do
     specify { expect(comps.over_point.z).to be < -EPSILON / 2 }
     specify { expect(comps.point.z).to be > comps.over_point.z }
   end
+
+  describe '#reflectv' do
+    let(:r) { Ray.new(Point.new(0, 1, -1), Vector.new(0, -Math::sqrt(2) / 2, Math::sqrt(2) / 2)) }
+    let(:shape) { Plane.new }
+    let(:i) { Intersection.new(Math::sqrt(2), shape) }
+
+    let(:comps) { PrepareComputations.new(i, r) }
+
+    specify { expect(comps.reflectv).to closely_eq(Vector.new(0, Math::sqrt(2) / 2, Math::sqrt(2) / 2)) }    
+  end
 end

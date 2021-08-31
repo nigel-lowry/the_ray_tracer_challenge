@@ -1,7 +1,7 @@
 require 'vector'
 
 class PrepareComputations
-  attr_reader :t, :object, :point, :eyev, :normalv, :inside, :over_point
+  attr_reader :t, :object, :point, :eyev, :normalv, :inside, :over_point, :reflectv
 
   def initialize intersection, ray
     @t = intersection.t
@@ -19,6 +19,7 @@ class PrepareComputations
     end
 
     @over_point = @point + @normalv * EPSILON
+    @reflectv = ray.direction.reflect(@normalv)
   end
 
   def inside?
