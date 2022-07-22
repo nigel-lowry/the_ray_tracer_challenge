@@ -90,6 +90,8 @@ GEM
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
     puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
@@ -177,7 +179,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     web-console (4.1.0)
       actionview (>= 6.0.0)
@@ -195,6 +197,7 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
